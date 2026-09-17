@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>문제와 시장 — Kidney Bloom</title>
+<meta name="description" content="만성콩팥병은 느리고, 조용하고, 비쌉니다. 국내 진료환자 10년 새 2배, 인지율 공백, 비용의 벼랑, 그리고 비어 있는 시장.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@2.0/nanumsquare.css" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="page-hero">
+  <div class="wrap">
+    <span class="tag">Part 01 · The Problem</span>
+    <h1>콩팥은 늦게 말한다</h1>
+    <p>콩팥은 기능의 90%가 손상될 때까지 거의 증상을 내지 않습니다. 그래서 대부분의 환자는 이미 늦은 시점에 진단을 받습니다. 그런데 진짜 어려움은 진단 이후에 시작됩니다.</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="tag">The Doubling</span><h2>10년 새 2배 — 국내 CKD 진료환자 34.7만 명</h2><p>환자는 늘고 있고, 원인은 콩팥 밖에 있습니다. 식탁이 바뀌고, 대사질환이 늘고, 인구가 늙습니다.</p></div>
+    <div class="stats">
+      <div class="stat hi"><div class="n">346,518<small>명</small></div><div class="l">CKD 진료환자 (2024)<br>2015년 170,576명 대비 2.03배</div><div class="s">건강보험공단 · 2025.10</div></div>
+      <div class="stat"><div class="n">6.3<small>%</small></div><div class="l">성인 유병률 (연령표준화, 2024)<br>70세 이상 25.9%</div><div class="s">주간 건강과 질병</div></div>
+      <div class="stat"><div class="n">137,705<small>명</small></div><div class="l">신대체요법 유병 환자 (2023)<br>신규 18,052명 · 65세 이상 59%</div><div class="s">대한신장학회 KHP 2033</div></div>
+      <div class="stat"><div class="n">2,608<small>pmp</small></div><div class="l">말기신부전 유병률<br>인구 100만 명당 · 세계 3위</div><div class="s">대한신장학회</div></div>
+    </div>
+    <div class="grid g3" style="margin-top:20px">
+      <div class="tile"><span class="k">식이환경</span><h4>배달 거래액 10.8배</h4><p>2.7조 → 29.28조 원 (2017 → 2024). "집에서 해 먹는다" 93.0% → 60.4%. 초가공식품 에너지 비중 17.4% → 25.3%.</p></div>
+      <div class="tile"><span class="k">대사질환</span><h4>당뇨병 533만 명</h4><p>30세 이상 14.8% (2022). 당뇨병 전단계 약 1,410만 명. 40대 남성 비만율 61.7% (2024).</p></div>
+      <div class="tile"><span class="k">인구 구조</span><h4>65세 이상 20.3%</h4><p>2025년 초고령사회 진입. 70세 이상 CKD 유병률 25.9%는 전체 성인의 약 4배.</p></div>
+    </div>
+    <div class="tile" style="margin-top:18px">
+      <h4>국내 말기콩팥병 원인 질환 구성</h4>
+      <p style="font-size:13px;color:var(--ink-3)">대한신장학회 등록사업 2023 · 137,705명 기준</p>
+      <div class="bars">
+        <div class="br"><span class="l">당뇨병</span><span class="bw"><span class="b" style="width:45.9%"></span><span class="v">45.9%</span></span></div>
+        <div class="br"><span class="l">고혈압</span><span class="bw"><span class="b bl" style="width:22.2%"></span><span class="v">22.2%</span></span></div>
+        <div class="br"><span class="l">사구체신염</span><span class="bw"><span class="b c" style="width:10.5%"></span><span class="v">10.5%</span></span></div>
+        <div class="br"><span class="l">기타</span><span class="bw"><span class="b g" style="width:21.4%"></span><span class="v">21.4%</span></span></div>
+      </div>
+      <p style="margin-top:14px"><b>당뇨병과 고혈압만으로 68%. 콩팥병은 콩팥에서 시작되지 않습니다.</b></p>
+    </div>
+    <p class="note">인과로 단정하지 않습니다. 관찰 연구 기준으로 초가공식품 최고 섭취군의 CKD 발생 위험은 1.25배(4개 코호트 메타분석), 비만군의 단백뇨 발생 위험은 1.51배로 보고됩니다. 등록사업의 원인 구성비만 실측값입니다.</p>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="sec-head"><span class="tag">The Cost Cliff</span><h2>비용의 벼랑 — 초기 관리 10만 원, 투석 2,800만 원</h2><p>콩팥병 사업의 경제성은 단 하나의 비교에서 나옵니다.</p></div>
+    <div class="tile">
+      <h4>CKD 환자 1인당 연간 진료비 · 실제 비율 그대로</h4>
+      <div class="bars">
+        <div class="br"><span class="l">초기 관리</span><span class="bw"><span class="b" style="width:0.36%"></span><span class="v">약 10만 원</span></span></div>
+        <div class="br"><span class="l">복막투석</span><span class="bw"><span class="b c" style="width:71%"></span><span class="v">1,941만 원</span></span></div>
+        <div class="br"><span class="l">혈액투석</span><span class="bw"><span class="b c" style="width:100%"></span><span class="v">2,736만 원</span></span></div>
+      </div>
+      <p style="margin-top:14px"><b>위쪽 막대가 거의 보이지 않는 것이 정확한 표현입니다.</b> 환자 한 명의 투석 진입을 1년 늦추면 그 해에만 약 2,700만 원의 의료비가 발생하지 않습니다.</p>
+    </div>
+    <div class="stats s3" style="margin-top:18px">
+      <div class="stat"><div class="n">2.83<small>조 원</small></div><div class="l">CKD 총진료비 (2024)<br>단일상병 3위</div><div class="s">2033년 5~6조 원 전망</div></div>
+      <div class="stat"><div class="n">84<small>%</small></div><div class="l">치료 구성 중 혈액투석<br>이식 11% · 복막투석 6%</div><div class="s">2022</div></div>
+      <div class="stat hi"><div class="n">49.8<small>%</small></div><div class="l">원인 1위 당뇨병성 신증<br>혈당 관리가 곧 콩팥 관리</div><div class="s">국내</div></div>
+    </div>
+    <p class="body" style="margin-top:20px">이 논거로 미국에서 만들어진 회사들이 있습니다. Strive Health는 2025년 9월 시리즈D로 5.5억 달러를, Somatus는 3.25억 달러를, Monogram Health는 CVS·Cigna·Humana로부터 3.75억 달러를 유치했고, Interwell Health는 3사 합병 시 24억 달러로 평가받았습니다. 셋 다 환자에게 구독료를 받지 않습니다. <b>지불자와 절감분을 나눕니다.</b></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="tag">The Awareness Gap</span><h2>인지율 공백 — 87%가 모른다</h2><p>미국 성인 일곱 명 중 한 명이 만성콩팥병을 앓고 있고, 그중 대부분은 자신이 환자라는 사실조차 모릅니다. 국내 인지율 공식 통계는 존재하지 않는 것으로 보입니다.</p></div>
+    <div class="stats">
+      <div class="stat"><div class="n">7.88<small>억 명</small></div><div class="l">전 세계 성인 CKD 환자<br>연령표준화 유병률 14.2%</div><div class="s">GBD 2023 · The Lancet 2025.11</div></div>
+      <div class="stat"><div class="n">3,700<small>만 명</small></div><div class="l">미국 성인 CKD 환자<br>성인의 14%</div><div class="s">CDC 2026.3</div></div>
+      <div class="stat hi"><div class="n">87<small>%</small></div><div class="l">자신의 CKD를 모름<br>20세 이상</div><div class="s">CDC 2026.3</div></div>
+      <div class="stat"><div class="n">$770<small>억</small></div><div class="l">메디케어 66세 이상 CKD 관련 지출<br>전체의 24.1% · ESRD 별도 $523억</div><div class="s">USRDS 2023 ADR</div></div>
+    </div>
+    <p class="body" style="margin-top:20px">아시아계는 특히 취약합니다. 남아시아계 23%, 동남아시아계 22%, 동아시아계 14%가 당뇨를 앓고(JAMA 2019), 고혈압을 보유한 아시아계의 26%가 CKD를 동반합니다 — 전 인종 중 최고 비율입니다. 이것이 미국 진입의 첫 교두보를 <b>아시아계 커뮤니티</b>로 잡은 이유입니다.</p>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="sec-head"><span class="tag">The Empty Middle</span><h2>시장의 빈자리 — 콩팥에는 상업 플레이어가 없다</h2><p>국내 만성질환 앱 시장은 당뇨에 몰려 있습니다.</p></div>
+    <div class="grid g2">
+      <div class="tile">
+        <h4>질환별 국내 상업 앱 사업자 수</h4>
+        <p style="font-size:13px;color:var(--ink-3)">VC 투자 유치 또는 매출 공개 사업자 기준 · 2026.8 조사</p>
+        <div class="bars">
+          <div class="br"><span class="l">당뇨</span><span class="bw"><span class="b" style="width:75%"></span><span class="v">3</span></span></div>
+          <div class="br"><span class="l">심장·부정맥</span><span class="bw"><span class="b" style="width:25%"></span><span class="v">1</span></span></div>
+          <div class="br"><span class="l">불면증</span><span class="bw"><span class="b" style="width:25%"></span><span class="v">1</span></span></div>
+          <div class="br"><span class="l" style="color:var(--coral-deep)">콩팥</span><span class="bw"><span class="b c" style="width:4px"></span><span class="v" style="color:var(--coral-deep)">0</span></span></div>
+        </div>
+        <p class="note">당뇨는 닥터다이어리·카카오헬스케어·휴레이포지티브. 콩팥은 대한신장학회 무료 공익앱 '하이디'(2019)가 사실상 유일합니다.</p>
+      </div>
+      <div class="tile soft-pink">
+        <span class="k">Why the gap exists</span>
+        <h4>센서가 없어서 아무도 안 만들었다</h4>
+        <p>당뇨는 연속혈당측정기라는 하드웨어가 있어 데이터가 자동으로 들어오고, 환자 수가 많아 B2C 규모가 나옵니다. 콩팥은 그런 센서가 없고, 데이터는 3개월에 한 번 병원에서만 나옵니다. 그래서 환자는 여전히 종이에 씁니다.</p>
+        <p style="margin-top:12px"><b>승부는 센서가 아니라 환자가 매일 기록하게 만드는 설계에서 납니다.</b> 그건 하드웨어 경쟁이 아니라 행동설계와 브랜드 경쟁이고, 우리가 잘하는 쪽입니다.</p>
+      </div>
+    </div>
+    <h3>미국은 공백이 아니라 미성숙 시장</h3>
+    <div class="grid g3">
+      <div class="tile"><span class="k">환자가 직접 결제</span><h4>D2C 앱</h4><p>CKD Tracker · KidneyPal · KidneyDiet. 검사수치 기록과 "의사에게 보여줄 PDF"까지 이미 존재하지만, 식이 중심이거나 초기 단계입니다.</p></div>
+      <div class="tile"><span class="k m">사업자가 비용 부담</span><h4>투석 사업자 앱</h4><p>myDaVita · Fresenius PatientHub. 무료지만 자사 환자 전용 폐쇄형. 투석 전 환자는 애초에 대상이 아닙니다.</p></div>
+      <div class="tile"><span class="k b">보험사가 비용 부담</span><h4>가치기반 케어 기업</h4><p>Interwell · Somatus · Strive · Monogram. 자금력은 압도적이지만 계약된 보험 가입자만 커버합니다. 환자 참여 기술은 인수·제휴로 조달합니다.</p></div>
+    </div>
+    <div class="callout pink"><b>우리가 노리는 틈 — 투석 전 CKD 3~4기 환자.</b> 투석 사업자 앱의 사각지대이고, 가치기반 케어 기업은 보험 계약자만 봅니다. "검사수치 기록 + 추이 + 진료 전 리포트"를 축으로 잡은 지배적 플레이어가 아직 없습니다.</div>
+  </div>
+</section>
+
+<section class="tight">
+  <div class="wrap">
+    <div class="sec-head"><span class="tag">Why Now</span><h2>제도가 콩팥 쪽으로 움직이기 시작했다</h2></div>
+    <div class="grid g2">
+      <div class="tile"><span class="k">2026.04</span><h4>제6차 국민건강증진종합계획(2026–2030)</h4><p>만성 신장병이 별도 중점과제로 처음 포함됐습니다. 대한신장학회는 만성콩팥병관리법 제정을 추진 중입니다.</p></div>
+      <div class="tile"><span class="k">2025.01 / 2026.01</span><h4>디지털의료제품법 시행 · 자율신고제 시작</h4><p>디지털의료·건강지원기기 자율신고·성능인증 제도가 시작됐습니다. 웰니스 제품이 제도 안으로 들어갈 문이 생겼습니다.</p></div>
+      <div class="tile"><span class="k">다음 확대 후보</span><h4>일차의료 만성질환관리 본사업</h4><p>아직 고혈압·당뇨병만 대상입니다. CKD가 확대되는 순간 환자 관리 도구에 대한 수요가 제도적으로 생깁니다.</p></div>
+      <div class="tile"><span class="k">2026.02 / 2026.01</span><h4>식약처·FDA 가이던스 개정</h4><p>식약처 웰니스 판단기준, FDA General Wellness·CDS 가이던스 모두 완화 방향으로 개정됐습니다.</p></div>
+    </div>
+    <div style="margin-top:28px"><a class="next" href="product.html"><div><div class="k">Next</div><div class="t">My Beanie — 이 문제에 대한 우리의 답</div></div><span>→</span></a></div>
+    <div class="sources"><b>출처</b> · 건강보험공단(최보윤 의원실 분석, 2025.10) · 대한신장학회 KHP 2033 정책제안서(2025.4) · 주간 건강과 질병(PHWR 2025) · GBD 2023, The Lancet(2025.11) · CDC CKD Factsheet(2026.3) · USRDS 2023 ADR · JAMA 2019 · Scientific Reports 2025 · Renal Failure 2024 · Kidney International 2017 · MedCity News, Fierce Healthcare(2025). 투석 환자 수·유병률은 자료원별 정의(연령표준화 여부, 등록 vs 청구 기준)가 달라 값이 병존하며, 기준연도와 출처를 병기했습니다.</div>
+  </div>
+</section>
+
+<script src="site.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "name": "My Beanie — 콩팥 건강 일지",
+  "short_name": "My Beanie",
+  "description": "It's my health buddy. 기록을 진료 전 한 장 리포트로.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F7FAFB",
+  "theme_color": "#FF7B8E",
+  "lang": "ko",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

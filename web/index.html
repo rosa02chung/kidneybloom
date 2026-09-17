@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kidney Bloom — 콩팥병 환자를 위한 자기설명 플랫폼</title>
+<meta name="description" content="Kidney Bloom은 만성콩팥병 환자가 자기 몸을 스스로 설명할 수 있게 돕는 프로젝트입니다. 소비자 앱 My Beanie로 진료 전 한 장 리포트를 만들어 보세요.">
+<meta property="og:title" content="Kidney Bloom — Helping kidney patients explain their own bodies">
+<meta property="og:description" content="모든 환자는 자기 자신이 선생님이 되어야 한다.">
+<meta property="og:url" content="https://kidneybloom.com">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@2.0/nanumsquare.css" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.hero{padding:88px 0 72px;background:radial-gradient(1200px 600px at 80% -10%,var(--coral-soft),transparent 60%),radial-gradient(800px 500px at 0% 100%,var(--mint-soft),transparent 60%)}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;background:var(--mint-soft);color:var(--mint-deep);font-size:13px;font-weight:700}
+.eyebrow::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--mint)}
+h1{font-size:clamp(34px,5vw,56px);line-height:1.18;font-weight:800;letter-spacing:-.02em;margin:22px 0 18px}
+h1 em{font-style:normal;color:var(--coral-deep)}
+.lead-h{font-size:18px;color:var(--ink-2);max-width:520px;margin-bottom:32px}
+.cta{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.cta small{display:block;width:100%;color:var(--ink-3);font-size:13px;margin-top:6px}
+.hero-art{position:relative;display:flex;justify-content:center}
+.phone{width:280px;background:var(--ink);border-radius:40px;padding:12px;box-shadow:0 30px 60px rgba(23,56,63,.25)}
+.screen{background:#fff;border-radius:30px;overflow:hidden;font-size:12px}
+.screen .top{padding:18px 18px 10px;display:flex;justify-content:space-between;align-items:center}
+.screen .top b{font-family:var(--en);font-size:14px}
+.card{margin:8px 14px;padding:14px;border-radius:16px}
+.card.pink{background:var(--coral-soft)} .card.mint{background:var(--mint-soft)} .card.blue{background:var(--blue-soft)}
+.card .k{font-size:11px;color:var(--ink-2);font-weight:700}
+.card .v{font-family:var(--en);font-size:24px;font-weight:600;margin-top:2px}
+.card .v span{font-size:12px;color:var(--ink-3);margin-left:4px}
+.bar{height:8px;border-radius:4px;background:#fff;margin-top:10px;overflow:hidden}
+.bar i{display:block;height:100%;width:62%;background:var(--mint-deep);border-radius:4px}
+.float{position:absolute;background:#fff;border-radius:16px;padding:12px 16px;box-shadow:0 12px 32px rgba(23,56,63,.14);font-size:13px;font-weight:700;display:flex;align-items:center;gap:10px}
+.float.a{top:36px;left:0} .float.b{bottom:48px;right:0}
+.dot{width:10px;height:10px;border-radius:50%}
+@media(max-width:860px){.hero .wrap{grid-template-columns:1fr}.hero-art{margin-top:20px}.float.a{left:8px}.float.b{right:8px}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">CKD 환자를 위한 자기설명 플랫폼</span>
+      <h1>모든 환자는<br>자기 자신이<br><em>선생님</em>이 되어야 한다.</h1>
+      <p class="lead-h">Kidney Bloom은 만성콩팥병 환자가 자기 몸의 변화를 스스로 읽고, 진료실에서 한 장으로 설명할 수 있게 돕습니다. 진단이 아니라, 대화를 준비하는 도구입니다.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="https://app.kidneybloom.com">My Beanie 앱 열기 →</a>
+        <a class="btn btn-ghost" href="product.html">제품 살펴보기</a>
+        <small>설치 없이 브라우저에서 바로 시작 · 홈 화면에 추가하면 앱처럼 사용</small>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="float a"><span class="dot" style="background:var(--mint)"></span>지난번보다 eGFR +2</div>
+      <div class="phone"><div class="screen">
+        <div class="top"><b>My Beanie</b><span style="color:var(--ink-3)">The One-Pager</span></div>
+        <div class="card pink"><div class="k">eGFR (CKD-EPI 2021)</div><div class="v">58<span>mL/min/1.73m²</span></div><div class="bar"><i></i></div></div>
+        <div class="card mint"><div class="k">최근 30일 혈압 평균</div><div class="v">128<span>/ 79</span></div></div>
+        <div class="card blue"><div class="k">의사에게 물어볼 것</div><div style="margin-top:6px;line-height:1.5">· 저녁 붓기가 잦아졌어요<br>· 단백질 섭취량 괜찮은가요?</div></div>
+        <div style="height:18px"></div>
+      </div></div>
+      <div class="float b"><span class="dot" style="background:var(--coral)"></span>진료 전 리포트 준비 완료</div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">The Problem</span>
+      <h2>느리고, 조용하고, 비싸다</h2>
+      <p>만성콩팥병은 세 가지 조건이 겹치는 자리에 있습니다. 그래서 대부분의 환자는 늦게 알고, 알게 된 뒤에는 관리의 대부분을 혼자 떠안습니다.</p>
+    </div>
+    <div class="stats">
+      <div class="stat hi"><div class="n">2.03<small>배</small></div><div class="l">국내 CKD 진료환자 증가<br>17.1만 → 34.7만 명</div><div class="s">2015 → 2024 · 건강보험공단</div></div>
+      <div class="stat"><div class="n">87<small>%</small></div><div class="l">미국 CKD 성인 중<br>자신의 병을 모르는 비율</div><div class="s">CDC 팩트시트 2026</div></div>
+      <div class="stat"><div class="n">280<small>배</small></div><div class="l">초기 관리 연 10만 원 vs<br>혈액투석 연 2,736만 원</div><div class="s">1인당 진료비 기준</div></div>
+      <div class="stat"><div class="n">0<small>개</small></div><div class="l">국내 CKD 특화 상업 앱<br>(VC 투자·매출 공개 기준)</div><div class="s">2026.8 조사</div></div>
+    </div>
+    <div style="margin-top:20px"><a class="next" href="problem.html"><div><div class="k">Read more</div><div class="t">문제와 시장 — The Doubling · The Cost Cliff · The Empty Middle</div></div><span>→</span></a></div>
+  </div>
+</section>
+
+<section class="dark">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">The Gap</span>
+      <h2>환자는 90일을 살지만, 진료는 15분입니다</h2>
+      <p>3개월치 일상을 15분 안에 설명해야 합니다. 그 사이를 메우는 도구가 없었습니다.</p>
+    </div>
+    <div class="stats s3">
+      <div class="stat hi"><div class="n">129,600<small>min</small></div><div class="l">진료와 진료 사이, 환자가 혼자 보내는 90일</div><div class="s">90일 × 24시간 × 60분</div></div>
+      <div class="stat"><div class="n">15<small>min</small></div><div class="l">그 90일을 설명할 수 있는 진료 시간</div><div class="s">평균 외래 진료 기준</div></div>
+      <div class="stat"><div class="n">1<small>page</small></div><div class="l">My Beanie가 준비하는 것 — 진료 전 한 장 리포트</div><div class="s">The One-Pager</div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">Five Choices</span>
+      <h2>My Beanie의 다섯 가지 선택</h2>
+      <p>기록 자체가 목적이 아닙니다. 기록이 대화가 되고, 대화가 자신감이 되도록 설계했습니다.</p>
+    </div>
+    <div class="grid g5">
+      <div class="tile hover"><span class="badge c">1</span><span class="k">The One-Pager</span><h4>진료 전 한 장 리포트</h4><p>지난 3개월의 기록이 한 페이지로 정리됩니다. 환자가 들고 진료실에 들어갑니다.</p><div class="foot"><span class="pill">MVP</span></div></div>
+      <div class="tile hover"><span class="badge m">2</span><span class="k m">Time Travel</span><h4>지난번 대비 비교</h4><p>지난 진료 때와 지금을 나란히 놓습니다. 유지되는 병이라 유지 자체가 성취입니다.</p><div class="foot"><span class="pill">MVP</span></div></div>
+      <div class="tile hover"><span class="badge b">3</span><span class="k b">The Quiet Nudge</span><h4>조용한 넛지</h4><p>기록을 놓친 날 잔소리하지 않습니다. 죄책감은 만성질환 이탈의 가장 큰 원인입니다.</p><div class="foot"><span class="pill">MVP</span></div></div>
+      <div class="tile hover"><span class="badge m">4</span><span class="k m">Mirrored Care</span><h4>보호자 미러링</h4><p>식사를 준비하는 사람과 기록하는 사람이 같은 화면을 봅니다. 설명 노동이 사라집니다.</p><div class="foot"><span class="pill v2">v2</span></div></div>
+      <div class="tile hover"><span class="badge c">5</span><span class="k">Reverse Content</span><h4>리버스 콘텐츠</h4><p>"이건 드세요"가 아니라, 실제로 먹은 것에서 출발해 오늘 조정 가능한 한 가지를 제안합니다.</p><div class="foot"><span class="pill v2">v2</span></div></div>
+    </div>
+    <div class="callout">ⓘ My Beanie는 개인 건강기록 도구이며 진단·치료를 대신하지 않습니다. 모든 판단은 담당 의료진과 상의하세요. (식약처 의료기기·개인용 건강관리 제품 판단기준 준용)</div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">The Self-Explanation Index</span>
+      <h2>자기설명력, 우리가 재는 단 하나의 지표</h2>
+      <p>환자가 자기 몸의 상태를 자기 말로 설명할 수 있는 정도. 체류 시간이나 기록 횟수가 아니라 이 값을 올리는 것이 제품의 목표입니다.</p>
+    </div>
+    <div class="levels">
+      <div class="lv"><div class="n">LV0 · UNAWARE</div><h4>말이 없다</h4><div class="q">"괜찮았어요."</div><p>자기 상태를 설명할 언어가 없다. 지난 3개월이 사라진다.</p></div>
+      <div class="lv"><div class="n">LV1 · AWARE</div><h4>기록한다</h4><div class="q">"지난달에 붓기가 심했어요."</div><p>무슨 일이 있었는지 말할 수 있다. 사실의 회복.</p></div>
+      <div class="lv"><div class="n">LV2 · COMPARE</div><h4>읽는다</h4><div class="q">"크레아티닌이 올랐더라고요."</div><p>수치가 무엇을 뜻하는지 안다. 언어의 획득.</p></div>
+      <div class="lv"><div class="n">LV3 · CONNECT</div><h4>설명한다</h4><div class="q">"짠 걸 먹은 주에 수치가 움직였어요."</div><p>삶과 수치를 연결해 말한다. 여기서 진료가 바뀐다.</p></div>
+      <div class="lv"><div class="n">LV4 · LEAD</div><h4>결정한다</h4><div class="q">"이번 달은 외식을 줄여보려고요."</div><p>스스로 조정한다. 선생님이 된 상태.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="tag">Brand Architecture</span>
+      <h2>세 개의 층, 하나의 방향</h2>
+      <p>회사가 비전을 들고, 프로젝트가 근거를 만들고, 제품이 환자 옆에 있습니다.</p>
+    </div>
+    <div class="layers">
+      <div class="layer l1"><div><div class="name">Root to Life</div><div class="role">Company · Vision · IR</div></div><p>미션·법인·자본·IP·방법론·데이터 거버넌스를 소유합니다. 성공의 정의: 여러 질환에서 반복 가능한 구조를 만든다.</p></div>
+      <div class="layer l2"><div><div class="name">Kidney Bloom</div><div class="role">Project · Research · Strategy</div></div><p>연구·근거·설계 원칙·규제 판단·공개 콘텐츠를 소유합니다. 성공의 정의: 근거가 제품 결정을 이긴다.</p></div>
+      <div class="layer l3"><div><div class="name">My Beanie</div><div class="role">Product · "It's my health buddy"</div></div><p>사용자 경험·기록 데이터·커뮤니티를 소유합니다. 성공의 정의: 매일 열린다.</p></div>
+    </div>
+    <div style="margin-top:20px"><a class="next" href="company.html"><div><div class="k">Read more</div><div class="t">회사와 연구 — 3층 구조, R&amp;D 엔진, 연구 4트랙</div></div><span>→</span></a></div>
+  </div>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <svg class="mascot" viewBox="0 0 64 64" aria-hidden="true"><path d="M20 8c-9 0-14 8-14 18 0 9 5 13 8 19 3 5 6 11 14 11 8 0 11-6 14-11 3-6 8-10 8-19C50 16 45 8 36 8c-4 0-6 2-8 2s-4-2-8-2z" fill="#7ECFB3"/><circle cx="23" cy="30" r="2.6" fill="#17383F"/><circle cx="37" cy="30" r="2.6" fill="#17383F"/><path d="M24 39q6 5 12 0" stroke="#17383F" stroke-width="2.4" stroke-linecap="round" fill="none"/><circle cx="18" cy="37" r="3" fill="#FF7B8E" opacity=".7"/><circle cx="42" cy="37" r="3" fill="#FF7B8E" opacity=".7"/></svg>
+    <h2>다음 진료, 한 장으로 준비해 보세요</h2>
+    <p>My Beanie는 웹에서 바로 실행됩니다. 기록은 내 기기에만 저장되고, 어디로도 전송되지 않습니다.</p>
+    <a class="btn btn-primary" href="https://app.kidneybloom.com">My Beanie 시작하기 →</a>
+  </div>
+</section>
+
+<script src="site.js"></script>
+</body>
+</html>
