@@ -1,14 +1,15 @@
+@font-face{font-family:'Poppins';font-style:normal;font-weight:100 900;font-display:swap;src:url(fonts/Poppins-Medium.woff2) format('woff2')}
 :root{
   --coral:#FF7B8E;--coral-deep:#E85C72;--coral-soft:#FFE9ED;
   --mint:#7ECFB3;--mint-deep:#4FA98A;--mint-soft:#E6F6F0;
   --blue:#A8D8EA;--blue-deep:#3B7F94;--blue-soft:#EAF5F9;
   --ink:#17383F;--ink-2:#4A6168;--ink-3:#8AA0A6;--line:#E6EDEF;--bg:#F7FAFB;--card:#fff;
-  --r:18px;--en:'Poppins',sans-serif;--ko:'NanumSquare','Poppins',sans-serif;
+  --r:18px;--en:'Poppins','NanumSquare',sans-serif;--ko:'Poppins','NanumSquare',sans-serif;
   --safe-b:env(safe-area-inset-bottom,0px);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
-body{font-family:var(--ko);background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;overscroll-behavior-y:none}
+body{font-family:var(--ko);font-synthesis:none;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased;overscroll-behavior-y:none}
 .en{font-family:var(--en);font-weight:500}
 a{color:var(--blue-deep)}
 #app{max-width:520px;margin:0 auto;padding:0 16px calc(84px + var(--safe-b))}
@@ -108,11 +109,16 @@ input[type=number]{font-family:var(--en)}
 .tabbar{position:fixed;left:0;right:0;bottom:0;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-top:1px solid var(--line);display:flex;padding:6px 8px calc(6px + var(--safe-b));z-index:10}
 .tabbar button{flex:1;border:0;background:transparent;font-family:var(--ko);font-size:11px;font-weight:700;color:var(--ink-3);padding:6px 0;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px}
 .tabbar button span{font-size:20px;line-height:1}
+.tabbar button em{font-style:normal}
+.lang-seg{max-width:260px;margin:0 auto 14px}
 .tabbar button.on{color:var(--coral-deep)}
 .tabbar.hidden{display:none}
 .toast{position:fixed;left:50%;bottom:calc(96px + var(--safe-b));transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:10px 18px;border-radius:999px;font-size:14px;opacity:0;transition:.25s;pointer-events:none;z-index:20;white-space:nowrap}
 .toast.on{opacity:1;transform:translateX(-50%)}
-@media print{
+.demo-bar a{color:#7ECFB3;text-decoration:underline}
+.demo-bar{background:var(--ink);color:#fff;font-size:11px;font-weight:700;text-align:center;padding:6px 12px;letter-spacing:.02em}
+@media print{.demo-bar a{color:#7ECFB3;text-decoration:underline}
+.demo-bar{display:none}
   body{background:#fff}
   #app{padding:0;max-width:none}
   .view,.tabbar,.top,.row2,#v-report>.card{display:none!important}

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>My Beanie — 콩팥 건강 일지</title>
-<meta name="description" content="My Beanie: 만성콩팥병 환자의 기록을 진료 전 한 장 리포트로. It's my health buddy.">
+<meta name="description" content="My Beanie: 만성콩팥병 환자의 기록을 진료 전 한 장 리포트로. It's my health buddy. / Turn your CKD records into a one-page pre-visit report.">
 <meta name="theme-color" content="#FF7B8E">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -12,8 +12,6 @@
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icons/icon-192.png">
 <link rel="apple-touch-icon" href="icons/icon-192.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@2.0/nanumsquare.css" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
@@ -25,120 +23,124 @@
     <div class="onb">
       <img src="icons/icon-192.png" alt="" class="onb-mascot">
       <h1 class="en">My Beanie</h1>
-      <p class="sub">It's my health buddy.<br>기록은 이 기기에만 저장돼요.</p>
-      <label>이름(별명)<input id="ob-name" placeholder="예: 지원" maxlength="12"></label>
-      <label>출생연도<input id="ob-year" type="number" inputmode="numeric" placeholder="예: 1975" min="1920" max="2020"></label>
+      <p class="sub" data-i18n="ob_sub"></p>
+      <div class="seg lang-seg" id="ob-lang"><button data-v="ko">한국어</button><button data-v="en">English</button></div>
+      <label><span data-i18n="ob_name"></span><input id="ob-name" data-i18n-ph="ob_name_ph" maxlength="16"></label>
+      <label><span data-i18n="ob_year"></span><input id="ob-year" type="number" inputmode="numeric" data-i18n-ph="ob_year_ph" min="1920" max="2020"></label>
       <div class="seg" id="ob-sex">
-        <button data-v="F" class="on">여성</button><button data-v="M">남성</button>
+        <button data-v="F" class="on" data-i18n="female"></button><button data-v="M" data-i18n="male"></button>
       </div>
-      <label>다음 진료일 (선택)<input id="ob-visit" type="date"></label>
-      <button class="btn primary" id="ob-go">시작하기</button>
-      <p class="tiny">My Beanie는 개인 건강기록 도구이며 진단·치료를 대신하지 않습니다.</p>
+      <label><span data-i18n="ob_visit"></span><input id="ob-visit" type="date"></label>
+      <button class="btn primary" id="ob-go" data-i18n="ob_go"></button>
+      <p class="tiny" data-i18n="disclaimer_short"></p>
     </div>
   </section>
 
   <!-- home -->
   <section class="view" id="v-home">
     <header class="top">
-      <div><div class="hello" id="home-hello">안녕하세요</div><div class="en brand">My Beanie</div></div>
-      <button class="icon-btn" data-go="settings" aria-label="설정">⚙</button>
+      <div><div class="hello" id="home-hello"></div><div class="en brand">My Beanie</div></div>
+      <button class="icon-btn" data-go="settings" aria-label="Settings">⚙</button>
     </header>
     <div class="nudge" id="nudge"></div>
     <div class="kpis">
-      <div class="kpi pink"><div class="k">eGFR</div><div class="v en" id="kpi-egfr">–</div><div class="d" id="kpi-egfr-d">기록을 시작해 보세요</div></div>
-      <div class="kpi mint"><div class="k">혈압</div><div class="v en" id="kpi-bp">–</div><div class="d" id="kpi-bp-d">최근 기록</div></div>
-      <div class="kpi blue"><div class="k">체중</div><div class="v en" id="kpi-wt">–</div><div class="d" id="kpi-wt-d">최근 기록</div></div>
+      <div class="kpi pink"><div class="k" data-i18n="egfr"></div><div class="v en" id="kpi-egfr">–</div><div class="d" id="kpi-egfr-d"></div></div>
+      <div class="kpi mint"><div class="k" data-i18n="bp"></div><div class="v en" id="kpi-bp">–</div><div class="d" id="kpi-bp-d"></div></div>
+      <div class="kpi blue"><div class="k" data-i18n="weight"></div><div class="v en" id="kpi-wt">–</div><div class="d" id="kpi-wt-d"></div></div>
     </div>
     <div class="card visit" id="visit-card"></div>
-    <h2 class="h">최근 기록</h2>
+    <h2 class="h" data-i18n="recent"></h2>
     <div id="home-list" class="list"></div>
   </section>
 
   <!-- log -->
   <section class="view" id="v-log">
-    <header class="top"><h1>오늘 기록</h1><span class="en" id="log-date"></span></header>
+    <header class="top"><h1 data-i18n="log_title"></h1><span class="en" id="log-date"></span></header>
     <form id="log-form" class="form">
       <div class="grp">
-        <div class="grp-t">검사 수치 <small>검사 결과지가 있을 때만</small></div>
-        <label>크레아티닌 (mg/dL)<input name="cr" type="number" step="0.01" inputmode="decimal" placeholder="예: 1.25"></label>
+        <div class="grp-t"><span data-i18n="labs"></span> <small data-i18n="labs_hint"></small></div>
+        <label><span data-i18n="cr"></span><input name="cr" type="number" step="0.01" inputmode="decimal" data-i18n-ph="cr_ph"></label>
         <div class="egfr-preview" id="egfr-preview"></div>
-        <label>칼륨 K (mmol/L)<input name="k" type="number" step="0.1" inputmode="decimal" placeholder="예: 4.5"></label>
-        <label>인 P (mg/dL)<input name="p" type="number" step="0.1" inputmode="decimal" placeholder="예: 3.8"></label>
+        <label><span data-i18n="k"></span><input name="k" type="number" step="0.1" inputmode="decimal" data-i18n-ph="k_ph"></label>
+        <label><span data-i18n="p"></span><input name="p" type="number" step="0.1" inputmode="decimal" data-i18n-ph="p_ph"></label>
       </div>
       <div class="grp">
-        <div class="grp-t">일상 측정</div>
+        <div class="grp-t" data-i18n="daily"></div>
         <div class="row2">
-          <label>수축기<input name="sbp" type="number" inputmode="numeric" placeholder="128"></label>
-          <label>이완기<input name="dbp" type="number" inputmode="numeric" placeholder="79"></label>
+          <label><span data-i18n="sbp"></span><input name="sbp" type="number" inputmode="numeric" placeholder="128"></label>
+          <label><span data-i18n="dbp"></span><input name="dbp" type="number" inputmode="numeric" placeholder="79"></label>
         </div>
-        <label>체중 (kg)<input name="wt" type="number" step="0.1" inputmode="decimal" placeholder="62.4"></label>
+        <label><span data-i18n="wt"></span><input name="wt" type="number" step="0.1" inputmode="decimal" placeholder="62.4"></label>
       </div>
       <div class="grp">
-        <div class="grp-t">몸의 신호 <small>해당하는 것만</small></div>
+        <div class="grp-t"><span data-i18n="signals"></span> <small data-i18n="signals_hint"></small></div>
         <div class="chips" id="sym-chips">
-          <button type="button" data-s="붓기">붓기</button><button type="button" data-s="피로">피로</button><button type="button" data-s="가려움">가려움</button>
-          <button type="button" data-s="식욕저하">식욕저하</button><button type="button" data-s="숨참">숨참</button><button type="button" data-s="두통">두통</button>
-          <button type="button" data-s="거품뇨">거품뇨</button><button type="button" data-s="야간뇨">야간뇨</button><button type="button" data-s="잠 설침">잠 설침</button>
+          <button type="button" data-s="swelling" data-i18n-sym></button><button type="button" data-s="fatigue" data-i18n-sym></button><button type="button" data-s="itching" data-i18n-sym></button>
+          <button type="button" data-s="appetite" data-i18n-sym></button><button type="button" data-s="breath" data-i18n-sym></button><button type="button" data-s="headache" data-i18n-sym></button>
+          <button type="button" data-s="foamy" data-i18n-sym></button><button type="button" data-s="nocturia" data-i18n-sym></button><button type="button" data-s="sleep" data-i18n-sym></button>
         </div>
       </div>
       <div class="grp">
-        <div class="grp-t">의사에게 물어볼 것 · 메모</div>
-        <textarea name="note" rows="3" placeholder="예: 저녁마다 발목이 붓는데 괜찮은가요?"></textarea>
+        <div class="grp-t" data-i18n="notes_lbl"></div>
+        <textarea name="note" rows="3" data-i18n-ph="notes_ph"></textarea>
       </div>
-      <button class="btn primary" type="submit">저장</button>
+      <button class="btn primary" type="submit" data-i18n="save"></button>
     </form>
   </section>
 
   <!-- trend -->
   <section class="view" id="v-trend">
-    <header class="top"><h1>추이</h1></header>
+    <header class="top"><h1 data-i18n="trend"></h1></header>
     <div class="seg" id="trend-seg">
-      <button data-m="egfr" class="on">eGFR</button><button data-m="bp">혈압</button><button data-m="wt">체중</button>
+      <button data-m="egfr" class="on">eGFR</button><button data-m="bp" data-i18n="bp_short"></button><button data-m="wt" data-i18n="weight"></button>
     </div>
-    <div class="card"><canvas id="chart" height="220"></canvas><div class="chart-empty" id="chart-empty">아직 기록이 없어요</div></div>
+    <div class="card"><canvas id="chart" height="220"></canvas><div class="chart-empty" id="chart-empty" data-i18n="chart_empty"></div></div>
     <div class="card tt" id="timetravel"></div>
   </section>
 
   <!-- report -->
   <section class="view" id="v-report">
-    <header class="top"><h1>진료 전 한 장</h1><span class="en tag">The One-Pager</span></header>
-    <div class="card"><label>기간<select id="rep-range"><option value="30">최근 30일</option><option value="90" selected>최근 90일</option><option value="180">최근 180일</option></select></label></div>
+    <header class="top"><h1 data-i18n="rep_title"></h1><span class="en tag">The One-Pager</span></header>
+    <div class="card"><label><span data-i18n="period"></span><select id="rep-range"><option value="30" data-i18n="d30"></option><option value="90" selected data-i18n="d90"></option><option value="180" data-i18n="d180"></option></select></label></div>
     <article class="onepager" id="onepager"></article>
     <div class="row2">
-      <button class="btn ghost" id="rep-print">인쇄 / PDF</button>
-      <button class="btn primary" id="rep-share">공유</button>
+      <button class="btn ghost" id="rep-print" data-i18n="print"></button>
+      <button class="btn primary" id="rep-share" data-i18n="share"></button>
     </div>
   </section>
 
   <!-- settings -->
   <section class="view" id="v-settings">
-    <header class="top"><button class="icon-btn" data-go="home">←</button><h1>설정</h1></header>
+    <header class="top"><button class="icon-btn" data-go="home">←</button><h1 data-i18n="settings"></h1></header>
     <div class="card form">
-      <label>이름<input id="st-name"></label>
-      <label>출생연도<input id="st-year" type="number"></label>
-      <div class="seg" id="st-sex"><button data-v="F">여성</button><button data-v="M">남성</button></div>
-      <label>다음 진료일<input id="st-visit" type="date"></label>
-      <button class="btn primary" id="st-save">저장</button>
+      <label><span data-i18n="st_name"></span><input id="st-name"></label>
+      <label><span data-i18n="st_year"></span><input id="st-year" type="number"></label>
+      <div class="seg" id="st-sex"><button data-v="F" data-i18n="female"></button><button data-v="M" data-i18n="male"></button></div>
+      <label><span data-i18n="st_visit"></span><input id="st-visit" type="date"></label>
+      <label><span data-i18n="st_lang"></span></label>
+      <div class="seg" id="st-lang"><button data-v="ko">한국어</button><button data-v="en">English</button></div>
+      <button class="btn primary" id="st-save" data-i18n="save"></button>
     </div>
     <div class="card form">
-      <div class="grp-t">데이터</div>
-      <button class="btn ghost" id="st-export">기록 내보내기 (JSON)</button>
-      <button class="btn ghost" id="st-import">기록 가져오기</button>
+      <div class="grp-t" data-i18n="data"></div>
+      <button class="btn ghost" id="st-export" data-i18n="export"></button>
+      <button class="btn ghost" id="st-import" data-i18n="import"></button>
       <input type="file" id="st-file" accept="application/json" hidden>
-      <button class="btn danger" id="st-reset">모든 기록 삭제</button>
+      <button class="btn danger" id="st-reset" data-i18n="reset"></button>
     </div>
-    <p class="tiny">My Beanie v0.1 · 개인 건강기록 도구 · <a href="https://kidneybloom.com">kidneybloom.com</a></p>
+    <p class="tiny"><span data-i18n="st_foot"></span> · <a href="https://kidneybloom.com" id="site-link">kidneybloom.com</a></p>
   </section>
 </div>
 
 <nav class="tabbar" id="tabbar">
-  <button data-go="home" class="on"><span>⌂</span>홈</button>
-  <button data-go="log"><span>＋</span>기록</button>
-  <button data-go="trend"><span>↗</span>추이</button>
-  <button data-go="report"><span>▤</span>리포트</button>
+  <button data-go="home" class="on"><span>⌂</span><em data-i18n="tab_home"></em></button>
+  <button data-go="log"><span>＋</span><em data-i18n="tab_log"></em></button>
+  <button data-go="trend"><span>↗</span><em data-i18n="tab_trend"></em></button>
+  <button data-go="report"><span>▤</span><em data-i18n="tab_report"></em></button>
 </nav>
 
 <div class="toast" id="toast"></div>
+<script src="i18n.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

@@ -1,6 +1,7 @@
-/* My Beanie v0.1 — 콩팥 건강 일지 (PWA) */
+/* My Beanie v0.2 — 콩팥 건강 일지 / Kidney Health Journal (PWA, ko/en) */
 (() => {
-  const KEY = 'mybeanie.v1';
+  const DEMO = /[?&]demo/.test(location.search);
+  const KEY = DEMO ? 'mybeanie.demo' : 'mybeanie.v1';
   const $ = s => document.querySelector(s);
   const $$ = s => [...document.querySelectorAll(s)];
   const today = () => new Date().toISOString().slice(0, 10);
@@ -11,9 +12,32 @@
   let S = load();
   function load() {
     try { const j = JSON.parse(localStorage.getItem(KEY)); if (j && j.entries) return j; } catch (e) {}
+    if (DEMO) return demoData();
     return { profile: null, entries: [], symChips: [] };
   }
-  function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { toast('저장 공간을 사용할 수 없어요'); } }
+  // 데모 모드 (?demo) — 의료진·투자자 시연용 샘플 기록. 실제 기록과 별도 키에 저장
+  function demoData() {
+    const T = new Date(); const d = n => { const x = new Date(T); x.setDate(x.getDate() - n); return x.toISOString().slice(0, 10); };
+    const v = new Date(T); v.setDate(v.getDate() + 3);
+    const rows = [
+      [92, 1.34, 5.1, 3.9, 142, 89, 63.4, ['fatigue'], ''],
+      [80, null, null, null, 138, 86, 63.1, ['fatigue', 'nocturia'], ''],
+      [68, null, null, null, 135, 84, 62.9, [], LANG === 'en' ? 'Some days I feel dizzy after taking my pills' : '약 먹고 나서 어지러운 날이 있어요'],
+      [56, 1.29, 4.7, 3.7, 133, 82, 62.6, ['swelling'], LANG === 'en' ? 'My ankles swell every evening — is that okay?' : '저녁마다 발목이 붓는데 괜찮은가요?'],
+      [44, null, null, null, 131, 81, 62.5, ['swelling', 'nocturia'], ''],
+      [30, null, null, null, 129, 80, 62.3, [], ''],
+      [18, 1.22, 4.4, 3.6, 128, 79, 62.1, [], LANG === 'en' ? 'Is my protein intake about right?' : '단백질 섭취량이 적당한지 궁금해요'],
+      [9, null, null, null, 127, 78, 62.0, ['fatigue'], ''],
+      [2, null, null, null, 126, 78, 61.9, [], LANG === 'en' ? 'Less eating out seems to mean less swelling' : '외식을 줄였더니 붓기가 덜한 것 같아요'],
+    ];
+    const entries = rows.map(([n, cr, k, p, sbp, dbp, wt, sym, note], i) => ({ id: 'demo' + i, date: d(n), ts: i, cr, k, p, sbp, dbp, wt, sym, note, egfr: cr ? egfr(cr, 61, 'F') : null }));
+    return { profile: { name: t('demo_name'), year: T.getFullYear() - 61, sex: 'F', visit: v.toISOString().slice(0, 10) }, entries, symChips: [] };
+  }
+  const SYM_LEGACY = { '붓기': 'swelling', '피로': 'fatigue', '가려움': 'itching', '식욕저하': 'appetite', '숨참': 'breath', '두통': 'headache', '거품뇨': 'foamy', '야간뇨': 'nocturia', '잠 설침': 'sleep' };
+  const symName = k => (t('sym')[k] || k);
+  function migrate() { (S.entries || []).forEach(e => { e.sym = (e.sym || []).map(x => SYM_LEGACY[x] || x); }); }
+  migrate();
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { toast(t('storage_err')); } }
 
   // ---------- eGFR: CKD-EPI 2021 (race-free) ----------
   function egfr(cr, age, sex) {
@@ -49,10 +73,10 @@
   const segVal = id => ($(id).querySelector('.on') || {}).dataset?.v;
   segInit('#ob-sex', 'F');
   $('#ob-go').onclick = () => {
-    const name = $('#ob-name').value.trim() || '친구', year = +$('#ob-year').value;
-    if (!year || year < 1920 || year > 2020) return toast('출생연도를 확인해 주세요');
+    const name = $('#ob-name').value.trim() || t('friend'), year = +$('#ob-year').value;
+    if (!year || year < 1920 || year > 2020) return toast(t('year_check'));
     S.profile = { name, year, sex: segVal('#ob-sex'), visit: $('#ob-visit').value || '' };
-    save(); go('home'); toast(`반가워요, ${name}님`);
+    save(); go('home'); toast(t('welcome', { name }));
   };
 
   // ---------- home ----------
@@ -60,39 +84,39 @@
   const labs = () => entries().filter(e => e.egfr != null);
   function renderHome() {
     const p = S.profile, es = entries();
-    $('#home-hello').textContent = `안녕하세요, ${p.name}님`;
+    $('#home-hello').textContent = t('hello', { name: p.name });
     // kpis
     const L = labs(), l = L[L.length - 1], lp = L[L.length - 2];
     $('#kpi-egfr').innerHTML = l ? `${l.egfr}<small> ${stage(l.egfr)}</small>` : '–';
     const dE = $('#kpi-egfr-d'); dE.className = 'd';
-    if (l && lp) { const d = l.egfr - lp.egfr; dE.textContent = `지난번 대비 ${d > 0 ? '+' : ''}${d}`; dE.classList.add(d > 0 ? 'up' : d < 0 ? 'down' : ''); }
-    else dE.textContent = l ? fmt(l.date) : '크레아티닌을 입력하면 계산돼요';
+    if (l && lp) { const d = l.egfr - lp.egfr; dE.textContent = t('vs_last', { d: (d > 0 ? '+' : '') + d }); dE.classList.add(d > 0 ? 'up' : d < 0 ? 'down' : ''); }
+    else dE.textContent = l ? fmt(l.date) : t('enter_cr');
     const bps = es.filter(e => e.sbp), b = bps[bps.length - 1];
     $('#kpi-bp').innerHTML = b ? `${b.sbp}<small>/${b.dbp || '–'}</small>` : '–';
-    $('#kpi-bp-d').textContent = b ? fmt(b.date) : '최근 기록 없음';
+    $('#kpi-bp-d').textContent = b ? fmt(b.date) : t('no_record');
     const wts = es.filter(e => e.wt), w = wts[wts.length - 1];
-    $('#kpi-wt').innerHTML = w ? `${w.wt}<small> kg</small>` : '–';
-    $('#kpi-wt-d').textContent = w ? fmt(w.date) : '최근 기록 없음';
+    $('#kpi-wt').innerHTML = w ? `${w.wt}<small> ${t('kg')}</small>` : '–';
+    $('#kpi-wt-d').textContent = w ? fmt(w.date) : t('no_record');
     // visit
     const vc = $('#visit-card');
     if (p.visit) {
       const dd = Math.ceil((new Date(p.visit) - new Date(today())) / 864e5);
-      vc.innerHTML = `<div><div class="l">다음 진료 · ${p.visit.replace(/-/g, '.')}</div><div class="n">${dd >= 0 ? 'D-' + dd : '지남'}<small>${dd === 0 ? '오늘' : ''}</small></div></div><button class="btn primary" data-go="report">한 장 리포트</button>`;
-    } else vc.innerHTML = `<div class="l">다음 진료일을 설정하면 리포트 준비를 알려드려요</div><button class="btn ghost" data-go="settings">설정</button>`;
+      vc.innerHTML = `<div><div class="l">${t('next_visit', { date: p.visit.replace(/-/g, '.') })}</div><div class="n">${dd >= 0 ? 'D-' + dd : t('passed')}<small>${dd === 0 ? t('today_lbl') : ''}</small></div></div><button class="btn primary" data-go="report">${t('one_pager_btn')}</button>`;
+    } else vc.innerHTML = `<div class="l">${t('set_visit')}</div><button class="btn ghost" data-go="settings">${t('settings')}</button>`;
     // nudge
     $('#nudge').innerHTML = nudge(es, p);
     // list
     const list = $('#home-list'); const rec = es.slice(-5).reverse();
-    list.innerHTML = rec.length ? rec.map(item).join('') : '<div class="empty">아직 기록이 없어요. 아래 ＋ 기록에서 시작해 보세요.</div>';
-    list.querySelectorAll('.del').forEach(btn => btn.onclick = () => { if (confirm('이 기록을 삭제할까요?')) { S.entries = S.entries.filter(e => e.id !== btn.dataset.id); save(); renderHome(); } });
+    list.innerHTML = rec.length ? rec.map(item).join('') : `<div class="empty">${t('empty_home')}</div>`;
+    list.querySelectorAll('.del').forEach(btn => btn.onclick = () => { if (confirm(t('del_confirm'))) { S.entries = S.entries.filter(e => e.id !== btn.dataset.id); save(); renderHome(); } });
   }
   function item(e) {
     const m = [];
     if (e.egfr != null) m.push(`eGFR <b>${e.egfr}</b>`);
-    if (e.sbp) m.push(`혈압 <b>${e.sbp}/${e.dbp || '–'}</b>`);
+    if (e.sbp) m.push(`${t('bp')} <b>${e.sbp}/${e.dbp || '–'}</b>`);
     if (e.wt) m.push(`<b>${e.wt}</b>kg`);
     if (e.k) m.push(`K <b>${e.k}</b>`);
-    return `<div class="item"><div><div class="dt">${e.date}</div><div class="m">${m.join(' · ') || (e.note ? '메모' : '기록')}</div>${e.sym?.length ? `<div class="sy">${e.sym.join(' · ')}</div>` : ''}</div><button class="del" data-id="${e.id}" aria-label="삭제">×</button></div>`;
+    return `<div class="item"><div><div class="dt">${e.date}</div><div class="m">${m.join(' · ') || (e.note ? t('memo') : t('record'))}</div>${e.sym?.length ? `<div class="sy">${e.sym.map(symName).join(' · ')}</div>` : ''}</div><button class="del" data-id="${e.id}" aria-label="${t('delete')}">×</button></div>`;
   }
   // The Quiet Nudge — 한 번에 한 줄만
   function nudge(es, p) {
@@ -100,15 +124,15 @@
     const days = last ? Math.floor((new Date(today()) - new Date(last.date)) / 864e5) : null;
     if (p.visit) {
       const dd = Math.ceil((new Date(p.visit) - new Date(today())) / 864e5);
-      if (dd >= 0 && dd <= 3) return `<div><b>진료 D-${dd}.</b> 한 장 리포트가 준비돼 있어요. 궁금한 점을 메모에 적어두면 함께 정리돼요.</div>`;
+      if (dd >= 0 && dd <= 3) return `<div>${t('n_visit', { d: dd })}</div>`;
     }
     const bp3 = es.filter(e => e.sbp).slice(-3);
-    if (bp3.length === 3 && bp3.every(e => e.sbp >= 140 || (e.dbp || 0) >= 90)) return `<div><b>최근 세 번 혈압이 높은 편이에요.</b> 진료 때 꼭 이야기해 보세요.</div>`;
-    const sym = es.slice(-3).flatMap(e => e.sym || []); const swell = sym.filter(s => s === '붓기').length;
-    if (swell >= 2) return `<div><b>붓기가 이어지고 있네요.</b> 오늘 체중을 함께 적어두면 진료 때 도움이 돼요.</div>`;
-    if (!last) return `<div><b>첫 기록을 남겨 볼까요?</b> 검사 결과지가 없어도 혈압이나 몸의 신호만으로 충분해요.</div>`;
-    if (days >= 7) return `<div><b>${days}일 만이에요.</b> 오늘 몸은 어떤가요? 한 줄이면 충분해요.</div>`;
-    return `<div>잘 이어가고 있어요, ${p.name}님. <b>오늘도 한 줄</b>이면 충분해요.</div>`;
+    if (bp3.length === 3 && bp3.every(e => e.sbp >= 140 || (e.dbp || 0) >= 90)) return `<div>${t('n_bp')}</div>`;
+    const sym = es.slice(-3).flatMap(e => e.sym || []); const swell = sym.filter(s => s === 'swelling').length;
+    if (swell >= 2) return `<div>${t('n_swell')}</div>`;
+    if (!last) return `<div>${t('n_first')}</div>`;
+    if (days >= 7) return `<div>${t('n_days', { d: days })}</div>`;
+    return `<div>${t('n_ok', { name: p.name })}</div>`;
   }
 
   // ---------- log ----------
@@ -127,10 +151,10 @@
     const f = ev.target, n = k => f[k].value === '' ? null : +f[k].value;
     const e = { id: Date.now().toString(36), date: today(), ts: Date.now(), cr: n('cr'), k: n('k'), p: n('p'), sbp: n('sbp'), dbp: n('dbp'), wt: n('wt'), sym: [...sym], note: f.note.value.trim() };
     e.egfr = e.cr ? egfr(e.cr, age(), S.profile.sex) : null;
-    if (!e.cr && !e.sbp && !e.wt && !e.sym.length && !e.note && !e.k && !e.p) return toast('한 가지라도 적어 주세요');
+    if (!e.cr && !e.sbp && !e.wt && !e.sym.length && !e.note && !e.k && !e.p) return toast(t('need_one'));
     S.entries.push(e); save();
     f.reset(); sym.clear(); $$('#sym-chips button').forEach(b => b.classList.remove('on')); $('#egfr-preview').textContent = '';
-    toast('저장했어요'); go('home');
+    toast(t('saved')); go('home');
   };
 
   // ---------- trend ----------
@@ -177,7 +201,7 @@
   // Time Travel — 지난번 대비 비교
   function renderTimeTravel() {
     const es = entries(), L = labs(), l = L[L.length - 1], lp = L[L.length - 2];
-    const t = today(), d30 = new Date(t); d30.setDate(d30.getDate() - 30); const d60 = new Date(t); d60.setDate(d60.getDate() - 60);
+    const td = today(), d30 = new Date(td); d30.setDate(d30.getDate() - 30); const d60 = new Date(td); d60.setDate(d60.getDate() - 60);
     const cur = es.filter(e => new Date(e.date) > d30), prev = es.filter(e => new Date(e.date) <= d30 && new Date(e.date) > d60);
     const avg = (arr, k) => { const v = arr.filter(e => e[k] != null).map(e => e[k]); return v.length ? r1(v.reduce((a, b) => a + b, 0) / v.length) : null; };
     const rows = [];
@@ -188,12 +212,12 @@
       rows.push(`<tr><td>${label}</td><td>${a ?? '–'}</td><td>${b ?? '–'}${unit}${dl}</td></tr>`);
     };
     row(`eGFR ${lp ? fmt(lp.date) + ' → ' + fmt(l.date) : ''}`, lp?.egfr, l?.egfr, '', true);
-    row('크레아티닌', lp?.cr, l?.cr, '', false);
-    row('칼륨 K', lp?.k, l?.k, '', false);
-    row('수축기 혈압 (30일 평균)', avg(prev, 'sbp'), avg(cur, 'sbp'), '', false);
-    row('이완기 혈압 (30일 평균)', avg(prev, 'dbp'), avg(cur, 'dbp'), '', false);
-    row('체중 (30일 평균)', avg(prev, 'wt'), avg(cur, 'wt'), 'kg', false);
-    $('#timetravel').innerHTML = `<div class="t">지난번 대비 비교<span>TIME TRAVEL</span></div>` + (rows.length ? `<table><tr><td style="color:#8AA0A6;font-size:11px">항목</td><td style="color:#8AA0A6;font-size:11px;text-align:right">지난번</td><td style="color:#8AA0A6;font-size:11px;text-align:right">이번</td></tr>${rows.join('')}</table>` : `<div class="empty">두 번 이상 기록하면 비교가 시작돼요</div>`);
+    row(t('tt_cr'), lp?.cr, l?.cr, '', false);
+    row(t('tt_k'), lp?.k, l?.k, '', false);
+    row(t('tt_sbp'), avg(prev, 'sbp'), avg(cur, 'sbp'), '', false);
+    row(t('tt_dbp'), avg(prev, 'dbp'), avg(cur, 'dbp'), '', false);
+    row(t('tt_wt'), avg(prev, 'wt'), avg(cur, 'wt'), 'kg', false);
+    $('#timetravel').innerHTML = `<div class="t">${t('tt_title')}<span>TIME TRAVEL</span></div>` + (rows.length ? `<table><tr><td style="color:#8AA0A6;font-size:11px">${t('item')}</td><td style="color:#8AA0A6;font-size:11px;text-align:right">${t('last')}</td><td style="color:#8AA0A6;font-size:11px;text-align:right">${t('now')}</td></tr>${rows.join('')}</table>` : `<div class="empty">${t('tt_empty')}</div>`);
   }
 
   // ---------- report: The One-Pager ----------
@@ -210,44 +234,46 @@
     const notes = es.filter(e => e.note).slice(-6).reverse();
     const first = L[0], last = L[L.length - 1];
     $('#onepager').innerHTML = `
-      <div class="hd"><div><h3>${p.name}님의 진료 전 한 장</h3><div class="en">The One-Pager · My Beanie</div></div>
-      <div class="meta" style="text-align:right">${new Date().getFullYear() - p.year}세 · ${p.sex === 'F' ? '여' : '남'}<br>작성 ${today().replace(/-/g, '.')}<br>최근 ${days}일</div></div>
-      <h4>검사 수치 (eGFR: CKD-EPI 2021)</h4>
-      ${L.length ? `<table><tr><th>날짜</th><th class="num">Cr</th><th class="num">eGFR</th><th class="num">K</th><th class="num">P</th></tr>${L.map(e => `<tr><td>${e.date}</td><td class="num">${e.cr}</td><td class="num"><b>${e.egfr}</b> ${stage(e.egfr)}</td><td class="num">${e.k ?? '–'}</td><td class="num">${e.p ?? '–'}</td></tr>`).join('')}</table>
-      ${first && last && first !== last ? `<div class="meta" style="margin-top:6px">기간 내 변화: eGFR ${first.egfr} → ${last.egfr} (${last.egfr - first.egfr > 0 ? '+' : ''}${last.egfr - first.egfr})</div>` : ''}` : `<div class="meta">기간 내 검사 수치 기록 없음</div>`}
-      <h4 class="m">일상 측정</h4>
-      <table><tr><th>항목</th><th class="num">평균</th><th class="num">범위</th><th class="num">횟수</th></tr>
-      <tr><td>수축기 혈압</td><td class="num">${sb ? sb.avg : '–'}</td><td class="num">${sb ? sb.min + '–' + sb.max : '–'}</td><td class="num">${sb ? sb.n : 0}</td></tr>
-      <tr><td>이완기 혈압</td><td class="num">${db ? db.avg : '–'}</td><td class="num">${db ? db.min + '–' + db.max : '–'}</td><td class="num">${db ? db.n : 0}</td></tr>
-      <tr><td>체중 (kg)</td><td class="num">${wt ? wt.avg : '–'}</td><td class="num">${wt ? wt.min + '–' + wt.max : '–'}</td><td class="num">${wt ? wt.n : 0}</td></tr></table>
-      <h4 class="b">몸의 신호 (기간 내 횟수)</h4>
-      ${syms.length ? syms.map(([s, n]) => `<span class="pill">${s} ×${n}</span>`).join('') : '<div class="meta">기록된 증상 없음</div>'}
-      <h4>의사에게 물어볼 것</h4>
-      ${notes.length ? `<ul>${notes.map(e => `<li><span style="color:#8AA0A6;font-family:Poppins">${fmt(e.date)}</span> ${esc(e.note)}</li>`).join('')}</ul>` : '<div class="meta">메모 없음 — 기록 화면에서 궁금한 점을 적어두세요</div>'}
-      <div class="foot">환자가 직접 기록한 개인 건강기록이며 의료기기가 아닙니다. eGFR은 CKD-EPI 2021(인종 미포함) 식으로 계산한 참고값이며, 판단은 담당 의료진에게 있습니다. kidneybloom.com</div>`;
+      <div class="hd"><div><h3>${t('op_head', { name: p.name })}</h3><div class="en">The One-Pager · My Beanie</div></div>
+      <div class="meta" style="text-align:right">${t('op_meta', { age: new Date().getFullYear() - p.year, sex: p.sex === 'F' ? t('f_short') : t('m_short') })}<br>${t('op_made', { date: today().replace(/-/g, '.') })}<br>${t('op_period', { d: days })}</div></div>
+      <h4>${t('op_labs')}</h4>
+      ${L.length ? `<table><tr><th>${t('date')}</th><th class="num">Cr</th><th class="num">eGFR</th><th class="num">K</th><th class="num">P</th></tr>${L.map(e => `<tr><td>${e.date}</td><td class="num">${e.cr}</td><td class="num"><b>${e.egfr}</b> ${stage(e.egfr)}</td><td class="num">${e.k ?? '–'}</td><td class="num">${e.p ?? '–'}</td></tr>`).join('')}</table>
+      ${first && last && first !== last ? `<div class="meta" style="margin-top:6px">${t('op_change', { a: first.egfr, b: last.egfr, d: (last.egfr - first.egfr > 0 ? '+' : '') + (last.egfr - first.egfr) })}</div>` : ''}` : `<div class="meta">${t('op_no_labs')}</div>`}
+      <h4 class="m">${t('op_daily')}</h4>
+      <table><tr><th>${t('item')}</th><th class="num">${t('avg')}</th><th class="num">${t('range')}</th><th class="num">${t('count')}</th></tr>
+      <tr><td>${t('op_sbp')}</td><td class="num">${sb ? sb.avg : '–'}</td><td class="num">${sb ? sb.min + '–' + sb.max : '–'}</td><td class="num">${sb ? sb.n : 0}</td></tr>
+      <tr><td>${t('op_dbp')}</td><td class="num">${db ? db.avg : '–'}</td><td class="num">${db ? db.min + '–' + db.max : '–'}</td><td class="num">${db ? db.n : 0}</td></tr>
+      <tr><td>${t('op_wt')}</td><td class="num">${wt ? wt.avg : '–'}</td><td class="num">${wt ? wt.min + '–' + wt.max : '–'}</td><td class="num">${wt ? wt.n : 0}</td></tr></table>
+      <h4 class="b">${t('op_signals')}</h4>
+      ${syms.length ? syms.map(([s, n]) => `<span class="pill">${symName(s)} ×${n}</span>`).join('') : `<div class="meta">${t('op_no_sym')}</div>`}
+      <h4>${t('op_questions')}</h4>
+      ${notes.length ? `<ul>${notes.map(e => `<li><span style="color:#8AA0A6;font-family:Poppins">${fmt(e.date)}</span> ${esc(e.note)}</li>`).join('')}</ul>` : `<div class="meta">${t('op_no_notes')}</div>`}
+      <div class="foot">${t('op_foot')}</div>`;
   }
   const esc = s => s.replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
   $('#rep-print').onclick = () => window.print();
   $('#rep-share').onclick = async () => {
     const text = $('#onepager').innerText;
-    if (navigator.share) { try { await navigator.share({ title: 'My Beanie 진료 전 한 장', text }); } catch (e) {} }
-    else { try { await navigator.clipboard.writeText(text); toast('텍스트를 복사했어요'); } catch (e) { toast('공유를 지원하지 않는 브라우저예요'); } }
+    if (navigator.share) { try { await navigator.share({ title: t('share_title'), text }); } catch (e) {} }
+    else { try { await navigator.clipboard.writeText(text); toast(t('copied')); } catch (e) { toast(t('no_share')); } }
   };
 
   // ---------- settings ----------
   function renderSettings() {
-    const p = S.profile; $('#st-name').value = p.name; $('#st-year').value = p.year; $('#st-visit').value = p.visit || ''; segInit('#st-sex', p.sex);
+    const p = S.profile; $('#st-name').value = p.name; $('#st-year').value = p.year; $('#st-visit').value = p.visit || ''; segInit('#st-sex', p.sex); segInit('#st-lang', LANG);
   }
-  $('#st-save').onclick = () => { S.profile = { name: $('#st-name').value.trim() || S.profile.name, year: +$('#st-year').value || S.profile.year, sex: segVal('#st-sex'), visit: $('#st-visit').value }; save(); toast('저장했어요'); go('home'); };
+  $('#st-save').onclick = () => { S.profile = { name: $('#st-name').value.trim() || S.profile.name, year: +$('#st-year').value || S.profile.year, sex: segVal('#st-sex'), visit: $('#st-visit').value }; save(); const nl = segVal('#st-lang'); if (nl && nl !== LANG) { try { localStorage.setItem('mybeanie.lang', nl); } catch (e) {} location.href = location.pathname + (DEMO ? '?demo&' : '?') + 'lang=' + nl; return; } toast(t('saved')); go('home'); };
   $('#st-export').onclick = () => { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(S, null, 2)], { type: 'application/json' })); a.download = `mybeanie-${today()}.json`; a.click(); };
   $('#st-import').onclick = () => $('#st-file').click();
-  $('#st-file').onchange = e => { const f = e.target.files[0]; if (!f) return; f.text().then(t => { const j = JSON.parse(t); if (!j.entries) throw 0; S = j; save(); toast('가져왔어요'); go('home'); }).catch(() => toast('파일을 읽을 수 없어요')); };
-  $('#st-reset').onclick = () => { if (confirm('모든 기록과 설정을 삭제할까요? 되돌릴 수 없어요.')) { localStorage.removeItem(KEY); location.reload(); } };
+  $('#st-file').onchange = e => { const f = e.target.files[0]; if (!f) return; f.text().then(txt => { const j = JSON.parse(txt); if (!j.entries) throw 0; S = j; migrate(); save(); toast(t('imported')); go('home'); }).catch(() => toast(t('bad_file'))); };
+  $('#st-reset').onclick = () => { if (confirm(t('reset_confirm'))) { localStorage.removeItem(KEY); location.reload(); } };
 
   // ---------- misc ----------
   let tt; function toast(m) { const t = $('#toast'); t.textContent = m; t.classList.add('on'); clearTimeout(tt); tt = setTimeout(() => t.classList.remove('on'), 1800); }
   window.addEventListener('resize', () => $('#v-trend').classList.contains('on') && drawChart());
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
 
+  if (DEMO) { const b = document.createElement('div'); b.className = 'demo-bar'; b.innerHTML = `${t('demo_bar')} &nbsp;<a href="./?lang=${LANG}">${t('demo_link')}</a>`; document.body.prepend(b); }
+  applyI18n(); $('#site-link').href = LANG === 'en' ? 'https://kidneybloom.com/en/' : 'https://kidneybloom.com'; segInit('#ob-lang', LANG, v => { try { localStorage.setItem('mybeanie.lang', v); } catch (e) {} location.href = location.pathname + (DEMO ? '?demo&' : '?') + 'lang=' + v; });
   go(S.profile ? 'home' : 'onboard');
 })();
