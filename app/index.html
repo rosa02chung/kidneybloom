@@ -81,6 +81,19 @@
         </div>
       </div>
       <div class="grp">
+        <div class="grp-t"><span data-i18n="food"></span> <small data-i18n="food_hint"></small></div>
+        <div class="chips" id="food-chips">
+          <button type="button" data-f="eatout" data-i18n-food></button><button type="button" data-f="delivery" data-i18n-food></button><button type="button" data-f="soup" data-i18n-food></button><button type="button" data-f="fruit" data-i18n-food></button>
+          <button type="button" data-f="nuts" data-i18n-food></button><button type="button" data-f="dairy" data-i18n-food></button><button type="button" data-f="processed" data-i18n-food></button><button type="button" data-f="alcohol" data-i18n-food></button>
+        </div>
+        <input name="foodtext" type="text" maxlength="80" data-i18n-ph="food_ph" style="margin-top:12px">
+        <div class="photo-row">
+          <label class="photo-btn" for="food-photo"><span data-i18n="food_photo"></span></label>
+          <input type="file" id="food-photo" accept="image/*" capture="environment" hidden>
+          <div class="photo-prev" id="food-prev"></div>
+        </div>
+      </div>
+      <div class="grp">
         <div class="grp-t" data-i18n="notes_lbl"></div>
         <textarea name="note" rows="3" data-i18n-ph="notes_ph"></textarea>
       </div>

@@ -1,4 +1,4 @@
-/* My Beanie v0.2 — 콩팥 건강 일지 / Kidney Health Journal (PWA, ko/en) */
+/* My Beanie v0.3 — 콩팥 건강 일지 / Kidney Health Journal (PWA, ko/en) */
 (() => {
   const DEMO = /[?&]demo/.test(location.search);
   const KEY = DEMO ? 'mybeanie.demo' : 'mybeanie.v1';
@@ -7,6 +7,7 @@
   const today = () => new Date().toISOString().slice(0, 10);
   const fmt = d => d.replace(/-/g, '.').slice(2); // 26.09.17
   const r1 = n => Math.round(n * 10) / 10;
+  const esc = s => String(s).replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
 
   // ---------- state ----------
   let S = load();
@@ -20,21 +21,23 @@
     const T = new Date(); const d = n => { const x = new Date(T); x.setDate(x.getDate() - n); return x.toISOString().slice(0, 10); };
     const v = new Date(T); v.setDate(v.getDate() + 3);
     const rows = [
-      [92, 1.34, 5.1, 3.9, 142, 89, 63.4, ['fatigue'], ''],
-      [80, null, null, null, 138, 86, 63.1, ['fatigue', 'nocturia'], ''],
+      [92, 1.34, 5.1, 3.9, 142, 89, 63.4, ['fatigue'], '', ['eatout', 'alcohol']],
+      [80, null, null, null, 138, 86, 63.1, ['fatigue', 'nocturia'], '', ['delivery', 'processed']],
       [68, null, null, null, 135, 84, 62.9, [], LANG === 'en' ? 'Some days I feel dizzy after taking my pills' : '약 먹고 나서 어지러운 날이 있어요'],
       [56, 1.29, 4.7, 3.7, 133, 82, 62.6, ['swelling'], LANG === 'en' ? 'My ankles swell every evening — is that okay?' : '저녁마다 발목이 붓는데 괜찮은가요?'],
-      [44, null, null, null, 131, 81, 62.5, ['swelling', 'nocturia'], ''],
-      [30, null, null, null, 129, 80, 62.3, [], ''],
+      [44, null, null, null, 131, 81, 62.5, ['swelling', 'nocturia'], '', ['eatout', 'soup']],
+      [30, null, null, null, 129, 80, 62.3, [], '', ['fruit', 'soup']],
       [18, 1.22, 4.4, 3.6, 128, 79, 62.1, [], LANG === 'en' ? 'Is my protein intake about right?' : '단백질 섭취량이 적당한지 궁금해요'],
-      [9, null, null, null, 127, 78, 62.0, ['fatigue'], ''],
+      [9, null, null, null, 127, 78, 62.0, ['fatigue'], '', ['fruit', 'dairy']],
       [2, null, null, null, 126, 78, 61.9, [], LANG === 'en' ? 'Less eating out seems to mean less swelling' : '외식을 줄였더니 붓기가 덜한 것 같아요'],
     ];
-    const entries = rows.map(([n, cr, k, p, sbp, dbp, wt, sym, note], i) => ({ id: 'demo' + i, date: d(n), ts: i, cr, k, p, sbp, dbp, wt, sym, note, egfr: cr ? egfr(cr, 61, 'F') : null }));
+    const ftext = { 0: LANG === 'en' ? 'Dinner out with friends' : '저녁 친구들과 외식', 1: LANG === 'en' ? 'Fried chicken delivery' : '치킨 배달', 4: LANG === 'en' ? 'Lunch out, dinner soup at home' : '점심 외식, 저녁 집에서 된장국' };
+    const entries = rows.map(([n, cr, k, p, sbp, dbp, wt, sym, note, ftags], i) => ({ id: 'demo' + i, date: d(n), ts: i, cr, k, p, sbp, dbp, wt, sym, note, egfr: cr ? egfr(cr, 61, 'F') : null, food: ftags ? { tags: ftags, text: ftext[i] || '', photo: null } : null }));
     return { profile: { name: t('demo_name'), year: T.getFullYear() - 61, sex: 'F', visit: v.toISOString().slice(0, 10) }, entries, symChips: [] };
   }
   const SYM_LEGACY = { '붓기': 'swelling', '피로': 'fatigue', '가려움': 'itching', '식욕저하': 'appetite', '숨참': 'breath', '두통': 'headache', '거품뇨': 'foamy', '야간뇨': 'nocturia', '잠 설침': 'sleep' };
   const symName = k => (t('sym')[k] || k);
+  const foodName = k => (t('foods')[k] || k);
   function migrate() { (S.entries || []).forEach(e => { e.sym = (e.sym || []).map(x => SYM_LEGACY[x] || x); }); }
   migrate();
   function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { toast(t('storage_err')); } }
@@ -116,7 +119,7 @@
     if (e.sbp) m.push(`${t('bp')} <b>${e.sbp}/${e.dbp || '–'}</b>`);
     if (e.wt) m.push(`<b>${e.wt}</b>kg`);
     if (e.k) m.push(`K <b>${e.k}</b>`);
-    return `<div class="item"><div><div class="dt">${e.date}</div><div class="m">${m.join(' · ') || (e.note ? t('memo') : t('record'))}</div>${e.sym?.length ? `<div class="sy">${e.sym.map(symName).join(' · ')}</div>` : ''}</div><button class="del" data-id="${e.id}" aria-label="${t('delete')}">×</button></div>`;
+    return `<div class="item"><div><div class="dt">${e.date}</div><div class="m">${m.join(' · ') || (e.food ? t('meal') : e.note ? t('memo') : t('record'))}</div>${e.sym?.length ? `<div class="sy">${e.sym.map(symName).join(' · ')}</div>` : ''}${e.food ? `<div class="fd">${[...(e.food.tags || []).map(foodName), e.food.text ? esc(e.food.text) : ''].filter(Boolean).join(' · ')}</div>` : ''}</div>${e.food?.photo ? `<img class="ft" src="${e.food.photo}" alt="">` : ''}<button class="del" data-id="${e.id}" aria-label="${t('delete')}">×</button></div>`;
   }
   // The Quiet Nudge — 한 번에 한 줄만
   function nudge(es, p) {
@@ -141,6 +144,23 @@
     const b = e.target.closest('button'); if (!b) return;
     b.classList.toggle('on'); b.classList.contains('on') ? sym.add(b.dataset.s) : sym.delete(b.dataset.s);
   });
+  let food = new Set(), foodPhoto = null;
+  $('#food-chips').addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    b.classList.toggle('on'); b.classList.contains('on') ? food.add(b.dataset.f) : food.delete(b.dataset.f);
+  });
+  function renderPhoto() { $('#food-prev').innerHTML = foodPhoto ? `<img src="${foodPhoto}" alt=""><button type="button" class="x" id="food-x">×</button>` : ''; const x = $('#food-x'); if (x) x.onclick = () => { foodPhoto = null; renderPhoto(); }; }
+  $('#food-photo').onchange = e => {
+    const f = e.target.files[0]; if (!f) return;
+    const img = new Image(); const url = URL.createObjectURL(f);
+    img.onload = () => {
+      const max = 480, s = Math.min(1, max / Math.max(img.width, img.height));
+      const c = document.createElement('canvas'); c.width = Math.round(img.width * s); c.height = Math.round(img.height * s);
+      c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+      foodPhoto = c.toDataURL('image/jpeg', 0.6); URL.revokeObjectURL(url); renderPhoto(); if (s < 1) toast(t('photo_big'));
+    };
+    img.src = url; e.target.value = '';
+  };
   $('#log-form').cr.addEventListener('input', e => {
     const g = egfr(+e.target.value, age(), S.profile?.sex);
     $('#egfr-preview').textContent = g ? `→ eGFR ${g} (${stage(g)}) · CKD-EPI 2021` : '';
@@ -149,11 +169,12 @@
   $('#log-form').onsubmit = ev => {
     ev.preventDefault();
     const f = ev.target, n = k => f[k].value === '' ? null : +f[k].value;
-    const e = { id: Date.now().toString(36), date: today(), ts: Date.now(), cr: n('cr'), k: n('k'), p: n('p'), sbp: n('sbp'), dbp: n('dbp'), wt: n('wt'), sym: [...sym], note: f.note.value.trim() };
+    const e = { id: Date.now().toString(36), date: today(), ts: Date.now(), cr: n('cr'), k: n('k'), p: n('p'), sbp: n('sbp'), dbp: n('dbp'), wt: n('wt'), sym: [...sym], note: f.note.value.trim(), food: { tags: [...food], text: f.foodtext.value.trim(), photo: foodPhoto } };
     e.egfr = e.cr ? egfr(e.cr, age(), S.profile.sex) : null;
-    if (!e.cr && !e.sbp && !e.wt && !e.sym.length && !e.note && !e.k && !e.p) return toast(t('need_one'));
+    if (!e.food.tags.length && !e.food.text && !e.food.photo) e.food = null;
+    if (!e.cr && !e.sbp && !e.wt && !e.sym.length && !e.note && !e.k && !e.p && !e.food) return toast(t('need_one'));
     S.entries.push(e); save();
-    f.reset(); sym.clear(); $$('#sym-chips button').forEach(b => b.classList.remove('on')); $('#egfr-preview').textContent = '';
+    f.reset(); sym.clear(); food.clear(); foodPhoto = null; renderPhoto(); $$('#sym-chips button, #food-chips button').forEach(b => b.classList.remove('on')); $('#egfr-preview').textContent = '';
     toast(t('saved')); go('home');
   };
 
@@ -217,6 +238,8 @@
     row(t('tt_sbp'), avg(prev, 'sbp'), avg(cur, 'sbp'), '', false);
     row(t('tt_dbp'), avg(prev, 'dbp'), avg(cur, 'dbp'), '', false);
     row(t('tt_wt'), avg(prev, 'wt'), avg(cur, 'wt'), 'kg', false);
+    const eat = arr => arr.reduce((n, e) => n + ((e.food?.tags || []).filter(x => x === 'eatout' || x === 'delivery').length), 0);
+    const hasFood = es.some(e => e.food); if (hasFood) row(t('tt_eatout'), eat(prev), eat(cur), '', false);
     $('#timetravel').innerHTML = `<div class="t">${t('tt_title')}<span>TIME TRAVEL</span></div>` + (rows.length ? `<table><tr><td style="color:#8AA0A6;font-size:11px">${t('item')}</td><td style="color:#8AA0A6;font-size:11px;text-align:right">${t('last')}</td><td style="color:#8AA0A6;font-size:11px;text-align:right">${t('now')}</td></tr>${rows.join('')}</table>` : `<div class="empty">${t('tt_empty')}</div>`);
   }
 
@@ -232,6 +255,9 @@
     const symCount = {}; es.forEach(e => (e.sym || []).forEach(s => symCount[s] = (symCount[s] || 0) + 1));
     const syms = Object.entries(symCount).sort((a, b) => b[1] - a[1]);
     const notes = es.filter(e => e.note).slice(-6).reverse();
+    const foodCount = {}; es.forEach(e => (e.food?.tags || []).forEach(s => foodCount[s] = (foodCount[s] || 0) + 1));
+    const foodTags = Object.entries(foodCount).sort((a, b) => b[1] - a[1]);
+    const foodNotes = es.filter(e => e.food?.text).slice(-4).reverse();
     const first = L[0], last = L[L.length - 1];
     $('#onepager').innerHTML = `
       <div class="hd"><div><h3>${t('op_head', { name: p.name })}</h3><div class="en">The One-Pager · My Beanie</div></div>
@@ -246,11 +272,13 @@
       <tr><td>${t('op_wt')}</td><td class="num">${wt ? wt.avg : '–'}</td><td class="num">${wt ? wt.min + '–' + wt.max : '–'}</td><td class="num">${wt ? wt.n : 0}</td></tr></table>
       <h4 class="b">${t('op_signals')}</h4>
       ${syms.length ? syms.map(([s, n]) => `<span class="pill">${symName(s)} ×${n}</span>`).join('') : `<div class="meta">${t('op_no_sym')}</div>`}
+      <h4 class="m">${t('op_food')}</h4>
+      ${foodTags.length ? foodTags.map(([s, n]) => `<span class="pill f">${foodName(s)} ×${n}</span>`).join('') : `<div class="meta">${t('op_no_food')}</div>`}
+      ${foodNotes.length ? `<div class="meta" style="margin-top:6px"><b>${t('op_food_recent')}</b> · ${foodNotes.map(e => fmt(e.date) + ' ' + esc(e.food.text)).join(' · ')}</div>` : ''}
       <h4>${t('op_questions')}</h4>
       ${notes.length ? `<ul>${notes.map(e => `<li><span style="color:#8AA0A6;font-family:Poppins">${fmt(e.date)}</span> ${esc(e.note)}</li>`).join('')}</ul>` : `<div class="meta">${t('op_no_notes')}</div>`}
       <div class="foot">${t('op_foot')}</div>`;
   }
-  const esc = s => s.replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
   $('#rep-print').onclick = () => window.print();
   $('#rep-share').onclick = async () => {
     const text = $('#onepager').innerText;

@@ -13,7 +13,7 @@ window.I18N = {
     start_logging: '기록을 시작해 보세요', last_record: '최근 기록', no_record: '최근 기록 없음', enter_cr: '크레아티닌을 입력하면 계산돼요',
     vs_last: '지난번 대비 {d}', next_visit: '다음 진료 · {date}', passed: '지남', today_lbl: '오늘', one_pager_btn: '한 장 리포트',
     set_visit: '다음 진료일을 설정하면 리포트 준비를 알려드려요', recent: '최근 기록', empty_home: '아직 기록이 없어요. 아래 ＋ 기록에서 시작해 보세요.',
-    del_confirm: '이 기록을 삭제할까요?', delete: '삭제', memo: '메모', record: '기록',
+    del_confirm: '이 기록을 삭제할까요?', delete: '삭제', memo: '메모', record: '기록', meal: '식사',
     // nudge
     n_visit: '<b>진료 D-{d}.</b> 한 장 리포트가 준비돼 있어요. 궁금한 점을 메모에 적어두면 함께 정리돼요.',
     n_bp: '<b>최근 세 번 혈압이 높은 편이에요.</b> 진료 때 꼭 이야기해 보세요.',
@@ -26,6 +26,10 @@ window.I18N = {
     daily: '일상 측정', sbp: '수축기', dbp: '이완기', wt: '체중 (kg)', signals: '몸의 신호', signals_hint: '해당하는 것만',
     notes_lbl: '의사에게 물어볼 것 · 메모', notes_ph: '예: 저녁마다 발목이 붓는데 괜찮은가요?', save: '저장', need_one: '한 가지라도 적어 주세요', saved: '저장했어요',
     sym: { swelling: '붓기', fatigue: '피로', itching: '가려움', appetite: '식욕저하', breath: '숨참', headache: '두통', foamy: '거품뇨', nocturia: '야간뇨', sleep: '잠 설침' },
+    // food
+    food: '오늘 먹은 것', food_hint: '계산하지 않아요 · 패턴만', food_ph: '한 줄로 (예: 점심 김치찌개, 저녁 외식)', food_photo: '📷 사진',
+    foods: { eatout: '외식', delivery: '배달', soup: '국·찌개', fruit: '과일', nuts: '견과', dairy: '유제품', processed: '가공식품', alcohol: '음주' },
+    tt_eatout: '외식+배달 (30일 횟수)', op_food: '식사 패턴 (기간 내 횟수)', op_no_food: '식사 기록 없음', op_food_recent: '최근 식사 메모', photo_big: '사진이 너무 커서 축소해 저장했어요',
     // trend
     trend: '추이', chart_empty: '아직 기록이 없어요', tt_title: '지난번 대비 비교', item: '항목', last: '지난번', now: '이번',
     tt_cr: '크레아티닌', tt_k: '칼륨 K', tt_sbp: '수축기 혈압 (30일 평균)', tt_dbp: '이완기 혈압 (30일 평균)', tt_wt: '체중 (30일 평균)', tt_empty: '두 번 이상 기록하면 비교가 시작돼요',
@@ -39,7 +43,7 @@ window.I18N = {
     share_title: 'My Beanie 진료 전 한 장', copied: '텍스트를 복사했어요', no_share: '공유를 지원하지 않는 브라우저예요',
     // settings
     st_name: '이름', st_year: '출생연도', st_visit: '다음 진료일', st_lang: '언어 · Language', data: '데이터', export: '기록 내보내기 (JSON)', import: '기록 가져오기', reset: '모든 기록 삭제',
-    imported: '가져왔어요', bad_file: '파일을 읽을 수 없어요', reset_confirm: '모든 기록과 설정을 삭제할까요? 되돌릴 수 없어요.', st_foot: 'My Beanie v0.2 · 개인 건강기록 도구',
+    imported: '가져왔어요', bad_file: '파일을 읽을 수 없어요', reset_confirm: '모든 기록과 설정을 삭제할까요? 되돌릴 수 없어요.', st_foot: 'My Beanie v0.3 · 개인 건강기록 도구',
     // tabs
     tab_home: '홈', tab_log: '기록', tab_trend: '추이', tab_report: '리포트',
     demo_bar: '데모 데이터 · 가상의 기록입니다 (실제 환자 아님)', demo_link: '실제로 시작하기 →', demo_name: '영희', storage_err: '저장 공간을 사용할 수 없어요',
@@ -54,7 +58,7 @@ window.I18N = {
     start_logging: 'Start logging', last_record: 'Latest', no_record: 'No records yet', enter_cr: 'Enter creatinine to calculate',
     vs_last: '{d} vs. last', next_visit: 'Next visit · {date}', passed: 'passed', today_lbl: 'today', one_pager_btn: 'One-Pager',
     set_visit: 'Set your next appointment and I\'ll remind you to prepare the report', recent: 'Recent entries', empty_home: 'Nothing logged yet. Tap ＋ Log below to begin.',
-    del_confirm: 'Delete this entry?', delete: 'Delete', memo: 'Note', record: 'Entry',
+    del_confirm: 'Delete this entry?', delete: 'Delete', memo: 'Note', record: 'Entry', meal: 'Meal',
     n_visit: '<b>Visit in {d} days.</b> Your One-Pager is ready. Jot down questions in a note and they\'ll be included.',
     n_bp: '<b>Your last three blood pressures ran high.</b> Be sure to mention it at your visit.',
     n_swell: '<b>Swelling has continued.</b> Logging today\'s weight alongside will help at your visit.',
@@ -65,6 +69,9 @@ window.I18N = {
     daily: 'Daily measurements', sbp: 'Systolic', dbp: 'Diastolic', wt: 'Weight (kg)', signals: 'Body signals', signals_hint: 'tap any that apply',
     notes_lbl: 'Questions for my doctor · Notes', notes_ph: 'e.g. My ankles swell every evening — is that okay?', save: 'Save', need_one: 'Please enter at least one item', saved: 'Saved',
     sym: { swelling: 'Swelling', fatigue: 'Fatigue', itching: 'Itching', appetite: 'Low appetite', breath: 'Short of breath', headache: 'Headache', foamy: 'Foamy urine', nocturia: 'Night urination', sleep: 'Poor sleep' },
+    food: 'What I ate today', food_hint: 'no counting · just patterns', food_ph: 'One line (e.g. lunch: stew, dinner: ate out)', food_photo: '📷 Photo',
+    foods: { eatout: 'Ate out', delivery: 'Delivery', soup: 'Soup / stew', fruit: 'Fruit', nuts: 'Nuts', dairy: 'Dairy', processed: 'Processed food', alcohol: 'Alcohol' },
+    tt_eatout: 'Ate out + delivery (30-day count)', op_food: 'Meal patterns (count in period)', op_no_food: 'No meals logged', op_food_recent: 'Recent meal notes', photo_big: 'Photo was resized to save space',
     trend: 'Trends', chart_empty: 'No records yet', tt_title: 'Then vs. now', item: 'Item', last: 'Last', now: 'Now',
     tt_cr: 'Creatinine', tt_k: 'Potassium K', tt_sbp: 'Systolic BP (30-day avg)', tt_dbp: 'Diastolic BP (30-day avg)', tt_wt: 'Weight (30-day avg)', tt_empty: 'Log at least twice to start comparing',
     rep_title: 'Pre-visit report', period: 'Period', d30: 'Last 30 days', d90: 'Last 90 days', d180: 'Last 180 days', print: 'Print / PDF', share: 'Share',
@@ -75,7 +82,7 @@ window.I18N = {
     op_foot: 'A personal health record kept by the patient; not a medical device. eGFR is a reference value from the CKD-EPI 2021 (race-free) equation; clinical judgment rests with your care team. kidneybloom.com',
     share_title: 'My Beanie pre-visit report', copied: 'Copied to clipboard', no_share: 'Sharing is not supported in this browser',
     st_name: 'Name', st_year: 'Year of birth', st_visit: 'Next appointment', st_lang: 'Language · 언어', data: 'Data', export: 'Export records (JSON)', import: 'Import records', reset: 'Delete all records',
-    imported: 'Imported', bad_file: 'Could not read the file', reset_confirm: 'Delete all records and settings? This cannot be undone.', st_foot: 'My Beanie v0.2 · personal health-record tool',
+    imported: 'Imported', bad_file: 'Could not read the file', reset_confirm: 'Delete all records and settings? This cannot be undone.', st_foot: 'My Beanie v0.3 · personal health-record tool',
     tab_home: 'Home', tab_log: 'Log', tab_trend: 'Trends', tab_report: 'Report',
     demo_bar: 'Demo · fictional data, not a real patient', demo_link: 'Start for real →', demo_name: 'Jane', storage_err: 'Storage is not available',
   },
@@ -96,4 +103,5 @@ window.applyI18n = () => {
   document.querySelectorAll('[data-i18n]').forEach(el => { const k = el.dataset.i18n; const v = t(k); if (v.includes('\n')) el.innerHTML = v.replace(/\n/g, '<br>'); else el.textContent = v; });
   document.querySelectorAll('[data-i18n-ph]').forEach(el => el.placeholder = t(el.dataset.i18nPh));
   document.querySelectorAll('[data-i18n-sym]').forEach(el => el.textContent = t('sym')[el.dataset.s]);
+  document.querySelectorAll('[data-i18n-food]').forEach(el => el.textContent = t('foods')[el.dataset.f]);
 };
