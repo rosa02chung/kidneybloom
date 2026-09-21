@@ -275,5 +275,6 @@
 
   if (DEMO) { const b = document.createElement('div'); b.className = 'demo-bar'; b.innerHTML = `${t('demo_bar')} &nbsp;<a href="./?lang=${LANG}">${t('demo_link')}</a>`; document.body.prepend(b); }
   applyI18n(); $('#site-link').href = LANG === 'en' ? 'https://kidneybloom.com/en/' : 'https://kidneybloom.com'; segInit('#ob-lang', LANG, v => { try { localStorage.setItem('mybeanie.lang', v); } catch (e) {} location.href = location.pathname + (DEMO ? '?demo&' : '?') + 'lang=' + v; });
-  go(S.profile ? 'home' : 'onboard');
+  const GO = new URLSearchParams(location.search).get('go');
+  go(S.profile ? (['log', 'report', 'trend'].includes(GO) ? GO : 'home') : 'onboard');
 })();

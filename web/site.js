@@ -17,7 +17,7 @@
   nav.querySelector('.menu-btn').onclick = () => nav.querySelector('#menu').classList.toggle('open');
   const foot = document.createElement('footer');
   foot.innerHTML = `<div class="wrap"><div><div class="en" style="color:var(--ink);font-weight:600">Root to Life · Kidney Bloom · My Beanie</div>
-    <div class="links">${pages.map(([h, ko, en]) => `<a href="${h}">${t(ko, en)}</a>`).join('')}<a href="${APP}${EN ? '/?lang=en' : ''}">${t('앱 열기', 'Open the app')}</a><a href="${EN ? '../' + here : 'en/' + here}">${EN ? '한국어' : 'English'}</a></div>
+    <div class="links">${pages.map(([h, ko, en]) => `<a href="${h}">${t(ko, en)}</a>`).join('')}<a href="${APP}${EN ? '/?lang=en' : ''}">${t('앱 열기', 'Open the app')}</a><a href="${EN ? '../' + here : 'en/' + here}">${EN ? '한국어' : 'English'}</a><a href="privacy.html">${t('개인정보처리방침', 'Privacy Policy')}</a></div>
     <div style="margin-top:10px">© 2026 Root to Life. All rights reserved.</div></div>
     <div class="disc">${t('본 사이트와 My Beanie 앱은 개인 건강기록·소통 보조 도구이며 의료기기가 아닙니다. 질병의 진단·치료·예방을 목적으로 하지 않으며, 의료적 결정은 반드시 담당 의료진과 상의하시기 바랍니다. 인용 수치는 각 페이지의 출처 항목을 따르며, 자료원별 정의 차이로 값이 다를 수 있습니다.',
       'This site and the My Beanie app are personal health-record and communication aids, not medical devices. They are not intended to diagnose, treat, or prevent disease; medical decisions should always be made with your care team. Figures follow the sources cited on each page and may differ across data sources.')}</div></div>`;

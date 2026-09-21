@@ -1,7 +1,8 @@
 {
+  "id": "/",
   "name": "My Beanie — 콩팥 건강 일지",
   "short_name": "My Beanie",
-  "description": "It's my health buddy. 기록을 진료 전 한 장 리포트로.",
+  "description": "만성콩팥병 환자의 기록을 진료 전 한 장 리포트로. It's my health buddy. / Turn your CKD records into a one-page pre-visit report.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -9,9 +10,85 @@
   "background_color": "#F7FAFB",
   "theme_color": "#FF7B8E",
   "lang": "ko",
+  "dir": "ltr",
+  "categories": [
+    "health",
+    "medical",
+    "lifestyle"
+  ],
   "icons": [
-    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "icons/icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
-  ]
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "store/ko/01-home.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "홈 · 조용한 넛지"
+    },
+    {
+      "src": "store/ko/02-log.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "기록 · eGFR 자동 계산"
+    },
+    {
+      "src": "store/ko/03-trend.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "추이 · 지난번 대비"
+    },
+    {
+      "src": "store/ko/04-report.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "진료 전 한 장"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "오늘 기록",
+      "short_name": "기록",
+      "url": "/?go=log",
+      "icons": [
+        {
+          "src": "icons/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "진료 전 한 장",
+      "short_name": "리포트",
+      "url": "/?go=report",
+      "icons": [
+        {
+          "src": "icons/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "prefer_related_applications": false
 }
