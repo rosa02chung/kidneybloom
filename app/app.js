@@ -1,4 +1,4 @@
-/* My Beanie v0.3 — 콩팥 건강 일지 / Kidney Health Journal (PWA, ko/en) */
+/* My Beanie v0.4 — 콩팥 건강 일지 / Kidney Health Journal (PWA, ko/en) */
 (() => {
   const DEMO = /[?&]demo/.test(location.search);
   const KEY = DEMO ? 'mybeanie.demo' : 'mybeanie.v1';
@@ -286,8 +286,68 @@
     else { try { await navigator.clipboard.writeText(text); toast(t('copied')); } catch (e) { toast(t('no_share')); } }
   };
 
+  // ---------- Mirrored Care ----------
+  const MKEY = 'mybeanie.mirrors';
+  const loadMirrors = () => { try { return JSON.parse(localStorage.getItem(MKEY)) || []; } catch (e) { return []; } };
+  const saveMirrors = list => { try { localStorage.setItem(MKEY, JSON.stringify(list)); } catch (e) { toast(t('storage_err')); } };
+  let currentMirror = null;
+  $('#mc-share').onclick = async () => {
+    const items = $$('#mc-opts input:checked').map(i => i.dataset.k).filter(k => k !== 'name');
+    if (!items.length) return toast(t('mc_none'));
+    const payload = Mirror.build(S, { items, days: +$('#mc-range').value, depth: $('#mc-depth').value, showName: $('#mc-opts input[data-k=name]').checked });
+    const code = await Mirror.encode(payload);
+    const url = location.origin + location.pathname + '?lang=' + LANG + '#m=' + code;
+    const text = t('mc_msg', { name: payload.n || t('friend') });
+    if (navigator.share) { try { await navigator.share({ title: 'My Beanie', text, url }); return; } catch (e) { if (e && e.name === 'AbortError') return; } }
+    try { await navigator.clipboard.writeText(text + '\n' + url); toast(t('mc_copied')); } catch (e) { prompt('URL', url); }
+  };
+  async function openMirrorFromHash() {
+    const m = location.hash.match(/#m=([^&]+)/); if (!m) return false;
+    try { currentMirror = await Mirror.decode(m[1]); } catch (e) { toast(t('mr_bad')); return false; }
+    history.replaceState(null, '', location.pathname + location.search);
+    renderMirror(currentMirror); return true;
+  }
+  function renderMirror(p) {
+    $$('.view').forEach(x => x.classList.toggle('on', x.id === 'v-mirror'));
+    $('#tabbar').classList.toggle('hidden', !S.profile);
+    $$('.tabbar button').forEach(b => b.classList.remove('on'));
+    window.scrollTo(0, 0);
+    const has = k => p.i.includes(k);
+    $('#mr-title').textContent = p.n ? t('mr_title', { name: p.n }) : t('mr_anon');
+    $('#mr-sub').textContent = t('mr_sub');
+    $('#mr-badge').textContent = t('mr_badge', { date: p.at.replace(/-/g, '.'), d: p.d });
+    const E = p.e, num = v => v == null ? '–' : v;
+    const html = [];
+    // KPI tiles: latest of each shared kind
+    const last = idx => [...E].reverse().find(r => r[idx] != null);
+    const tiles = [];
+    if (has('egfr')) { const r = last(1); tiles.push(`<div class="kpi pink"><div class="k">eGFR</div><div class="v en">${r ? r[1] + '<small> ' + stage(r[1]) + '</small>' : '–'}</div><div class="d">${r ? fmt(r[0]) : ''}</div></div>`); }
+    if (has('bp')) { const r = last(3); tiles.push(`<div class="kpi mint"><div class="k">${t('bp')}</div><div class="v en">${r ? r[3] + '<small>/' + num(r[4]) + '</small>' : '–'}</div><div class="d">${r ? fmt(r[0]) : ''}</div></div>`); }
+    if (has('wt')) { const r = last(5); tiles.push(`<div class="kpi blue"><div class="k">${t('weight')}</div><div class="v en">${r ? r[5] + '<small> kg</small>' : '–'}</div><div class="d">${r ? fmt(r[0]) : ''}</div></div>`); }
+    if (tiles.length) html.push(`<div class="kpis" style="grid-template-columns:repeat(${tiles.length},1fr)">${tiles.join('')}</div>`);
+    // trend tables
+    if (p.s === 'trend') {
+      if (has('egfr')) { const rows = E.filter(r => r[1] != null); if (rows.length) html.push(`<div class="card mr-sec"><h4>${t('op_labs')}</h4><table>${rows.map(r => `<tr><td>${r[0]}</td><td class="num">Cr ${num(r[2])}</td><td class="num"><b>${r[1]}</b> ${stage(r[1])}</td></tr>`).join('')}</table></div>`); }
+      if (has('bp') || has('wt')) { const rows = E.filter(r => r[3] != null || r[5] != null).slice(-10); if (rows.length) html.push(`<div class="card mr-sec m"><h4>${t('op_daily')}</h4><table>${rows.map(r => `<tr><td>${r[0]}</td><td class="num">${has('bp') && r[3] != null ? r[3] + '/' + num(r[4]) : ''}</td><td class="num">${has('wt') && r[5] != null ? r[5] + ' kg' : ''}</td></tr>`).join('')}</table></div>`); }
+    }
+    if (has('sym')) { const c = {}; E.forEach(r => r[6].forEach(s => c[s] = (c[s] || 0) + 1)); const arr = Object.entries(c).sort((a, b) => b[1] - a[1]); html.push(`<div class="card mr-sec b"><h4>${t('op_signals')}</h4>${arr.length ? arr.map(([s, n]) => `<span class="pill" style="display:inline-block;background:var(--coral-soft);color:var(--coral-deep);border-radius:999px;padding:2px 10px;font-size:12px;margin:2px 4px 2px 0">${symName(s)} ×${n}</span>`).join('') : `<div class="mr-empty">${t('op_no_sym')}</div>`}</div>`); }
+    if (has('food')) { const c = {}; E.forEach(r => r[7].forEach(s => c[s] = (c[s] || 0) + 1)); const arr = Object.entries(c).sort((a, b) => b[1] - a[1]); html.push(`<div class="card mr-sec m"><h4>${t('op_food')}</h4>${arr.length ? arr.map(([s, n]) => `<span class="pill" style="display:inline-block;background:var(--mint-soft);color:var(--mint-deep);border-radius:999px;padding:2px 10px;font-size:12px;margin:2px 4px 2px 0">${foodName(s)} ×${n}</span>`).join('') : `<div class="mr-empty">${t('op_no_food')}</div>`}</div>`); }
+    if (has('notes')) { const rows = E.filter(r => r[8]).slice(-6).reverse(); html.push(`<div class="card mr-sec"><h4>${t('op_questions')}</h4>${rows.length ? `<ul>${rows.map(r => `<li><span style="color:#8AA0A6;font-family:Poppins">${fmt(r[0])}</span> ${esc(r[8])}</li>`).join('')}</ul>` : `<div class="mr-empty">${t('op_no_notes')}</div>`}</div>`); }
+    $('#mr-body').innerHTML = html.join('');
+    $('#mr-mine').textContent = S.profile ? t('mr_mine') : t('mr_start');
+  }
+  $('#mr-keep').onclick = () => { if (!currentMirror) return; const list = loadMirrors().filter(x => !(x.n === currentMirror.n && x.at === currentMirror.at)); list.unshift(currentMirror); saveMirrors(list.slice(0, 10)); toast(t('mr_kept')); };
+  $('#mr-mine').onclick = () => go(S.profile ? 'home' : 'onboard');
+  function renderMirrorList() {
+    const list = loadMirrors(), card = $('#st-mirrors-card'); card.hidden = !list.length; if (!list.length) return;
+    $('#st-mirrors').innerHTML = list.map((m, i) => `<div class="item"><div><div class="dt">${m.at}</div><div class="m">${esc(m.n || t('mr_anon'))} · ${t('op_period', { d: m.d })}</div></div><div style="display:flex;gap:4px"><button class="btn ghost" style="width:auto;margin:0;padding:8px 12px;font-size:13px" data-open="${i}">${t('mr_open')}</button><button class="del" data-del="${i}">×</button></div></div>`).join('');
+    $$('#st-mirrors [data-open]').forEach(b => b.onclick = () => { currentMirror = loadMirrors()[+b.dataset.open]; renderMirror(currentMirror); });
+    $$('#st-mirrors [data-del]').forEach(b => b.onclick = () => { const l = loadMirrors(); l.splice(+b.dataset.del, 1); saveMirrors(l); renderMirrorList(); });
+  }
+
   // ---------- settings ----------
   function renderSettings() {
+    renderMirrorList();
     const p = S.profile; $('#st-name').value = p.name; $('#st-year').value = p.year; $('#st-visit').value = p.visit || ''; segInit('#st-sex', p.sex); segInit('#st-lang', LANG);
   }
   $('#st-save').onclick = () => { S.profile = { name: $('#st-name').value.trim() || S.profile.name, year: +$('#st-year').value || S.profile.year, sex: segVal('#st-sex'), visit: $('#st-visit').value }; save(); const nl = segVal('#st-lang'); if (nl && nl !== LANG) { try { localStorage.setItem('mybeanie.lang', nl); } catch (e) {} location.href = location.pathname + (DEMO ? '?demo&' : '?') + 'lang=' + nl; return; } toast(t('saved')); go('home'); };
@@ -303,6 +363,8 @@
 
   if (DEMO) { const b = document.createElement('div'); b.className = 'demo-bar'; b.innerHTML = `${t('demo_bar')} &nbsp;<a href="./?lang=${LANG}">${t('demo_link')}</a>`; document.body.prepend(b); }
   applyI18n(); $('#site-link').href = LANG === 'en' ? 'https://kidneybloom.com/en/' : 'https://kidneybloom.com'; segInit('#ob-lang', LANG, v => { try { localStorage.setItem('mybeanie.lang', v); } catch (e) {} location.href = location.pathname + (DEMO ? '?demo&' : '?') + 'lang=' + v; });
+  if (DEMO) { try { if (!localStorage.getItem(KEY)) save(); } catch (e) {} }
   const GO = new URLSearchParams(location.search).get('go');
-  go(S.profile ? (['log', 'report', 'trend'].includes(GO) ? GO : 'home') : 'onboard');
+  openMirrorFromHash().then(ok => { if (!ok) go(S.profile ? (['log', 'report', 'trend'].includes(GO) ? GO : 'home') : 'onboard'); });
+  window.addEventListener('hashchange', openMirrorFromHash);
 })();

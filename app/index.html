@@ -120,6 +120,39 @@
       <button class="btn ghost" id="rep-print" data-i18n="print"></button>
       <button class="btn primary" id="rep-share" data-i18n="share"></button>
     </div>
+
+    <!-- Mirrored Care: 환자가 고른 항목만 담은 미러 카드 -->
+    <div class="card mirror-make">
+      <div class="grp-t"><span data-i18n="mc_title"></span> <span class="en tag">Mirrored Care</span></div>
+      <p class="mc-sub" data-i18n="mc_sub"></p>
+      <div class="mc-opts" id="mc-opts">
+        <label><input type="checkbox" data-k="egfr" checked><span data-i18n="mc_egfr"></span></label>
+        <label><input type="checkbox" data-k="bp" checked><span data-i18n="mc_bp"></span></label>
+        <label><input type="checkbox" data-k="wt"><span data-i18n="mc_wt"></span></label>
+        <label><input type="checkbox" data-k="sym"><span data-i18n="mc_sym"></span></label>
+        <label><input type="checkbox" data-k="food"><span data-i18n="mc_food"></span></label>
+        <label><input type="checkbox" data-k="notes"><span data-i18n="mc_notes"></span></label>
+        <label><input type="checkbox" data-k="name" checked><span data-i18n="mc_name"></span></label>
+      </div>
+      <div class="row2" style="margin-top:8px">
+        <label><span data-i18n="mc_period"></span><select id="mc-range"><option value="30" data-i18n="d30"></option><option value="90" selected data-i18n="d90"></option></select></label>
+        <label><span data-i18n="mc_depth"></span><select id="mc-depth"><option value="latest" data-i18n="mc_latest"></option><option value="trend" selected data-i18n="mc_trend"></option></select></label>
+      </div>
+      <button class="btn primary" id="mc-share" data-i18n="mc_share"></button>
+      <p class="tiny" style="margin-top:8px" data-i18n="mc_note"></p>
+    </div>
+  </section>
+
+  <!-- mirror view (caregiver) -->
+  <section class="view" id="v-mirror">
+    <header class="top"><div><div class="hello" id="mr-sub"></div><h1 id="mr-title"></h1></div><span class="en tag">Mirrored Care</span></header>
+    <div class="mirror-badge" id="mr-badge"></div>
+    <div id="mr-body"></div>
+    <div class="row2">
+      <button class="btn ghost" id="mr-keep" data-i18n="mr_keep"></button>
+      <button class="btn primary" id="mr-mine" data-i18n="mr_mine"></button>
+    </div>
+    <p class="tiny" data-i18n="mr_foot"></p>
   </section>
 
   <!-- settings -->
@@ -133,6 +166,10 @@
       <label><span data-i18n="st_lang"></span></label>
       <div class="seg" id="st-lang"><button data-v="ko">한국어</button><button data-v="en">English</button></div>
       <button class="btn primary" id="st-save" data-i18n="save"></button>
+    </div>
+    <div class="card form" id="st-mirrors-card" hidden>
+      <div class="grp-t" data-i18n="st_mirrors"></div>
+      <div id="st-mirrors" class="list" style="margin-top:10px"></div>
     </div>
     <div class="card form">
       <div class="grp-t" data-i18n="data"></div>
@@ -154,6 +191,7 @@
 
 <div class="toast" id="toast"></div>
 <script src="i18n.js"></script>
+<script src="mirror.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
