@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Records seen together — Kidney Bloom</title>
+<meta name="description" content="Mirrored Care — family sees only what the patient chose. Open and keep mirror-card links here. No login; the link is the key.">
+<link rel="alternate" hreflang="ko" href="https://kidneybloom.com/family.html">
+<link rel="alternate" hreflang="en" href="https://kidneybloom.com/en/family.html">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@2.0/nanumsquare.css" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="page-hero">
+  <div class="wrap">
+    <span class="tag">Mirrored Care · Family</span>
+    <h1>Only what the patient chooses, seen together</h1>
+    <p>My Beanie rests on two pillars: the patient's own management and caregiver mirroring. The person cooking and the person logging see the same thing — but what to show is the patient's decision. Companionship, not surveillance.</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="tag">How it works</span><h2>Three steps, one link</h2><p>No server, no account. The link the patient sends is the key.</p></div>
+    <div class="steps">
+      <div class="tile step"><div class="no">01</div><h4 style="margin-top:10px">The patient chooses</h4><p>On the app's report screen, they tick what to show — eGFR and labs, blood pressure, weight, body signals, meal patterns, questions for the doctor, whether to show their name — plus the period (30 or 90 days) and scope (latest only or with trend).</p></div>
+      <div class="tile step"><div class="no">02</div><h4 style="margin-top:10px">Sends a link</h4><p>"Send mirror card" builds a link containing only the chosen items and hands it to any messenger. Unchecked items are not in the link at all.</p></div>
+      <div class="tile step"><div class="no">03</div><h4 style="margin-top:10px">Family views it</h4><p>Family opens the link in the phone app or on this page. It is read-only; keep it and it stays. A new link refreshes it.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="sec-head"><span class="tag">See it together</span><h2>The patient's screen and the family's, side by side</h2><p>Left: the app the patient uses every day. Right: the mirror card that patient sent with only "eGFR, blood pressure, meal patterns, questions" selected. Fictional demo data.</p></div>
+    <div class="fam-demo">
+      <div>
+        <div class="fam-phone"><div class="cap">Patient's app · app.kidneybloom.com</div><img src="../img/app-home-en.png" alt="My Beanie home screen"></div>
+        <div style="text-align:center;margin-top:12px"><a class="btn btn-ghost btn-sm" href="https://app.kidneybloom.com/?demo&lang=en">Open the app demo →</a></div>
+      </div>
+      <div>
+        <div style="display:flex;gap:8px;margin-bottom:12px"><button class="btn btn-ghost btn-sm" id="demo-latest">Latest only</button><button class="btn btn-ghost btn-sm" id="demo-trend">With trend</button></div>
+        <div id="demo-card"></div>
+        <p class="note">Weight and body signals are absent because this patient did not tick them — absent from the link, too.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="open">
+  <div class="wrap">
+    <div class="sec-head"><span class="tag">Open a mirror card</span><h2>Open a mirror card you received</h2><p>Paste the link a family member sent, or simply tap the link to land here and it opens automatically. A large-screen viewer for those who prefer a computer.</p></div>
+    <div class="linkbox"><input id="link-input" placeholder="https://app.kidneybloom.com/?lang=en#m=z.…  paste the whole link" spellcheck="false"><button class="btn btn-primary" id="open-link">Open</button></div>
+    <div id="viewer" style="margin-top:18px"></div>
+    <h3>Saved cards</h3>
+    <p class="body">Cards you "keep in this browser" stay on this computer only. You can keep several — one for each family member.</p>
+    <div id="saved"></div>
+    <div class="callout">This page sends the card nowhere. What you open exists only in this browser, and disappears when you close the page unless you keep it. A card is a snapshot from when it was sent, and not a medical device.</div>
+  </div>
+</section>
+
+<section class="tight alt">
+  <div class="wrap">
+    <div class="sec-head"><span class="tag">Coming with the server</span><h2>Next — sign in and it's always current</h2><p>Once a server and accounts exist, the patient turns on "keep sharing with …" and the family view refreshes on its own. The patient still chooses the items, exactly as now, and can switch it off any time. Introduced together with a consent screen.</p></div>
+    <div style="margin-top:8px"><a class="next" href="product.html"><div><div class="k">Read more</div><div class="t">My Beanie — five choices and the 3×5 grid</div></div><span>→</span></a></div>
+  </div>
+</section>
+
+<script src="../mirror.js"></script>
+<script src="../family.js"></script>
+<script src="../site.js"></script>
+</body>
+</html>
