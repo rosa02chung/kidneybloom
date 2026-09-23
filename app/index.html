@@ -27,9 +27,7 @@
       <div class="seg lang-seg" id="ob-lang"><button data-v="ko">한국어</button><button data-v="en">English</button></div>
       <label><span data-i18n="ob_name"></span><input id="ob-name" data-i18n-ph="ob_name_ph" maxlength="16"></label>
       <label><span data-i18n="ob_year"></span><input id="ob-year" type="number" inputmode="numeric" data-i18n-ph="ob_year_ph" min="1920" max="2020"></label>
-      <div class="seg" id="ob-sex">
-        <button data-v="F" class="on" data-i18n="female"></button><button data-v="M" data-i18n="male"></button>
-      </div>
+      <div class="seg" id="ob-sex"><button data-v="F" class="on" data-i18n="female"></button><button data-v="M" data-i18n="male"></button></div>
       <label><span data-i18n="ob_visit"></span><input id="ob-visit" type="date"></label>
       <button class="btn primary" id="ob-go" data-i18n="ob_go"></button>
       <p class="tiny" data-i18n="disclaimer_short"></p>
@@ -39,15 +37,12 @@
   <!-- home -->
   <section class="view" id="v-home">
     <header class="top">
-      <div><div class="hello" id="home-hello"></div><div class="en brand">My Beanie</div></div>
+      <div><div class="hello" id="home-hello"></div><div class="en brand">My Beanie <span class="mode-pill" id="home-mode"></span></div></div>
       <button class="icon-btn" data-go="settings" aria-label="Settings">⚙</button>
     </header>
     <div class="nudge" id="nudge"></div>
-    <div class="kpis">
-      <div class="kpi pink"><div class="k" data-i18n="egfr"></div><div class="v en" id="kpi-egfr">–</div><div class="d" id="kpi-egfr-d"></div></div>
-      <div class="kpi mint"><div class="k" data-i18n="bp"></div><div class="v en" id="kpi-bp">–</div><div class="d" id="kpi-bp-d"></div></div>
-      <div class="kpi blue"><div class="k" data-i18n="weight"></div><div class="v en" id="kpi-wt">–</div><div class="d" id="kpi-wt-d"></div></div>
-    </div>
+    <div class="kpis" id="kpis"></div>
+    <div class="card caution-today" id="caution-today"></div>
     <div class="card visit" id="visit-card"></div>
     <h2 class="h" data-i18n="recent"></h2>
     <div id="home-list" class="list"></div>
@@ -61,8 +56,10 @@
         <div class="grp-t"><span data-i18n="labs"></span> <small data-i18n="labs_hint"></small></div>
         <label><span data-i18n="cr"></span><input name="cr" type="number" step="0.01" inputmode="decimal" data-i18n-ph="cr_ph"></label>
         <div class="egfr-preview" id="egfr-preview"></div>
-        <label><span data-i18n="k"></span><input name="k" type="number" step="0.1" inputmode="decimal" data-i18n-ph="k_ph"></label>
-        <label><span data-i18n="p"></span><input name="p" type="number" step="0.1" inputmode="decimal" data-i18n-ph="p_ph"></label>
+        <div class="row2">
+          <label><span data-i18n="k"></span><input name="k" type="number" step="0.1" inputmode="decimal" data-i18n-ph="k_ph"></label>
+          <label><span data-i18n="p"></span><input name="p" type="number" step="0.1" inputmode="decimal" data-i18n-ph="p_ph"></label>
+        </div>
       </div>
       <div class="grp">
         <div class="grp-t" data-i18n="daily"></div>
@@ -71,27 +68,27 @@
           <label><span data-i18n="dbp"></span><input name="dbp" type="number" inputmode="numeric" placeholder="79"></label>
         </div>
         <label><span data-i18n="wt"></span><input name="wt" type="number" step="0.1" inputmode="decimal" placeholder="62.4"></label>
+        <div id="fluid-block">
+          <label><span data-i18n="fluid_lbl"></span> <small class="hint" data-i18n="fluid_hint"></small></label>
+          <div class="counter"><button type="button" id="fluid-minus">−</button><div class="cnt"><b id="fluid-n">0</b> <span data-i18n="cup"></span><span id="fluid-goal"></span></div><button type="button" id="fluid-plus">＋</button></div>
+        </div>
       </div>
       <div class="grp">
         <div class="grp-t"><span data-i18n="signals"></span> <small data-i18n="signals_hint"></small></div>
         <div class="chips" id="sym-chips">
-          <button type="button" data-s="swelling" data-i18n-sym></button><button type="button" data-s="fatigue" data-i18n-sym></button><button type="button" data-s="itching" data-i18n-sym></button>
-          <button type="button" data-s="appetite" data-i18n-sym></button><button type="button" data-s="breath" data-i18n-sym></button><button type="button" data-s="headache" data-i18n-sym></button>
-          <button type="button" data-s="foamy" data-i18n-sym></button><button type="button" data-s="nocturia" data-i18n-sym></button><button type="button" data-s="sleep" data-i18n-sym></button>
+          <button type="button" data-s="swelling" data-i18n-dict="sym.swelling"></button><button type="button" data-s="fatigue" data-i18n-dict="sym.fatigue"></button><button type="button" data-s="itching" data-i18n-dict="sym.itching"></button>
+          <button type="button" data-s="appetite" data-i18n-dict="sym.appetite"></button><button type="button" data-s="breath" data-i18n-dict="sym.breath"></button><button type="button" data-s="headache" data-i18n-dict="sym.headache"></button>
+          <button type="button" data-s="foamy" data-i18n-dict="sym.foamy"></button><button type="button" data-s="nocturia" data-i18n-dict="sym.nocturia"></button><button type="button" data-s="sleep" data-i18n-dict="sym.sleep"></button>
         </div>
       </div>
       <div class="grp">
-        <div class="grp-t"><span data-i18n="food"></span> <small data-i18n="food_hint"></small></div>
-        <div class="chips" id="food-chips">
-          <button type="button" data-f="eatout" data-i18n-food></button><button type="button" data-f="delivery" data-i18n-food></button><button type="button" data-f="soup" data-i18n-food></button><button type="button" data-f="fruit" data-i18n-food></button>
-          <button type="button" data-f="nuts" data-i18n-food></button><button type="button" data-f="dairy" data-i18n-food></button><button type="button" data-f="processed" data-i18n-food></button><button type="button" data-f="alcohol" data-i18n-food></button>
-        </div>
-        <input name="foodtext" type="text" maxlength="80" data-i18n-ph="food_ph" style="margin-top:12px">
-        <div class="photo-row">
-          <label class="photo-btn" for="food-photo"><span data-i18n="food_photo"></span></label>
-          <input type="file" id="food-photo" accept="image/*" capture="environment" hidden>
-          <div class="photo-prev" id="food-prev"></div>
-        </div>
+        <div class="grp-t"><span data-i18n="meals_title"></span> <small data-i18n="meals_hint"></small></div>
+        <div id="meals"></div>
+        <input type="file" id="meal-photo" accept="image/*" capture="environment" hidden>
+      </div>
+      <div class="grp" id="meds-block">
+        <div class="grp-t"><span data-i18n="meds_lbl"></span> <small data-i18n="meds_hint"></small></div>
+        <div class="chips" id="meds-chips"></div>
       </div>
       <div class="grp">
         <div class="grp-t" data-i18n="notes_lbl"></div>
@@ -99,6 +96,42 @@
       </div>
       <button class="btn primary" type="submit" data-i18n="save"></button>
     </form>
+  </section>
+
+  <!-- dialysis -->
+  <section class="view" id="v-dx">
+    <header class="top"><h1 id="dx-title"></h1><span class="en tag" id="dx-dry"></span></header>
+    <div class="kpis" id="dx-kpis"></div>
+    <form id="dx-form" class="form">
+      <div class="grp" id="dx-hd">
+        <div class="grp-t" data-i18n="dx_new"></div>
+        <div class="row2">
+          <label><span data-i18n="dx_pre"></span><input name="pre" type="number" step="0.1" inputmode="decimal" placeholder="64.2"></label>
+          <label><span data-i18n="dx_post"></span><input name="post" type="number" step="0.1" inputmode="decimal" placeholder="62.0"></label>
+        </div>
+        <div class="egfr-preview" id="dx-gain"></div>
+      </div>
+      <div class="grp" id="dx-pd">
+        <div class="row2">
+          <label><span data-i18n="pd_ex"></span><input name="ex" type="number" inputmode="numeric" placeholder="4"></label>
+          <label><span data-i18n="pd_wt"></span><input name="pdwt" type="number" step="0.1" inputmode="decimal" placeholder="62.0"></label>
+        </div>
+        <label><span data-i18n="pd_uf"></span> <small class="hint" data-i18n="pd_uf_hint"></small><input name="uf" type="number" inputmode="numeric" placeholder="800"></label>
+      </div>
+      <div class="grp">
+        <div class="grp-t" data-i18n="dx_sym"></div>
+        <div class="chips" id="dx-sym-chips"></div>
+        <div class="grp-t" style="margin-top:14px" data-i18n="dx_access"></div>
+        <div class="chips" id="dx-acc-chips"></div>
+      </div>
+      <div class="grp">
+        <div class="grp-t" data-i18n="dx_note"></div>
+        <textarea name="note" rows="2" data-i18n-ph="dx_note_ph"></textarea>
+      </div>
+      <button class="btn primary" type="submit" data-i18n="dx_save"></button>
+    </form>
+    <h2 class="h" data-i18n="dx_recent"></h2>
+    <div id="dx-list" class="list"></div>
   </section>
 
   <!-- trend -->
@@ -120,8 +153,6 @@
       <button class="btn ghost" id="rep-print" data-i18n="print"></button>
       <button class="btn primary" id="rep-share" data-i18n="share"></button>
     </div>
-
-    <!-- Mirrored Care: 환자가 고른 항목만 담은 미러 카드 -->
     <div class="card mirror-make">
       <div class="grp-t"><span data-i18n="mc_title"></span> <span class="en tag">Mirrored Care</span></div>
       <p class="mc-sub" data-i18n="mc_sub"></p>
@@ -148,10 +179,7 @@
     <header class="top"><div><div class="hello" id="mr-sub"></div><h1 id="mr-title"></h1></div><span class="en tag">Mirrored Care</span></header>
     <div class="mirror-badge" id="mr-badge"></div>
     <div id="mr-body"></div>
-    <div class="row2">
-      <button class="btn ghost" id="mr-keep" data-i18n="mr_keep"></button>
-      <button class="btn primary" id="mr-mine" data-i18n="mr_mine"></button>
-    </div>
+    <div class="row2"><button class="btn ghost" id="mr-keep" data-i18n="mr_keep"></button><button class="btn primary" id="mr-mine"></button></div>
     <p class="tiny" data-i18n="mr_foot"></p>
   </section>
 
@@ -159,13 +187,43 @@
   <section class="view" id="v-settings">
     <header class="top"><button class="icon-btn" data-go="home">←</button><h1 data-i18n="settings"></h1></header>
     <div class="card form">
+      <div class="grp-t" data-i18n="st_profile"></div>
       <label><span data-i18n="st_name"></span><input id="st-name"></label>
       <label><span data-i18n="st_year"></span><input id="st-year" type="number"></label>
       <div class="seg" id="st-sex"><button data-v="F" data-i18n="female"></button><button data-v="M" data-i18n="male"></button></div>
       <label><span data-i18n="st_visit"></span><input id="st-visit" type="date"></label>
+      <label><span data-i18n="st_fluid"></span> <small class="hint" data-i18n="st_fluid_hint"></small><input id="st-fluid" type="number" inputmode="numeric" placeholder="5"></label>
+      <div class="addon">
+        <div class="grp-t" style="margin-top:14px"><span data-i18n="st_addon"></span> <small data-i18n="st_addon_hint"></small></div>
+        <div class="modes compact" id="st-mode">
+          <button type="button" data-v="general"><b data-i18n-dict="modes.general"></b></button>
+          <button type="button" data-v="hd"><b data-i18n-dict="modes.hd"></b></button>
+          <button type="button" data-v="pd"><b data-i18n-dict="modes.pd"></b></button>
+        </div>
+        <p class="tiny" style="text-align:left;margin:6px 0 0" data-i18n="st_addon_desc"></p>
+        <div id="st-dx-fields">
+          <label><span data-i18n="st_dry"></span> <small class="hint" data-i18n="st_dry_hint"></small><input id="st-dry" type="number" step="0.1" inputmode="decimal"></label>
+        </div>
+      </div>
       <label><span data-i18n="st_lang"></span></label>
       <div class="seg" id="st-lang"><button data-v="ko">한국어</button><button data-v="en">English</button></div>
       <button class="btn primary" id="st-save" data-i18n="save"></button>
+    </div>
+    <div class="card form">
+      <div class="grp-t"><span data-i18n="st_goals"></span></div>
+      <p class="tiny" style="text-align:left;margin:4px 0 0" data-i18n="st_goals_hint"></p>
+      <div class="row3">
+        <label><span data-i18n="st_goal_k"></span><input id="st-gk" type="number" inputmode="numeric" min="0" max="20"></label>
+        <label><span data-i18n="st_goal_p"></span><input id="st-gp" type="number" inputmode="numeric" min="0" max="20"></label>
+        <label><span data-i18n="st_goal_na"></span><input id="st-gna" type="number" inputmode="numeric" min="0" max="20"></label>
+      </div>
+      <button class="btn ghost" id="st-goals-save" data-i18n="save"></button>
+    </div>
+    <div class="card form">
+      <div class="grp-t"><span data-i18n="st_meds"></span></div>
+      <p class="tiny" style="text-align:left;margin:4px 0 0" data-i18n="st_meds_hint"></p>
+      <div class="linkrow"><input id="st-med-name" data-i18n-ph="st_med_ph" maxlength="40"><button class="btn ghost" id="st-med-add" data-i18n="st_med_add" style="width:auto;margin:6px 0 0"></button></div>
+      <div id="st-meds" class="list" style="margin-top:10px"></div>
     </div>
     <div class="card form" id="st-mirrors-card" hidden>
       <div class="grp-t" data-i18n="st_mirrors"></div>
@@ -185,6 +243,7 @@
 <nav class="tabbar" id="tabbar">
   <button data-go="home" class="on"><span>⌂</span><em data-i18n="tab_home"></em></button>
   <button data-go="log"><span>＋</span><em data-i18n="tab_log"></em></button>
+  <button data-go="dx" id="tab-dx"><span>◎</span><em data-i18n="tab_dx"></em></button>
   <button data-go="trend"><span>↗</span><em data-i18n="tab_trend"></em></button>
   <button data-go="report"><span>▤</span><em data-i18n="tab_report"></em></button>
 </nav>

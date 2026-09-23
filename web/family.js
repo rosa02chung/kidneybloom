@@ -3,7 +3,7 @@
   const EN = document.documentElement.lang === 'en';
   const T = EN ? {
     sym: { swelling: 'Swelling', fatigue: 'Fatigue', itching: 'Itching', appetite: 'Low appetite', breath: 'Short of breath', headache: 'Headache', foamy: 'Foamy urine', nocturia: 'Night urination', sleep: 'Poor sleep' },
-    foods: { eatout: 'Ate out', delivery: 'Delivery', soup: 'Soup / stew', fruit: 'Fruit', nuts: 'Nuts', dairy: 'Dairy', processed: 'Processed food', alcohol: 'Alcohol' },
+    foods: { eatout: 'Ate out', delivery: 'Delivery', soup: 'Soup / stew', fruit: 'Fruit', nuts: 'Nuts', dairy: 'Dairy', processed: 'Processed food', alcohol: 'Alcohol', hiK: 'High-K caution', hiP: 'High-P caution', hiNa: 'High-Na caution' },
     title: n => n ? `${n}'s mirror card` : 'A family mirror card', badge: (d, n) => `As of ${d} · last ${n} days · read-only`,
     labs: 'Lab values (eGFR, CKD-EPI 2021)', daily: 'Blood pressure · weight', signals: 'Body signals (count)', food: 'Meal patterns (count)', q: 'Questions for the doctor',
     none: 'Nothing logged', keep: 'Keep in this browser', kept: 'Saved', remove: 'Remove', bad: 'Could not read this link. Paste the whole link the sender shared.',
@@ -11,7 +11,7 @@
     bp: 'Blood pressure', wt: 'Weight', latest: 'Latest',
   } : {
     sym: { swelling: '붓기', fatigue: '피로', itching: '가려움', appetite: '식욕저하', breath: '숨참', headache: '두통', foamy: '거품뇨', nocturia: '야간뇨', sleep: '잠 설침' },
-    foods: { eatout: '외식', delivery: '배달', soup: '국·찌개', fruit: '과일', nuts: '견과', dairy: '유제품', processed: '가공식품', alcohol: '음주' },
+    foods: { eatout: '외식', delivery: '배달', soup: '국·찌개', fruit: '과일', nuts: '견과', dairy: '유제품', processed: '가공식품', alcohol: '음주', hiK: '칼륨 주의', hiP: '인 주의', hiNa: '나트륨 주의' },
     title: n => n ? `${n}님의 미러 카드` : '가족의 미러 카드', badge: (d, n) => `${d} 기준 · 최근 ${n}일 · 읽기 전용`,
     labs: '검사 수치 (eGFR, CKD-EPI 2021)', daily: '혈압 · 체중', signals: '몸의 신호 (횟수)', food: '식사 패턴 (횟수)', q: '의사에게 물어볼 것',
     none: '기록 없음', keep: '이 브라우저에 저장', kept: '저장했어요', remove: '삭제', bad: '링크를 읽을 수 없어요. 보낸 사람이 공유한 링크 전체를 붙여넣어 주세요.',

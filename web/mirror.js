@@ -1,5 +1,5 @@
 /* Mirrored Care — 환자가 고른 항목만 담은 스냅샷 링크 (서버 없음)
-   payload: { v:1, n:name|null, d:days, s:'latest'|'trend', at:'YYYY-MM-DD', i:['egfr','bp',...], e:[ [date, egfr, cr, sbp, dbp, wt, [sym], [foodtags], note] ... ], f:{tag:count} }
+   payload: { v:1, n:name|null, d:days, s:'latest'|'trend', at:'YYYY-MM-DD', i:['egfr','bp',...], e:[ [date, egfr, cr, sbp, dbp, wt, [sym], [foodtags+cautiontags], note] ... ] }
    encode: JSON → UTF-8 → deflate-raw (CompressionStream) → base64url. fallback: base64url JSON with prefix 'j.' */
 window.Mirror = (() => {
   const b64u = buf => btoa(String.fromCharCode(...new Uint8Array(buf))).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
@@ -20,6 +20,11 @@ window.Mirror = (() => {
     const raw = k === 'z.' ? await pipe(u8, 'deflate-raw', 'd') : u8;
     return JSON.parse(new TextDecoder().decode(raw));
   }
+  // food tags: v0.5 per-meal (breakfast/lunch/dinner/snack) → union of pattern tags + caution tags (hiK/hiP/hiNa); legacy e.food.tags
+  function foodTags(e) {
+    if (e.meals) { const s = new Set(); Object.values(e.meals).forEach(m => { (m.tags || []).forEach(x => s.add(x)); (m.caution || []).forEach(x => s.add(x)); }); return [...s]; }
+    return (e.food && e.food.tags) || [];
+  }
   // build payload from state
   function build(S, opts) {
     const { items, days, depth, showName } = opts;
@@ -31,7 +36,7 @@ window.Mirror = (() => {
       has('bp') ? (e.sbp ?? null) : null, has('bp') ? (e.dbp ?? null) : null,
       has('wt') ? (e.wt ?? null) : null,
       has('sym') ? (e.sym || []) : [],
-      has('food') ? ((e.food && e.food.tags) || []) : [],
+      has('food') ? foodTags(e) : [],
       has('notes') ? (e.note || '') : '',
     ]).filter(r => r[1] != null || r[3] != null || r[5] != null || r[6].length || r[7].length || r[8]);
     let out = rows;

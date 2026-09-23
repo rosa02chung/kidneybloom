@@ -132,6 +132,55 @@ input[hidden]{display:none!important}
 .onepager ul{padding-left:18px;font-size:13px}
 .onepager li{margin:4px 0}
 .onepager .foot{font-size:10px;color:var(--ink-3);margin-top:14px;line-height:1.5}
+/* v0.5 — modes */
+.modes{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0 4px}
+.modes button{border:1px solid var(--line);background:#fff;border-radius:14px;padding:12px 12px;text-align:left;font-family:var(--ko);cursor:pointer;color:var(--ink);display:flex;flex-direction:column;gap:3px}
+.modes button b{font-size:14px}
+.modes button span{font-size:11px;color:var(--ink-3);line-height:1.4}
+.modes button.on{border-color:var(--coral);background:var(--coral-soft);box-shadow:0 0 0 1px var(--coral) inset}
+.modes button.on b{color:var(--coral-deep)}
+.modes.compact{grid-template-columns:1fr 1fr;gap:6px}
+.modes.compact button{padding:10px 6px;align-items:center}
+.modes.compact button b{font-size:12px}
+.mode-pill{display:inline-block;vertical-align:middle;font-family:var(--ko);font-size:11px;font-weight:700;background:var(--blue-soft);color:var(--blue-deep);border-radius:999px;padding:3px 9px;margin-left:6px;letter-spacing:0}
+.mode-pill:empty{display:none}
+.hint{font-weight:400;color:var(--ink-3);margin-left:4px}
+/* caution today */
+.caution-today{padding:12px 16px}
+.ct-t{font-size:12px;font-weight:800;color:var(--ink-2);margin-bottom:8px}
+.ct-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.ct{border-radius:12px;padding:8px 10px;background:#F1F5F6;display:flex;flex-direction:column;gap:1px}
+.ct b{font-family:var(--en);font-size:20px;font-weight:600;line-height:1.1}
+.ct span{font-size:11px;color:var(--ink-2)}
+.ct.hiK{background:#FFF4E0}.ct.hiP{background:#EEEAFB}.ct.hiNa{background:var(--blue-soft)}
+.ct.over{outline:2px solid var(--coral);background:var(--coral-soft)} .ct.over b{color:var(--coral-deep)}
+/* counter (fluid) */
+.counter{display:flex;align-items:center;gap:10px;margin-top:8px}
+.counter button{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:#fff;font-size:20px;color:var(--ink);cursor:pointer;flex:none}
+.counter .cnt{flex:1;text-align:center;font-size:15px;color:var(--ink-2)}
+.counter .cnt b{font-family:var(--en);font-size:24px;font-weight:600;color:var(--ink)}
+.counter .cnt #fluid-goal{color:var(--ink-3);font-size:13px;margin-left:4px}
+/* meals */
+.meal{border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin-top:10px;background:#fff}
+.meal-h{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.meal-h b{font-size:14px}
+.ci-row{display:flex;gap:4px}
+.ci-btn{border:1px solid var(--line);background:#fff;border-radius:999px;padding:4px 9px;font-family:var(--en);font-size:11px;font-weight:600;color:var(--ink-3);cursor:pointer}
+.ci-btn.hiK.on{background:#FFF4E0;border-color:#F2B84B;color:#9A6400}
+.ci-btn.hiP.on{background:#EEEAFB;border-color:#A797E8;color:#5A46B3}
+.ci-btn.hiNa.on{background:var(--blue-soft);border-color:var(--blue-deep);color:var(--blue-deep)}
+.meal-in{display:flex;align-items:center;gap:8px;margin-top:8px}
+.meal-in input{margin:0;padding:10px 12px;font-size:14px;flex:1;min-width:0}
+.photo-btn.sm{padding:8px 10px;font-size:12px;flex:none}
+.mp{width:40px;height:40px;object-fit:cover;border-radius:10px;border:1px solid var(--line);flex:none;cursor:pointer}
+.chips.sm{margin-top:8px;gap:6px}
+.chips.sm button{padding:6px 11px;font-size:13px}
+.fd .ci{font-style:normal;font-family:var(--en);font-size:11px;color:var(--coral-deep);margin-left:4px}
+.row3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.linkrow{display:flex;gap:8px;align-items:flex-end}
+.linkrow input{flex:1;min-width:0}
+.onepager .pill.hiK{background:#FFF4E0;color:#9A6400}.onepager .pill.hiP{background:#EEEAFB;color:#5A46B3}.onepager .pill.hiNa{background:var(--blue-soft);color:var(--blue-deep)}
+#tab-dx{display:none} .tabbar.dx #tab-dx{display:flex}
 /* tabbar */
 .tabbar{position:fixed;left:0;right:0;bottom:0;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);border-top:1px solid var(--line);display:flex;padding:6px 8px calc(6px + var(--safe-b));z-index:10}
 .tabbar button{flex:1;border:0;background:transparent;font-family:var(--ko);font-size:11px;font-weight:700;color:var(--ink-3);padding:6px 0;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:2px}

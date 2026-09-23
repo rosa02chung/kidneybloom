@@ -64,6 +64,34 @@
       "type": "image/png",
       "form_factor": "narrow",
       "label": "진료 전 한 장"
+    },
+    {
+      "src": "store/ko/05-meals.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "식사 기록 · 주의 식품 태그"
+    },
+    {
+      "src": "store/ko/06-dialysis.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "추가 기능 · 투석 기록"
+    },
+    {
+      "src": "store/ko/07-onboard.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "기록은 내 기기에만"
+    },
+    {
+      "src": "store/ko/08-settings.png",
+      "sizes": "1080x1920",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "내 기록은 내가 관리"
     }
   ],
   "shortcuts": [
