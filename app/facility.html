@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Beanie for Communities — 설계 데모</title>
+<meta name="robots" content="noindex">
+<link href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@2.0/nanumsquare.css" rel="stylesheet">
+<style>
+@font-face{font-family:'Poppins';font-weight:100 900;src:url(fonts/Poppins-Medium.woff2) format('woff2')}
+:root{--coral:#FF7B8E;--coral-soft:#FFE9ED;--coral-deep:#E85C72;--mint:#7ECFB3;--mint-soft:#E6F6F0;--mint-deep:#4FA98A;--blue-soft:#EAF5F9;--blue-deep:#3B7F94;--ink:#17383F;--ink-2:#4A6168;--ink-3:#8AA0A6;--line:#E6EDEF;--bg:#F4F7F8}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Poppins','NanumSquare',sans-serif;background:var(--bg);color:var(--ink);font-size:14px}
+.en{font-family:'Poppins',sans-serif}
+.demo{background:var(--ink);color:#fff;font-size:12px;font-weight:700;text-align:center;padding:6px}
+.wrap{display:grid;grid-template-columns:210px 1fr;min-height:calc(100vh - 29px)}
+nav{background:#fff;border-right:1px solid var(--line);padding:22px 18px}
+nav .logo{font-size:18px;font-weight:600}nav .logo small{display:block;font-size:11px;color:var(--ink-3);letter-spacing:.08em;margin-top:2px}
+nav a{display:block;padding:10px 12px;border-radius:10px;color:var(--ink-2);text-decoration:none;font-weight:700;margin-top:4px}
+nav a.on{background:var(--coral-soft);color:var(--coral-deep)}
+nav .org{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-3);line-height:1.7}
+nav .org b{color:var(--ink);font-size:13px}
+main{padding:22px 26px}
+.top{display:flex;justify-content:space-between;align-items:flex-end}
+h1{font-size:22px;font-weight:800}.sub{color:var(--ink-3);font-size:12px;margin-top:4px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}
+.k{background:#fff;border-radius:14px;padding:14px 16px}.k .l{font-size:12px;color:var(--ink-2);font-weight:700}.k .v{font-size:26px;font-weight:600;margin-top:2px}.k .v small{font-size:12px;color:var(--ink-3)}
+.grid{display:grid;grid-template-columns:1fr 270px;gap:14px}
+.card{background:#fff;border-radius:14px;padding:16px}
+.card h3{font-size:14px;font-weight:800;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
+.card h3 span{font-size:11px;color:var(--ink-3);font-weight:400}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{font-size:11px;color:var(--ink-3);text-align:left;font-weight:700;padding:6px 6px;border-bottom:1.5px solid var(--ink)}
+td{padding:9px 6px;border-bottom:1px solid var(--line)}
+td.n{font-family:'Poppins';text-align:right}th.n{text-align:right}
+.dots{display:inline-flex;gap:2px}.dots i{width:6px;height:12px;border-radius:2px;background:#E4EBED}.dots i.on{background:var(--mint)}
+.pill{display:inline-block;border-radius:999px;padding:2px 8px;font-size:11px;font-weight:800}
+.p1{background:var(--mint-soft);color:var(--mint-deep)}.p2{background:var(--coral-soft);color:var(--coral-deep)}.p3{background:var(--blue-soft);color:var(--blue-deep)}.p0{background:#EEF3F4;color:var(--ink-3)}
+.code{font-family:'Poppins';font-size:20px;letter-spacing:.08em;background:var(--bg);border-radius:10px;padding:12px;text-align:center;margin:6px 0}
+.qr{width:96px;height:96px;margin:8px auto;display:grid;grid-template-columns:repeat(12,1fr);gap:1px}
+.qr i{background:var(--ink)}.qr i.o{background:#fff}
+.row{display:flex;justify-content:space-between;padding:7px 0;border-top:1px solid var(--line);font-size:12.5px}.row b{font-family:'Poppins','NanumSquare';font-weight:600}
+.note{font-size:11.5px;color:var(--ink-2);line-height:1.6;margin-top:10px;background:#FFF8EC;border-radius:10px;padding:10px}
+</style>
+<style>
+.bars{display:flex;align-items:flex-end;gap:8px;height:150px;padding:8px 4px 0;border-bottom:1.5px solid var(--ink)}
+.bars div{flex:1;background:var(--mint);border-radius:6px 6px 0 0;position:relative}
+.bars div.hi{background:var(--coral)}
+.bars div span{position:absolute;top:-18px;left:0;right:0;text-align:center;font-family:'Poppins';font-size:10px;color:var(--ink-3)}
+.bl{display:flex;gap:8px;padding:6px 4px 0}.bl span{flex:1;text-align:center;font-family:'Poppins';font-size:10px;color:var(--ink-3)}
+</style>
+</head>
+<body>
+<div class="demo">설계 데모 · 가상의 시설과 가상의 통계입니다 (실제 데이터 아님) · 정식 출시 전 화면</div>
+<div class="wrap">
+  <nav>
+    <div class="logo en">My Beanie<small>FOR COMMUNITIES</small></div>
+    <a class="on">커뮤니티 현황</a><a>프로그램</a><a>초대 코드</a><a>익명 리포트</a><a>구독</a>
+    <div class="org"><b>[데모] 마곡 시니어 레지던스</b><br>입주 320세대 · 웰니스 라운지<br>커뮤니티 M · 월 150만 원 <span style="color:#9A6400">(가정)</span></div>
+  </nav>
+  <main>
+    <div class="top"><div><h1>커뮤니티 현황</h1><div class="sub">2026년 9월 · 시범 운영 8주차</div></div><div class="sub">이름 없는 참여 통계만 표시 · 개인 기록은 보이지 않음</div></div>
+    <div class="kpis">
+      <div class="k"><div class="l">참여 입주민</div><div class="v en">142<small> 명 · 38%</small></div></div>
+      <div class="k"><div class="l">이번 주 기록한 입주민</div><div class="v en">96<small> 명</small></div></div>
+      <div class="k"><div class="l">가족 연결</div><div class="v en">71<small> 명</small></div></div>
+      <div class="k"><div class="l">9월 클래스 참석</div><div class="v en">40<small> 명</small></div></div>
+    </div>
+    <div class="grid">
+      <div>
+        <div class="card"><h3>주간 참여 입주민 <span>최근 8주 · 명</span></h3>
+          <div class="bars" id="bars"></div><div class="bl" id="bl"></div>
+        </div>
+        <div class="card" style="margin-top:14px"><h3>이번 달 프로그램 <span>웰니스 라운지 · 콘텐츠 의료진 감수 예정</span></h3>
+          <table><thead><tr><th>날짜</th><th>클래스</th><th>장소</th><th class="n">참석</th><th>상태</th></tr></thead><tbody>
+            <tr><td class="en">09.05</td><td><b>나를 알아가는 기록, 첫걸음</b></td><td>웰니스 라운지</td><td class="n">22</td><td><span class="pill p1">완료</span></td></tr>
+            <tr><td class="en">09.19</td><td><b>검진표, 이렇게 읽어요</b></td><td>웰니스 라운지</td><td class="n">18</td><td><span class="pill p1">완료</span></td></tr>
+            <tr><td class="en">10.03</td><td><b>짠맛 줄이기 — 식당 메뉴 고르기</b></td><td>다이닝 룸</td><td class="n">–</td><td><span class="pill p3">예정</span></td></tr>
+            <tr><td class="en">10.17</td><td><b>가족과 함께 보는 기록</b></td><td>웰니스 라운지</td><td class="n">–</td><td><span class="pill p3">예정</span></td></tr>
+          </tbody></table>
+        </div>
+      </div>
+      <div>
+        <div class="card"><h3>입주민 초대 코드 <span>세대 구간 고정</span></h3>
+          <div class="code">MB-RS26-MAGK</div>
+          <div class="row"><span>이번 달 새로 연결</span><b>17명</b></div>
+          <div class="row"><span>가족 무료 포함</span><b>입주민당 1명</b></div>
+          <div class="row"><span>안내물</span><b>라운지 포스터 · 입주 키트</b></div>
+        </div>
+        <div class="card" style="margin-top:14px"><h3>구독</h3>
+          <div class="row"><span>플랜</span><b>커뮤니티 M (151~400세대)</b></div>
+          <div class="row"><span>월 구독료</span><b>150만 원 <span style="color:#9A6400;font-weight:400">가정</span></b></div>
+          <div class="row"><span>계약</span><b>12개월 · 시범 12주 무상</b></div>
+          <div class="note">시설은 입주민 개인의 기록을 볼 수 없어요. 5명 미만인 항목은 통계에서도 표시하지 않아요. 앱은 수치를 판정하지 않아요.</div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+const W=[31,48,62,71,79,88,92,96];
+document.getElementById('bars').innerHTML=W.map((v,i)=>`<div class="${i===W.length-1?'hi':''}" style="height:${v/100*130}px"><span>${v}</span></div>`).join('');
+document.getElementById('bl').innerHTML=W.map((v,i)=>`<span>${i+1}주</span>`).join('');
+</script>
+</body>
+</html>

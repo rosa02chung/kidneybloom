@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My Beanie for Clinics — 설계 데모</title>
+<meta name="robots" content="noindex">
+<link href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@2.0/nanumsquare.css" rel="stylesheet">
+<style>
+@font-face{font-family:'Poppins';font-weight:100 900;src:url(fonts/Poppins-Medium.woff2) format('woff2')}
+:root{--coral:#FF7B8E;--coral-soft:#FFE9ED;--coral-deep:#E85C72;--mint:#7ECFB3;--mint-soft:#E6F6F0;--mint-deep:#4FA98A;--blue-soft:#EAF5F9;--blue-deep:#3B7F94;--ink:#17383F;--ink-2:#4A6168;--ink-3:#8AA0A6;--line:#E6EDEF;--bg:#F4F7F8}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Poppins','NanumSquare',sans-serif;background:var(--bg);color:var(--ink);font-size:14px}
+.en{font-family:'Poppins',sans-serif}
+.demo{background:var(--ink);color:#fff;font-size:12px;font-weight:700;text-align:center;padding:6px}
+.wrap{display:grid;grid-template-columns:210px 1fr;min-height:calc(100vh - 29px)}
+nav{background:#fff;border-right:1px solid var(--line);padding:22px 18px}
+nav .logo{font-size:18px;font-weight:600}nav .logo small{display:block;font-size:11px;color:var(--ink-3);letter-spacing:.08em;margin-top:2px}
+nav a{display:block;padding:10px 12px;border-radius:10px;color:var(--ink-2);text-decoration:none;font-weight:700;margin-top:4px}
+nav a.on{background:var(--coral-soft);color:var(--coral-deep)}
+nav .org{margin-top:26px;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-3);line-height:1.7}
+nav .org b{color:var(--ink);font-size:13px}
+main{padding:22px 26px}
+.top{display:flex;justify-content:space-between;align-items:flex-end}
+h1{font-size:22px;font-weight:800}.sub{color:var(--ink-3);font-size:12px;margin-top:4px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0}
+.k{background:#fff;border-radius:14px;padding:14px 16px}.k .l{font-size:12px;color:var(--ink-2);font-weight:700}.k .v{font-size:26px;font-weight:600;margin-top:2px}.k .v small{font-size:12px;color:var(--ink-3)}
+.grid{display:grid;grid-template-columns:1fr 270px;gap:14px}
+.card{background:#fff;border-radius:14px;padding:16px}
+.card h3{font-size:14px;font-weight:800;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
+.card h3 span{font-size:11px;color:var(--ink-3);font-weight:400}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{font-size:11px;color:var(--ink-3);text-align:left;font-weight:700;padding:6px 6px;border-bottom:1.5px solid var(--ink)}
+td{padding:9px 6px;border-bottom:1px solid var(--line)}
+td.n{font-family:'Poppins';text-align:right}th.n{text-align:right}
+.dots{display:inline-flex;gap:2px}.dots i{width:6px;height:12px;border-radius:2px;background:#E4EBED}.dots i.on{background:var(--mint)}
+.pill{display:inline-block;border-radius:999px;padding:2px 8px;font-size:11px;font-weight:800}
+.p1{background:var(--mint-soft);color:var(--mint-deep)}.p2{background:var(--coral-soft);color:var(--coral-deep)}.p3{background:var(--blue-soft);color:var(--blue-deep)}.p0{background:#EEF3F4;color:var(--ink-3)}
+.code{font-family:'Poppins';font-size:20px;letter-spacing:.08em;background:var(--bg);border-radius:10px;padding:12px;text-align:center;margin:6px 0}
+.qr{width:96px;height:96px;margin:8px auto;display:grid;grid-template-columns:repeat(12,1fr);gap:1px}
+.qr i{background:var(--ink)}.qr i.o{background:#fff}
+.row{display:flex;justify-content:space-between;padding:7px 0;border-top:1px solid var(--line);font-size:12.5px}.row b{font-family:'Poppins','NanumSquare';font-weight:600}
+.note{font-size:11.5px;color:var(--ink-2);line-height:1.6;margin-top:10px;background:#FFF8EC;border-radius:10px;padding:10px}
+</style>
+</head>
+<body>
+<div class="demo">설계 데모 · 가상의 병원과 가상의 환자입니다 (실제 데이터 아님) · 정식 출시 전 화면</div>
+<div class="wrap">
+  <nav>
+    <div class="logo en">My Beanie<small>FOR CLINICS</small></div>
+    <a class="on">오늘의 환자</a><a>초대 코드</a><a>진료 전 한 장</a><a>익명 통계</a><a>구독</a>
+    <div class="org"><b>[데모] 한빛내과의원</b><br>신장내과 · 인공신장실<br>케어 M · 월 40만 원 <span style="color:#9A6400">(가정)</span></div>
+  </nav>
+  <main>
+    <div class="top"><div><h1>오늘의 환자</h1><div class="sub" id="today"></div></div><div class="sub">환자가 허락한 기록만 표시 · 판정·경고 알고리즘 없음</div></div>
+    <div class="kpis">
+      <div class="k"><div class="l">연결 환자</div><div class="v en">64<small> 명</small></div></div>
+      <div class="k"><div class="l">이번 주 기록한 환자</div><div class="v en">47<small> 명 · 73%</small></div></div>
+      <div class="k"><div class="l">도착한 진료 전 한 장</div><div class="v en">12<small> 건</small></div></div>
+      <div class="k"><div class="l">보호자 연결</div><div class="v en">38<small> 명</small></div></div>
+    </div>
+    <div class="grid">
+      <div class="card"><h3>오늘 투석 · 외래 예정 <span>환자가 기록한 값 그대로</span></h3>
+        <table><thead><tr><th>환자</th><th>일정</th><th>최근 28일 기록</th><th class="n">투석 간 체중 증가</th><th class="n">최근 혈압</th><th>몸의 신호</th><th>한 장</th><th>보호자</th></tr></thead><tbody id="rows"></tbody></table>
+      </div>
+      <div>
+        <div class="card"><h3>환자 초대 코드 <span>고정 구간 · 인원 연동 없음</span></h3>
+          <div class="code">MB-7K2Q-HANB</div>
+          <div class="row"><span>이번 달 새로 연결</span><b>9명</b></div>
+          <div class="row"><span>보호자 무료 포함</span><b>환자당 1명</b></div>
+        </div>
+        <div class="card" style="margin-top:14px"><h3>구독</h3>
+          <div class="row"><span>플랜</span><b>케어 M (환자 31~80명)</b></div>
+          <div class="row"><span>월 구독료</span><b>40만 원 <span style="color:#9A6400;font-weight:400">가정</span></b></div>
+          <div class="row"><span>계약</span><b>12개월 · 파일럿 12주 무상</b></div>
+          <div class="note">환자 수에 따라 요금이 오르내리지 않는 고정 구간제예요. 병원은 환자가 허락한 기록만 보고, 앱은 수치를 판정하지 않아요.</div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+const d=new Date();document.getElementById('today').textContent=d.getFullYear()+'.'+String(d.getMonth()+1).padStart(2,'0')+'.'+String(d.getDate()).padStart(2,'0')+' · 오전 투석 8명 · 외래 5명 중 동의 환자';
+const P=[['김○○','투석 09:00',24,'2.1 kg','138/82',['붓기'],1,1],['이○○','투석 09:00',27,'1.6 kg','126/74',[],1,1],['박○○','투석 09:30',11,'2.8 kg','151/88',['숨참','가려움'],0,1],['최○○','투석 09:30',19,'1.9 kg','132/79',['피로'],1,0],['정○○','외래 10:20',8,'–','144/90',['거품뇨'],1,1],['강○○','투석 10:00',26,'1.4 kg','121/70',[],0,1],['윤○○','외래 11:00',15,'–','129/81',[],1,0],['한○○','투석 10:30',3,'–','–',[],0,0]];
+const dots=n=>{let h='';for(let i=0;i<14;i++)h+=`<i class="${i<Math.round(n/2)?'on':''}"></i>`;return `<span class="dots">${h}</span> <span class="en" style="font-size:11px;color:#8AA0A6">${n}일</span>`};
+document.getElementById('rows').innerHTML=P.map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td>${dots(r[2])}</td><td class="n">${r[3]}</td><td class="n">${r[4]}</td><td>${r[5].map(s=>`<span class="pill p2">${s}</span>`).join(' ')||'<span class="pill p0">없음</span>'}</td><td>${r[6]?'<span class="pill p1">도착</span>':'<span class="pill p0">–</span>'}</td><td>${r[7]?'<span class="pill p3">연결</span>':'<span class="pill p0">–</span>'}</td></tr>`).join('');
+</script>
+</body>
+</html>

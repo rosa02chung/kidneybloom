@@ -6,7 +6,8 @@
 (() => {
   const DEMO = /[?&]demo/.test(location.search);
   const DEMO_HD = /demo=hd/.test(location.search);
-  const KEY = DEMO ? (DEMO_HD ? 'mybeanie.demo.hd' : 'mybeanie.demo') : 'mybeanie.v1';
+  const DEMO_PRE = /demo=pre/.test(location.search);
+  const KEY = DEMO ? (DEMO_HD ? 'mybeanie.demo.hd' : DEMO_PRE ? 'mybeanie.demo.pre' : 'mybeanie.demo') : 'mybeanie.v1';
   const $ = s => document.querySelector(s);
   const $$ = s => [...document.querySelectorAll(s)];
   const today = () => new Date().toISOString().slice(0, 10);
@@ -22,6 +23,7 @@
   let S = load();
   function load() {
     try { const j = JSON.parse(localStorage.getItem(KEY)); if (j && j.entries) return j; } catch (e) {}
+    if (DEMO_PRE) return demoPre();
     if (DEMO) return demoData();
     return { profile: null, entries: [], dx: [] };
   }
@@ -37,6 +39,29 @@
     });
   }
   migrate(); if (S.profile) save();
+
+  // prevention persona: 40s office worker, first caution at a health checkup (no CKD diagnosis)
+  function demoPre() {
+    const T = new Date(), d = n => { const x = new Date(T); x.setDate(x.getDate() - n); return x.toISOString().slice(0, 10); };
+    const v = new Date(T); v.setDate(v.getDate() + 5);
+    const en = LANG === 'en';
+    const M = (text, tags = [], caution = []) => ({ text, tags, caution, photo: null });
+    const rows = [
+      [88, 1.02, 139, 89, 78.4, ['sleep'], en ? 'Checkup said my blood pressure is high — recheck in 3 months' : '검진에서 혈압이 높다고 3개월 뒤 재검 권유받았어요', { lunch: M(en ? 'Jjamppong at work' : '회사 앞 짬뽕', ['eatout', 'soup'], ['hiNa']), dinner: M(en ? 'Team dinner, samgyeopsal' : '회식 삼겹살·소주', ['eatout', 'alcohol'], ['hiNa']) }, 4],
+      [80, null, 138, 88, 78.1, ['fatigue'], '', { lunch: M(en ? 'Ramen and gimbap' : '라면·김밥', ['eatout', 'processed'], ['hiNa']), dinner: M(en ? 'Late-night chicken delivery' : '야식 치킨 배달', ['delivery', 'processed'], ['hiNa', 'hiP']) }, 4],
+      [72, null, 137, 87, 77.9, [], '', { lunch: M(en ? 'Kimchi stew' : '김치찌개', ['eatout', 'soup'], ['hiNa']), dinner: M(en ? 'Beer at home' : '집에서 맥주', ['alcohol'], []) }, 5],
+      [63, null, 135, 86, 77.6, ['foamy'], en ? 'Sometimes I see foam in my urine — worth asking?' : '소변에 거품이 가끔 보여요. 물어봐도 될까요?', { lunch: M(en ? 'Salad bowl' : '샐러드 도시락', [], []), dinner: M(en ? 'Tteokbokki delivery' : '떡볶이 배달', ['delivery'], ['hiNa']) }, 5],
+      [52, null, 133, 85, 77.3, [], en ? 'Started skipping soup broth at lunch' : '점심에 국물은 남기기 시작했어요', { lunch: M(en ? 'Soybean stew, left the broth' : '된장찌개(국물 남김)', ['eatout', 'soup'], []), snack: M(en ? 'Nuts' : '견과류', ['nuts'], []) }, 6],
+      [41, null, 131, 84, 77.0, [], '', { breakfast: M(en ? 'Yogurt, fruit' : '요거트·과일', ['dairy', 'fruit'], []), dinner: M(en ? 'Home-cooked rice and fish' : '집밥 생선구이', [], []) }, 6],
+      [30, null, 130, 83, 76.8, ['sleep'], en ? 'Week 3 of no late-night snacks' : '야식 끊은 지 3주째', { lunch: M(en ? 'Bibimbap' : '비빔밥', ['eatout'], []), dinner: M(en ? 'Team dinner, one drink only' : '회식 — 한 잔만', ['eatout', 'alcohol'], ['hiNa']) }, 7],
+      [19, null, 128, 82, 76.5, [], '', { lunch: M(en ? 'Brought lunch from home' : '도시락 싸옴', [], []), snack: M(en ? 'Apple' : '사과', ['fruit'], []) }, 7],
+      [9, null, 127, 81, 76.3, [], en ? 'Home BP is lower in the morning — should I bring the log?' : '아침 혈압이 더 낮게 나와요. 기록 가져가면 될까요?', { lunch: M(en ? 'Noodles out' : '칼국수', ['eatout', 'soup'], ['hiNa']), dinner: M(en ? 'Grilled chicken, vegetables' : '닭가슴살·채소', [], []) }, 8],
+      [2, null, 126, 80, 76.2, [], en ? 'Eating out 3 times a week now, down from 9' : '외식이 주 9번에서 3번으로 줄었어요', { breakfast: M(en ? 'Egg, toast' : '계란·토스트', [], []), dinner: M(en ? 'Home-cooked, low salt' : '집밥(싱겁게)', [], []) }, 8],
+    ];
+    const entries = rows.map(([n, cr, sbp, dbp, wt, sym, note, meals, fluid], i) => ({ id: 'pre' + i, date: d(n), ts: i, cr, k: null, p: null, sbp, dbp, wt, sym, note, meals, fluid, meds: {}, egfr: cr ? egfr(cr, 46, 'M') : null }));
+    const profile = { name: en ? 'Minjun' : '민준', year: T.getFullYear() - 46, sex: 'M', visit: v.toISOString().slice(0, 10), mode: 'general', fluidGoal: 8, goals: { hiNa: 1 }, meds: [] };
+    return { profile, entries, dx: [] };
+  }
 
   // ---------- eGFR: CKD-EPI 2021 (race-free) ----------
   function egfr(cr, age, sex) {
@@ -410,7 +435,7 @@
   $('#st-save').onclick = () => {
     const p = S.profile;
     Object.assign(p, { name: $('#st-name').value.trim() || p.name, year: +$('#st-year').value || p.year, sex: segVal('#st-sex'), visit: $('#st-visit').value, mode: segVal('#st-mode') || p.mode, dry: $('#st-dry').value === '' ? null : +$('#st-dry').value, fluidGoal: $('#st-fluid').value === '' ? null : +$('#st-fluid').value });
-    save(); const nl = segVal('#st-lang'); if (nl && nl !== LANG) { try { localStorage.setItem('mybeanie.lang', nl); } catch (e) {} location.href = location.pathname + (DEMO ? (DEMO_HD ? '?demo=hd&' : '?demo&') : '?') + 'lang=' + nl; return; }
+    save(); const nl = segVal('#st-lang'); if (nl && nl !== LANG) { try { localStorage.setItem('mybeanie.lang', nl); } catch (e) {} location.href = location.pathname + (DEMO ? (DEMO_HD ? '?demo=hd&' : DEMO_PRE ? '?demo=pre&' : '?demo&') : '?') + 'lang=' + nl; return; }
     toast(t('saved')); go('home');
   };
   $('#st-export').onclick = () => { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(S, null, 2)], { type: 'application/json' })); a.download = `mybeanie-${today()}.json`; a.click(); };
@@ -423,8 +448,8 @@
   window.addEventListener('resize', () => $('#v-trend').classList.contains('on') && drawChart());
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
   if (DEMO) { const b = document.createElement('div'); b.className = 'demo-bar'; b.innerHTML = `${t('demo_bar')} &nbsp;<a href="./?lang=${LANG}">${t('demo_link')}</a>`; document.body.prepend(b); try { if (!localStorage.getItem(KEY)) save(); } catch (e) {} }
-  applyI18n(); $('#site-link').href = LANG === 'en' ? 'https://kidneybloom.com/en/' : 'https://kidneybloom.com';
-  segInit('#ob-lang', LANG, v => { try { localStorage.setItem('mybeanie.lang', v); } catch (e) {} location.href = location.pathname + (DEMO ? (DEMO_HD ? '?demo=hd&' : '?demo&') : '?') + 'lang=' + v; });
+  applyI18n(); $('#site-link').href = LANG === 'en' ? 'https://kidneybloom.com/en/' : 'https://kidneybloom.com'; const _lp = LANG === 'en' ? 'https://kidneybloom.com/en/' : 'https://kidneybloom.com/'; $('#terms-link').href = _lp + 'terms.html'; $('#privacy-link').href = _lp + 'privacy.html';
+  segInit('#ob-lang', LANG, v => { try { localStorage.setItem('mybeanie.lang', v); } catch (e) {} location.href = location.pathname + (DEMO ? (DEMO_HD ? '?demo=hd&' : DEMO_PRE ? '?demo=pre&' : '?demo&') : '?') + 'lang=' + v; });
   const GO = new URLSearchParams(location.search).get('go');
   openMirrorFromHash().then(ok => { if (!ok) go(S.profile ? (['log', 'report', 'trend', 'dx'].includes(GO) ? GO : 'home') : 'onboard'); });
   window.addEventListener('hashchange', openMirrorFromHash);

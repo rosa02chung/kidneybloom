@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Records seen together — Kidney Bloom</title>
+<title>Family — My Beanie · Kidney Bloom</title>
 <meta name="description" content="Mirrored Care — family sees only what the patient chose. Open and keep mirror-card links here. No login; the link is the key.">
 <link rel="alternate" hreflang="ko" href="https://kidneybloom.com/family.html">
 <link rel="alternate" hreflang="en" href="https://kidneybloom.com/en/family.html">
@@ -15,26 +15,26 @@
 
 <header class="page-hero">
   <div class="wrap">
-    <span class="tag">Mirrored Care · Family</span>
-    <h1>Only what the patient chooses, seen together</h1>
-    <p>My Beanie rests on two pillars: the patient's own management and caregiver mirroring. The person cooking and the person logging see the same thing — but what to show is the patient's decision. Companionship, not surveillance.</p>
+    <span class="tag">My Beanie · Family</span>
+    <h1>Only the items the patient selects are shared with family</h1>
+    <p>My Beanie has two pillars: the patient's own management and caregiver mirroring. The person cooking and the person logging see the same information, and the scope of sharing is the patient's decision. Designed so that care does not become surveillance.</p>
   </div>
 </header>
 
 <section>
   <div class="wrap">
-    <div class="sec-head"><span class="tag">How it works</span><h2>Three steps, one link</h2><p>No server, no account. The link the patient sends is the key.</p></div>
+    <div class="sec-head"><span class="tag">How it works</span><h2>Three steps, one link</h2><p>Works without a server or account. The link the patient sends is the access.</p></div>
     <div class="steps">
-      <div class="tile step"><div class="no">01</div><h4 style="margin-top:10px">The patient chooses</h4><p>On the app's report screen, they tick what to show — eGFR and labs, blood pressure, weight, body signals, meal patterns, questions for the doctor, whether to show their name — plus the period (30 or 90 days) and scope (latest only or with trend).</p></div>
-      <div class="tile step"><div class="no">02</div><h4 style="margin-top:10px">Sends a link</h4><p>"Send mirror card" builds a link containing only the chosen items and hands it to any messenger. Unchecked items are not in the link at all.</p></div>
-      <div class="tile step"><div class="no">03</div><h4 style="margin-top:10px">Family views it</h4><p>Family opens the link in the phone app or on this page. It is read-only; keep it and it stays. A new link refreshes it.</p></div>
+      <div class="tile step"><div class="no">01</div><h4 style="margin-top:10px">The patient selects</h4><p>On the app's report screen, they tick the items to share: eGFR and labs, blood pressure, weight, body signals, meal patterns, questions for the doctor and whether to show their name, plus the period (30 or 90 days) and scope (latest only or with trend).</p></div>
+      <div class="tile step"><div class="no">02</div><h4 style="margin-top:10px">Sends a link</h4><p>"Send mirror card" builds a link containing only the selected items and hands it to any messenger. Unselected items are not included in the link.</p></div>
+      <div class="tile step"><div class="no">03</div><h4 style="margin-top:10px">Family views it</h4><p>Family opens the link in the phone app or on this page. It is read-only, and can be saved for later. A new link refreshes it.</p></div>
     </div>
   </div>
 </section>
 
 <section class="alt">
   <div class="wrap">
-    <div class="sec-head"><span class="tag">See it together</span><h2>The patient's screen and the family's, side by side</h2><p>Left: the app the patient uses every day. Right: the mirror card that patient sent with only "eGFR, blood pressure, meal patterns, questions" selected. Fictional demo data.</p></div>
+    <div class="sec-head"><span class="tag">See it together</span><h2>The patient's screen and the family's</h2><p>Left: the app the patient uses every day. Right: the mirror card that patient sent with only eGFR, blood pressure, meal patterns and questions selected. Fictional demo data.</p></div>
     <div class="fam-demo">
       <div>
         <div class="fam-phone"><div class="cap">Patient's app · app.kidneybloom.com</div><img src="../img/app-home-en.png" alt="My Beanie home screen"></div>
@@ -43,7 +43,7 @@
       <div>
         <div style="display:flex;gap:8px;margin-bottom:12px"><button class="btn btn-ghost btn-sm" id="demo-latest">Latest only</button><button class="btn btn-ghost btn-sm" id="demo-trend">With trend</button></div>
         <div id="demo-card"></div>
-        <p class="note">Weight and body signals are absent because this patient did not tick them — absent from the link, too.</p>
+        <p class="note">Weight and body signals were not selected by this patient, so they are absent from both the card and the link.</p>
       </div>
     </div>
   </div>
@@ -51,20 +51,36 @@
 
 <section id="open">
   <div class="wrap">
-    <div class="sec-head"><span class="tag">Open a mirror card</span><h2>Open a mirror card you received</h2><p>Paste the link a family member sent, or simply tap the link to land here and it opens automatically. A large-screen viewer for those who prefer a computer.</p></div>
+    <div class="sec-head"><span class="tag">Open a mirror card</span><h2>Open a mirror card you received</h2><p>Paste the link you received, or tap it to land here and it opens automatically. A large-screen viewer for use on a computer.</p></div>
     <div class="linkbox"><input id="link-input" placeholder="https://app.kidneybloom.com/?lang=en#m=z.…  paste the whole link" spellcheck="false"><button class="btn btn-primary" id="open-link">Open</button></div>
     <div id="viewer" style="margin-top:18px"></div>
     <h3>Saved cards</h3>
-    <p class="body">Cards you "keep in this browser" stay on this computer only. You can keep several — one for each family member.</p>
+    <p class="body">Cards you "keep in this browser" are stored on this computer only. Several family members' cards can be kept side by side.</p>
     <div id="saved"></div>
-    <div class="callout">This page sends the card nowhere. What you open exists only in this browser, and disappears when you close the page unless you keep it. A card is a snapshot from when it was sent, and not a medical device.</div>
+    <div class="callout">This page does not transmit the card anywhere. What you open exists only in this browser and disappears when the page is closed unless you keep it. A card is a snapshot from the time it was sent, and not a medical device.</div>
+  </div>
+</section>
+
+<section class="alt" id="plans">
+  <div class="wrap">
+    <div class="sec-head"><span class="tag">Family Plan · pre-launch</span><h2>The person logging is always free; a subscription for family who help</h2><p>Mirror cards stay free. Once a server exists, an auto-updating family view and reminders come as a subscription. Prices below are pre-launch assumptions and may change.</p></div>
+    <div class="grid g4"><div class="tile" style=""><span class="k">Basic</span><h4>Basic</h4><div style="font-family:var(--en);font-size:28px;font-weight:600;margin:4px 0 2px">Free<small style="font-size:13px;color:var(--ink-3);font-weight:500"> </small></div><p style="font-size:12.5px;color:var(--ink-3);min-height:20px">Always free</p><p style="margin-top:10px">Share one-off mirror card links · keep received cards</p></div><div class="tile" style=""><span class="k m">Solo</span><h4>Solo</h4><div style="font-family:var(--en);font-size:28px;font-weight:600;margin:4px 0 2px">4,900<small style="font-size:13px;color:var(--ink-3);font-weight:500"> KRW/mo</small></div><p style="font-size:12.5px;color:var(--ink-3);min-height:20px">49,000 KRW/yr</p><p style="margin-top:10px">1 family viewer · auto-updating view · paused-logging & visit reminders · check-ins</p><div class="foot">Included with a clinic pass</div></div><div class="tile" style="border:2px solid var(--coral);"><span class="k">Family</span><h4>Family</h4><div style="font-family:var(--en);font-size:28px;font-weight:600;margin:4px 0 2px">9,900<small style="font-size:13px;color:var(--ink-3);font-weight:500"> KRW/mo</small></div><p style="font-size:12.5px;color:var(--ink-3);min-height:20px">99,000 KRW/yr · 3,300 per person</p><p style="margin-top:10px">Up to 3 viewers · everything in Solo · family check-ins</p><div class="foot">Clinic-pass family 4,900 KRW/mo</div></div><div class="tile" style=""><span class="k b">Family Plus</span><h4>Family Plus</h4><div style="font-family:var(--en);font-size:28px;font-weight:600;margin:4px 0 2px">14,900<small style="font-size:13px;color:var(--ink-3);font-weight:500"> KRW/mo</small></div><p style="font-size:12.5px;color:var(--ink-3);min-height:20px">149,000 KRW/yr · 2,980 per person</p><p style="margin-top:10px">Two or more parents · up to 5 viewers · co-write the one-pager</p><div class="foot">Clinic-pass family 10,000 KRW/mo</div></div></div>
+    <p style="font-size:13px;color:var(--ink-3);margin-top:14px">14-day free trial · annual = 2 months free · one family member pays, the rest are invited</p>
+    <h3 style="margin-top:36px">How to subscribe</h3>
+    <p class="body">The family subscription launches with the server in the second half of 2027. Until then, the same content can be shared free with a mirror-card link.</p>
+    <div class="steps">
+      <div class="tile step"><div class="no">01</div><h4 style="margin-top:10px">The patient invites</h4><p>In the app, Settings › Pass · Family › "Invite family" creates an invitation link. The patient switches the shared items on and off on this screen.</p></div>
+      <div class="tile step"><div class="no">02</div><h4 style="margin-top:10px">Family picks a plan</h4><p>Open the app from the invitation link and choose Solo, Family or Plus. After a 14-day free trial, billing is monthly or annual; one family member pays and the others are invited only.</p></div>
+      <div class="tile step"><div class="no">03</div><h4 style="margin-top:10px">With a pass, only the difference</h4><p>If the patient has registered a clinic or community invitation code, one caregiver is included automatically. From the second family member, only the Family plan difference (₩4,900/month) applies. Cancel any time in Settings; the patient's records remain after cancellation.</p></div>
+    </div>
+    <div class="callout mint"><b>Clinic and community pass.</b> When your kidney clinic or dialysis unit provides a My Beanie pass, the patient is free and one family viewer is free too. Higher plans cost only the difference (minus 4,900 KRW). Family see only what the patient allows, and no alert judges values.</div>
   </div>
 </section>
 
 <section class="tight alt">
   <div class="wrap">
-    <div class="sec-head"><span class="tag">Coming with the server</span><h2>Next — sign in and it's always current</h2><p>Once a server and accounts exist, the patient turns on "keep sharing with …" and the family view refreshes on its own. The patient still chooses the items, exactly as now, and can switch it off any time. Introduced together with a consent screen.</p></div>
-    <div style="margin-top:8px"><a class="next" href="product.html"><div><div class="k">Read more</div><div class="t">My Beanie — five choices and the 3×5 grid</div></div><span>→</span></a></div>
+    <div class="sec-head"><span class="tag">Coming with the server</span><h2>Next: account-based automatic updates</h2><p>Once a server and accounts are introduced, the patient turns on "keep sharing" and the family view refreshes automatically. The patient still selects the items, as now, and can switch sharing off at any time. Introduced together with a consent process.</p></div>
+    <div style="margin-top:8px"><a class="next" href="dialysis.html"><div><div class="k">Next</div><div class="t">Dialysis Log — the add-on switched on in Settings</div></div><span>→</span></a></div>
   </div>
 </section>
 

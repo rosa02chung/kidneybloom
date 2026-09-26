@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>보이지 않는 것을 읽는 법 — Kidney Bloom 브랜드 매니페스토</title>
+<meta name="description" content="Root to Life · Kidney Bloom · My Beanie의 브랜드 매니페스토. 보이지 않는 것을 이해할 수 있게 될 때 사람은 자기 삶을 되찾는다. 우리가 믿는 것, 맞서는 것, 약속하는 것.">
+<link rel="alternate" hreflang="ko" href="https://kidneybloom.com/manifesto.html">
+<link rel="alternate" hreflang="en" href="https://kidneybloom.com/en/manifesto.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@2.0/nanumsquare.css" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.mf-cover{padding:96px 0 64px;background:radial-gradient(900px 420px at 85% -10%,var(--coral-soft),transparent 60%),radial-gradient(700px 400px at 0% 110%,var(--mint-soft),transparent 60%)}
+.mf-cover .layers{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-family:var(--en);font-size:13px;font-weight:500;color:var(--ink-3);margin-bottom:36px}
+.mf-cover .layers .dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+.mf-cover .tag{font-family:var(--en);font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--coral-deep)}
+.mf-cover h1{font-size:clamp(38px,6vw,64px);line-height:1.2;font-weight:800;letter-spacing:-.02em;margin:14px 0 10px}
+.mf-cover .sub{font-family:var(--en);font-size:19px;color:var(--blue-deep);font-weight:500}
+.mf-cover .meta{margin-top:36px;display:flex;gap:24px;flex-wrap:wrap;font-size:13px;color:var(--ink-3)}
+.mf-cover .meta b{color:var(--ink-2)}
+.manifesto{font-size:clamp(19px,2.4vw,23px);line-height:1.85;display:grid;gap:28px;max-width:680px}
+.manifesto p{color:var(--ink)}
+.manifesto p.soft{color:var(--ink-2)}
+.manifesto p.belief{font-weight:800;font-size:clamp(24px,3.2vw,32px);line-height:1.5;padding-left:22px;border-left:4px solid var(--coral)}
+.manifesto p.names{font-family:var(--en);font-weight:500;font-size:17px;color:var(--blue-deep);letter-spacing:.02em}
+.enemies{display:grid;gap:0;max-width:760px}
+.enemy{display:grid;grid-template-columns:auto 1fr;gap:18px;padding:20px 0;border-top:1px solid var(--line)}
+.enemy:last-child{border-bottom:1px solid var(--line)}
+.enemy .mark{width:30px;height:30px;border-radius:50%;background:var(--coral-soft);color:var(--coral-deep);display:grid;place-items:center;font-family:var(--en);font-weight:600;font-size:12px}
+.enemy h4{font-size:18px;margin-bottom:4px}
+.enemy p{color:var(--ink-2);font-size:15px}
+.axis{width:100%;border-collapse:collapse;font-size:15px;min-width:560px}
+.axis th{font-family:var(--en);font-weight:500;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);text-align:left;padding:0 14px 10px 0;border-bottom:2px solid var(--ink)}
+.axis td{padding:14px 14px 14px 0;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-2)}
+.axis td:first-child{color:var(--ink);font-weight:800}
+.axis tr.ours td{color:var(--ink);background:var(--mint-soft)}
+.axis tr.ours td:first-child{padding-left:12px;border-left:4px solid var(--mint)}
+.layer{display:grid;grid-template-columns:60px 1fr;gap:22px;padding:24px 0}
+.layer+.layer{border-top:1px dashed var(--line)}
+.layer .seed{width:60px;height:60px;border-radius:50%;display:grid;place-items:center;font-family:var(--en);font-weight:600;font-size:11px;letter-spacing:.06em;color:var(--ink)}
+.layer h4{font-family:var(--en);font-weight:600;font-size:21px;letter-spacing:-.01em}
+.layer h4 small{font-family:var(--ko);font-weight:400;font-size:14px;color:var(--ink-3);margin-left:10px}
+.layer .promise{font-size:19px;font-weight:800;margin:6px 0 8px}
+.layer dl{display:grid;grid-template-columns:auto 1fr;gap:4px 16px;font-size:14px;margin:0}
+.layer dt{color:var(--ink-3)} .layer dd{margin:0;color:var(--ink-2)}
+.values{display:grid;gap:18px}
+.value{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:28px 26px;display:grid;gap:14px}
+.value .num{font-family:var(--en);font-weight:600;font-size:12px;color:var(--coral-deep);letter-spacing:.12em}
+.value h4{font-size:23px;line-height:1.35}
+.value h4 .en{display:block;font-weight:500;font-size:14px;color:var(--blue-deep);margin-top:4px}
+.value .stmt{font-size:16px;color:var(--ink-2)}
+.dodont{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:4px}
+.dodont div{font-size:14px;line-height:1.65;padding-top:10px;border-top:2px solid var(--line);color:var(--ink-2)}
+.dodont .do{border-top-color:var(--mint)} .dodont .dont{border-top-color:var(--coral)}
+.dodont b{display:block;font-family:var(--en);font-weight:600;font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:6px}
+.dodont .do b{color:var(--mint-deep)} .dodont .dont b{color:var(--coral-deep)}
+.value .feat{font-size:13px;color:var(--ink-3)} .value .feat span{font-family:var(--en);font-weight:500;color:var(--ink-2)}
+.rule{background:var(--ink);color:#fff;padding:44px 36px;border-radius:var(--r)}
+.rule .k{font-family:var(--en);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mint);font-weight:600}
+.rule h3{font-size:clamp(26px,3.4vw,34px);line-height:1.4;margin:10px 0 14px;color:#fff}
+.rule p{opacity:.85;font-size:16px;max-width:600px;color:#fff}
+.quad{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:760px}
+.q{padding:20px 18px;border:1px solid var(--line);border-radius:14px;min-height:130px;display:grid;align-content:start;gap:6px;background:#fff}
+.q .lbl{font-family:var(--en);font-weight:500;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.q .who{font-weight:800;font-size:16px} .q .desc{font-size:14px;color:var(--ink-2);line-height:1.6}
+.q.ours{background:var(--coral);border-color:var(--coral)} .q.ours .lbl,.q.ours .desc,.q.ours .who{color:var(--ink)}
+.axis-l{display:flex;justify-content:space-between;font-family:var(--en);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:8px;max-width:760px}
+.lang td:first-child{color:var(--ink-3);font-weight:400;text-decoration:line-through;text-decoration-color:var(--coral)}
+.lang td:last-child{color:var(--ink);font-weight:800}
+.promise-row{display:grid;grid-template-columns:170px 1fr;gap:18px;padding:20px 0;border-top:1px solid var(--line);max-width:800px}
+.promise-row:last-child{border-bottom:1px solid var(--line)}
+.promise-row .to{font-family:var(--en);font-weight:500;font-size:13px;color:var(--blue-deep);padding-top:3px}
+.promise-row .to small{display:block;font-family:var(--ko);color:var(--ink-3);font-weight:400;margin-top:2px}
+.promise-row p{font-size:18px;font-weight:800;line-height:1.5}
+.promise-row p span{display:block;font-weight:400;font-size:14px;color:var(--ink-2);margin-top:4px}
+.closing p{font-size:clamp(24px,3.4vw,34px);font-weight:800;line-height:1.45;max-width:640px}
+.closing .names{font-family:var(--en);font-weight:500;font-size:15px;color:var(--blue-deep);margin-top:28px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.closing .names .dot{width:12px;height:12px;border-radius:50%;display:inline-block}
+@media(max-width:560px){.dodont{grid-template-columns:1fr}.promise-row{grid-template-columns:1fr;gap:6px}.layer{grid-template-columns:46px 1fr;gap:14px}.layer .seed{width:46px;height:46px;font-size:10px}.quad{grid-template-columns:1fr}.rule{padding:30px 22px}}
+</style>
+</head>
+<body>
+
+<header class="mf-cover">
+  <div class="wrap">
+    <div class="layers"><span class="dot" style="background:var(--coral)"></span> Root to Life <span>·</span> <span class="dot" style="background:var(--mint)"></span> Kidney Bloom <span>·</span> <span class="dot" style="background:var(--blue)"></span> My Beanie</div>
+    <span class="tag">Brand Manifesto</span>
+    <h1>보이지 않는 것을<br>읽는 법</h1>
+    <p class="sub">How to Read the Invisible</p>
+    <div class="meta"><span><b>버전</b> v1.0</span><span><b>2026.09</b></span><span><b>범위</b> 브랜드 신념 · My Beanie 핵심가치 · 언어 원칙</span></div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <span class="tag" style="font-family:var(--en);font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--coral-deep);display:block;margin-bottom:24px">01 · The Belief</span>
+    <div class="manifesto">
+      <p>콩팥은 아프지 않다.<br>그래서 우리는 콩팥을 잊고 산다.</p>
+      <p class="soft">아프지 않은 것은 보이지 않고,<br>보이지 않는 것은 설명되지 않는다.<br>설명되지 않는 몸 앞에서 사람은 작아진다.<br>3분 진료실에서, 검색창 앞에서, 가족의 걱정 앞에서.</p>
+      <p class="belief">우리는 믿는다.<br>보이지 않는 것을 이해할 수 있게 될 때,<br>사람은 자기 삶을 되찾는다.</p>
+      <p>우리는 더 나은 몸을 약속하지 않는다.<br>점수를 매기지 않고, 어제의 실패를 세지 않는다.<br>이해를 먼저 둔다. 개선은 이해 뒤에 온다.</p>
+      <p>알림 하나를 줄이는 것을 기능으로 여긴다.<br>곁에 있되, 위에서 내려다보지 않는다.<br>느린 병에는 느린 브랜드가 필요하다고 믿는다.<br>그리고 말할 수 있는 것만 말한다.<br>근거가 없는 문장은 화면에 올리지 않는다.</p>
+      <p>모든 사람은 자기 몸의 첫 번째 선생님이 될 수 있다.<br>My Beanie는 그 수업의 교재가 아니라 옆자리를 맡는다.</p>
+      <p class="soft">씨앗은 뿌리를 내리고, 뿌리는 꽃을 피운다.</p>
+      <p class="names">Root to Life. &nbsp;Kidney Bloom. &nbsp;My Beanie.</p>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="sec-head"><span class="tag">02 · What We Stand Against</span><h2>맞서는 대상은 질병이 아니라 세 가지 침묵</h2><p>브랜드는 지향하는 것만큼 거부하는 것으로 정의됩니다. My Beanie가 해결하려는 문제는 질병 자체가 아니라, 질병을 둘러싼 세 가지 공백입니다.</p></div>
+    <div class="enemies">
+      <div class="enemy"><div class="mark">1</div><div><h4>모르는 채 지나가는 시간</h4><p>검진 결과지의 숫자 한 줄을 아무도 설명해 주지 않아 흘려보내는 몇 년. 미국 CKD 성인의 87%가 자신의 상태를 모릅니다(CDC, 2026).</p></div></div>
+      <div class="enemy"><div class="mark">2</div><div><h4>3분 진료실의 침묵</h4><p>물어볼 것이 있었지만 무엇을 물어야 할지 몰라 돌아서는 순간. 준비되지 않은 질문은 진료실에서 꺼내지지 않습니다.</p></div></div>
+      <div class="enemy"><div class="mark">3</div><div><h4>불안을 파는 건강 정보</h4><p>30분의 검색 끝에 남는 것은 지식이 아니라 불안입니다. 데이터가 늘수록 부족감을 키우는 방식은 만성질환에 맞지 않습니다.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="tag">03 · The Third Axis</span><h2>세 번째 축, 이해</h2><p>웰니스는 건강한 사람을 더 건강하게 만들고, 의료는 질병이 있는 사람을 관리합니다. eGFR 54를 받았지만 증상이 없는 사람은 두 시장 어디에도 속하지 않습니다. My Beanie는 그 사이의 영역을 맡습니다.</p></div>
+    <div class="tw"><table class="axis">
+      <thead><tr><th>축</th><th>누구의 것</th><th>약속하는 것</th><th>말하는 방식</th></tr></thead>
+      <tbody>
+        <tr><td>건강 → 더 건강</td><td>웰니스 (웨어러블, 습관 앱)</td><td>개선 Improvement</td><td>목표 · 점수 · 스트릭</td></tr>
+        <tr><td>질병 → 관리</td><td>의료 (병원 앱, 처방 도구)</td><td>순응 Compliance</td><td>지침 · 수치 · 경고</td></tr>
+        <tr class="ours"><td>모름 → 이해</td><td>My Beanie</td><td>문해력 Literacy</td><td>알아차림 · 비교 · 설명</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note" style="margin-top:14px">브랜드가 다루는 시간은 진단 전후의 긴 구간입니다. 투석 이전의 10년이 My Beanie의 영역입니다.</p>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="sec-head"><span class="tag">04 · One Seed, Three Layers</span><h2>씨앗, 뿌리, 그리고 피어남</h2><p>세 이름은 하나의 생명 주기로 이어집니다. 씨앗(Beanie)이 뿌리(Root)를 내려 꽃(Bloom)을 피웁니다. 세 층은 같은 신념을 각자의 대상에게 각자의 언어로 전합니다.</div>
+    <div class="layer"><div class="seed" style="background:var(--coral)">ROOT</div><div><h4>Root to Life <small>회사 · 뿌리</small></h4><p class="promise">보이지 않는 것을 이해할 수 있게 만든다.</p><dl><dt>소유하는 가치</dt><dd>지속 · 구조 · 반복 가능성</dd><dt>대상</dt><dd>파트너 · 기관 · 정부</dd><dt>성공의 정의</dt><dd>같은 엔진이 다른 질환에서도 작동한다</dd></dl></div></div>
+    <div class="layer"><div class="seed" style="background:var(--mint)">BLOOM</div><div><h4>Kidney Bloom <small>프로젝트 · 피어남</small></h4><p class="promise">근거가 먼저 핀다.</p><dl><dt>소유하는 가치</dt><dd>근거 · 시간 · 절제</dd><dt>대상</dt><dd>의료계 · 연구자 · 정책</dd><dt>성공의 정의</dt><dd>근거가 제품 결정을 이긴다</dd></dl></div></div>
+    <div class="layer"><div class="seed" style="background:var(--blue)">BEANIE</div><div><h4>My Beanie <small>제품 · 씨앗</small></h4><p class="promise">내 몸을 내 말로 설명하게 된다.</p><dl><dt>소유하는 가치</dt><dd>이해 · 조용함 · 동행 · 시간</dd><dt>대상</dt><dd>환자 · 보호자 · 아직 진단받지 않은 사람</dd><dt>성공의 정의</dt><dd>매일 열린다</dd></dl></div></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="tag">05 · Four Values of My Beanie</span><h2>"모든 사람은 자기 몸의 첫 번째 선생님" — 네 가지 행동 원칙</h2></div>
+    <div class="values">
+      <div class="value"><div class="num">VALUE 01</div><h4>이해가 먼저다<span class="en">Understand before improve</span></h4><p class="stmt">개선을 요구하기 전에 이해하게 합니다. 목표 수치를 정해 주는 대신 지금 숫자의 의미부터 설명합니다. 사람은 이해한 것만 바꿀 수 있습니다.</p>
+        <div class="dodont"><div class="do"><b>We do</b>지난번과 비교해 보여준다 · 물어볼 질문을 만들어준다 · 숫자의 뜻을 한 문장으로 번역한다</div><div class="dont"><b>We don't</b>목표치를 강요한다 · 달성률로 오늘을 평가한다 · 설명 없이 수치만 보여준다</div></div>
+        <p class="feat">기능으로 드러나는 자리 · <span>The One-Pager · Self-Explanation Index</span></p></div>
+      <div class="value"><div class="num">VALUE 02</div><h4>조용함은 존중이다<span class="en">Quiet is respect</span></h4><p class="stmt">알림 총량을 줄이는 것을 기능으로 봅니다. 빨간 배지, 연속 기록, 실패 표시가 없습니다. 느린 병과 함께 사는 사람에게 필요한 것은 재촉이 아니라 신뢰할 수 있는 침묵입니다.</p>
+        <div class="dodont"><div class="do"><b>We do</b>꼭 필요한 순간에만 한 번 말한다 · 쉬어간 날을 기록하지 않는다 · 알림을 끄는 것을 쉽게 만든다</div><div class="dont"><b>We don't</b>연속 기록을 세운다 · 미완료를 빨간색으로 표시한다 · 하루에 두 번 이상 부른다</div></div>
+        <p class="feat">기능으로 드러나는 자리 · <span>The Quiet Nudge</span></p></div>
+      <div class="value"><div class="num">VALUE 03</div><h4>곁에 있되 감시하지 않는다<span class="en">Beside, not above</span></h4><p class="stmt">가족은 감시자가 아니라 같은 화면을 보는 동행자입니다. 물어보면 잔소리가 되고 묻지 않으면 불안이 되는 관계를, 같은 정보를 함께 보는 관계로 바꿉니다.</p>
+        <div class="dodont"><div class="do"><b>We do</b>환자가 허락한 것만 보호자에게 비춘다 · 보호자 화면에도 "어떻게 말할까"를 함께 준다</div><div class="dont"><b>We don't</b>보호자에게 환자의 미기록을 알린다 · 순응도를 가족에게 채점해 보여준다</div></div>
+        <p class="feat">기능으로 드러나는 자리 · <span>Mirrored Care</span></p></div>
+      <div class="value"><div class="num">VALUE 04</div><h4>시간은 편이다<span class="en">Time is on your side</span></h4><p class="stmt">느린 병에는 느린 브랜드가 필요합니다. 하루의 성적표가 아니라 10년을 보는 기록입니다. 지금의 숫자를 과거와 미래의 자신 옆에 놓습니다.</p>
+        <div class="dodont"><div class="do"><b>We do</b>1년 전 나와 비교한다 · 지금처럼 가면 어디에 있을지 보여준다 · 서두르지 않는 문장을 쓴다</div><div class="dont"><b>We don't</b>"지금 당장"으로 시작하는 문장 · 일주일 단위 챌린지 · 공포로 행동을 재촉하는 콘텐츠</div></div>
+        <p class="feat">기능으로 드러나는 자리 · <span>Time Travel · Reverse Content</span></p></div>
+    </div>
+    <div class="rule" style="margin-top:28px"><span class="k">06 · The Root Rule · inherited from Kidney Bloom</span><h3>말할 수 있는 것만 말한다.</h3><p>네 가지 가치는 모두 이 원칙 위에 있습니다. 근거 노트가 없는 주장은 앱 화면, 소셜 콘텐츠, 기관 브로슈어, 의료진 브리프 어디에도 쓰지 않습니다. 따뜻한 표현이 정확성을 대신할 수 없고, 정확성이 표현의 배려를 면제하지 않습니다.</p></div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="sec-head"><span class="tag">07 · Warm Precision</span><h2>다정한 정확함</h2><p>웰니스는 따뜻하지만 모호하고, 의료는 정확하지만 차갑습니다. 친근한 콩 캐릭터와 "근거 노트 없는 주장은 쓰지 않는다"는 규칙을 한 브랜드에 두는 것이 My Beanie의 성격입니다.</p></div>
+    <div class="axis-l"><span>← Vague 모호함</span><span>Precise 정확함 →</span></div>
+    <div class="quad">
+      <div class="q"><div class="lbl">Warm · Vague</div><div class="who">웰니스 브랜드</div><div class="desc">호의적인 표현, 근거의 부재. 명상·습관 앱</div></div>
+      <div class="q ours"><div class="lbl">Warm · Precise</div><div class="who">My Beanie</div><div class="desc">친근한 표현으로 정확한 정보를 전한다. 비어 있던 영역.</div></div>
+      <div class="q"><div class="lbl">Cold · Vague</div><div class="who">일반 건강 정보</div><div class="desc">검색 결과, 출처 없는 커뮤니티 정보, 광고성 콘텐츠</div></div>
+      <div class="q"><div class="lbl">Cold · Precise</div><div class="who">의료 도구</div><div class="desc">가이드라인, 환자 번호, 경고문. 병원 앱</div></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="tag">08 · How We Speak</span><h2>언어 원칙</h2><p>앱 화면, 소셜 콘텐츠, 브로슈어, 의료진 브리프에 동일하게 적용하는 어휘 규칙입니다. 왼쪽 표현은 오른쪽으로 바꿔 씁니다.</p></div>
+    <div class="tw"><table class="axis lang" style="min-width:420px;max-width:680px">
+      <thead><tr><th>웰니스가 쓰는 말</th><th>My Beanie가 쓰는 말</th></tr></thead>
+      <tbody>
+        <tr><td>목표 · 달성 · 도전</td><td>알아차림 · 비교 · 설명</td></tr>
+        <tr><td>오늘도 성공! / 실패</td><td>지난번과 비교하면</td></tr>
+        <tr><td>최적화 · 부스트 · 개선하세요</td><td>이해하기 · 읽기 · 알아가기</td></tr>
+        <tr><td>관리하세요 · 조절하세요</td><td>물어볼 수 있게 · 설명할 수 있게</td></tr>
+        <tr><td>점수 · 랭킹 · 등급</td><td>지도 · 경로 · 위치</td></tr>
+        <tr><td>지금 당장 · 놓치지 마세요</td><td>천천히 · 다음 진료 때</td></tr>
+        <tr><td>환자 · 관리 대상</td><td>나 · 우리 · 내 몸</td></tr>
+        <tr><td>경고 · 위험 · 주의</td><td>확인해볼 것 · 의료진과 이야기할 것</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note" style="margin-top:14px">질환명은 제품 전면에 두지 않습니다. 회사명은 Root to Life, 제품명은 My Beanie, 근거의 서명은 Powered by Kidney Bloom입니다.</p>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="sec-head"><span class="tag">09 · The Promise</span><h2>대상별 약속</h2></div>
+    <div class="promise-row"><div class="to">To the person<small>환자 · 아직 진단받지 않은 사람</small></div><p>자기 몸을 자기 말로 설명하게 된다.<span>다음 진료에서 한 장으로 말할 수 있고, 검색 대신 비교할 수 있다.</span></p></div>
+    <div class="promise-row"><div class="to">To the family<small>보호자</small></div><p>감시하지 않고도 곁에 있을 수 있다.<span>같은 화면을 보고, 잔소리 대신 같은 말을 쓰게 된다.</span></p></div>
+    <div class="promise-row"><div class="to">To the clinician<small>의료진</small></div><p>3분을 30분처럼 쓰게 된다.<span>준비된 질문과 한 장의 기록이 진료실에 먼저 도착한다.</span></p></div>
+    <div class="promise-row"><div class="to">To the institution<small>기관 · 파트너</small></div><p>보이는 케어를 갖게 된다.<span>이용자가 매일 여는 도구와, 근거로 서명된 프로그램.</span></p></div>
+    <div class="promise-row"><div class="to">To the investor<small>투자자</small></div><p>한 질환에서 증명된 구조를 다음 질환에 옮긴다.<span>방법론 · 브랜드 · 데이터 구조가 그대로 이식되는 엔진.</span></p></div>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="wrap">
+    <p>아프지 않은 것을 읽을 수 있게 될 때,<br>사람은 자기 삶의 첫 번째 선생님이 된다.</p>
+    <div class="names"><span class="dot" style="background:var(--coral)"></span> Root to Life <span class="dot" style="background:var(--mint)"></span> Kidney Bloom <span class="dot" style="background:var(--blue)"></span> My Beanie</div>
+    <div style="margin-top:36px;display:flex;gap:12px;flex-wrap:wrap"><a class="btn btn-primary" href="https://app.kidneybloom.com">My Beanie 앱 열기 →</a><a class="btn btn-ghost" href="product.html">제품 살펴보기</a></div>
+  </div>
+</section>
+
+<script src="site.js"></script>
+</body>
+</html>
