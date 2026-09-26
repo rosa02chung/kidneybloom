@@ -1,4 +1,4 @@
-const CACHE = 'mybeanie-v10';
+const CACHE = 'mybeanie-v12';
 const ASSETS = ['./', './index.html', './style.css', './app.js', './i18n.js', './mirror.js', './family.js', './manifest.json', './fonts/Poppins-Medium.woff2', './icons/icon-192.png', './icons/icon-512.png'];
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting()));

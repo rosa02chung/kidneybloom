@@ -13,32 +13,32 @@
 
   const K = {
     ko: {
-      st_card: '이용권 · 가족', st_card_sub: '병원 초대 코드 · 함께 보는 가족 · 패밀리 플랜', st_open: '열기',
-      plan_title: '이용권 · 가족', my_pass: '내 이용권',
+      st_card: '이용권 · 서포터', st_card_sub: '병원·시설 초대 코드 · 함께 보는 서포터 · 서포터 플랜', st_open: '열기',
+      plan_title: '이용권 · 서포터', my_pass: '내 이용권',
       free_t: '개인 무료 이용 중', free_d: '기록 · 추이 · 진료 전 한 장 · 미러 카드는 모두 무료예요.',
       code_t: '초대 코드가 있나요?', code_d: '다니는 신장내과 · 투석실이나 사는 곳(시니어 레지던스 등)에서 받은 코드를 입력하면 기관이 제공하는 이용권이 연결돼요.',
       code_ph: '예: MB-7K2Q-HANB', code_btn: '연결', code_bad: '코드 형식을 확인해 주세요', code_soon: '코드 연결은 정식 출시 후 가능해요 (지금은 데모에서만)',
       sp_badge: 'Sponsored', sp_by: '{org} 제공 이용권', sp_until: '{date}까지',
-      sp_inc: ['모든 기록 기능 · 투석 Special', '진료 전 한 장을 병원과 공유 (내가 허락할 때)', '함께 보는 가족 1명 무료'],
+      sp_inc: ['모든 기록 기능 · 투석 Special', '진료 전 한 장을 병원과 공유 (내가 허락할 때)', '함께 보는 서포터 1명 무료'],
       sp_priv: '병원은 내가 허락한 기록만 볼 수 있어요. 허락은 언제든 거둘 수 있어요.',
-      fa_inc: ['모든 기록 기능 · 나를 알아가는 기록', '웰니스 라운지 월 1회 기록 클래스', '함께 보는 가족 1명 무료'],
+      fa_inc: ['모든 기록 기능 · 나를 알아가는 기록', '웰니스 라운지 월 1회 기록 클래스', '함께 보는 서포터 1명 무료'],
       fa_priv: '시설에는 이름 없는 참여 통계만 전달돼요. 내 기록은 내가 허락한 가족과 병원만 봐요.', fa_badge: 'Community', fa_org: '[데모] 마곡 시니어 레지던스',
       sp_leave: '연결 해제',
-      fam_t: '함께 보는 가족', fam_d: '가족은 내가 고른 항목만, 읽기 전용으로 봐요.',
-      fam_free: '무료 포함', fam_paid: '패밀리 플랜', fam_on: '연결됨 · {date}', fam_add: '＋ 가족 초대하기',
-      fam_more: '두 번째 가족부터는 패밀리 플랜 — 포함된 1명분을 뺀 차액 월 4,900원', fam_more_free: '가족 연결은 1인 플랜(월 4,900원)부터예요. 링크 한 번 보내기(미러 카드)는 무료예요.',
+      fam_t: '함께 보는 서포터', fam_d: '가족·친구·돌봄 담당자 누구든. 내가 고른 항목만 읽기 전용으로 봐요.',
+      fam_free: '무료 포함', fam_paid: '패밀리 플랜', fam_on: '연결됨 · {date}', fam_add: '＋ 서포터 초대하기',
+      fam_more: '두 번째 서포터부터는 패밀리 플랜, 포함된 1명분을 뺀 차액 월 4,900원', fam_more_free: '서포터 연결은 서포터 플랜(월 4,900원)부터예요. 링크 한 번 보내기(미러 카드)는 무료예요.',
       fam_invited: '초대 링크를 보냈어요 (데모)',
-      share_t: '가족이 볼 수 있는 것', share_d: '언제든 끄고 켤 수 있어요. 끈 항목은 가족 화면에서 바로 사라져요.',
+      share_t: '서포터가 볼 수 있는 것', share_d: '언제든 끄고 켤 수 있어요. 끈 항목은 서포터 화면에서 바로 사라져요.',
       sh: { days: '기록한 날짜', bp: '혈압', wt: '체중', labs: '검사 수치', sym: '몸의 신호', food: '식사 패턴', notes: '의사에게 물어볼 것' },
-      see_plans: '패밀리 플랜 보기', see_guard: '보호자 화면 미리보기',
-      price_title: '패밀리 플랜', price_lead: '기록하는 사람은 언제나 무료. 곁에서 함께 돕는 가족을 위한 작은 구독이에요.',
+      see_plans: '서포터 플랜 보기', see_guard: '보호자 화면 미리보기',
+      price_title: '서포터 플랜', price_lead: '기록하는 사람은 언제나 무료. 곁에서 함께 보는 서포터를 위한 구독이에요. 가족이 아니어도 괜찮아요.',
       price_tag: '출시 전 · 가격은 가정',
       p_free: '무료', p_basic: '기본', p_free_d: ['미러 카드 링크로 한 번씩 공유', '받은 카드 저장 10개'],
-      p_one: '1인', p_one_d: ['보호자 1명 연결', '자동 갱신되는 가족 화면', '기록 멈춤 · 진료일 알림', '안부 보내기'],
-      p_fam: '패밀리', p_fam_d: ['가족 3명까지 연결', '1인 플랜의 모든 기능', '가족끼리 서로 안부 보기'],
-      p_plus: '패밀리 플러스', p_plus_d: ['부모님 두 분 이상 함께 관리', '가족 5명까지', '진료 전 한 장 함께 쓰기', '진료 동행 메모'],
-      mo: '/월', yr: '연 {v}원 (2개월 무료)', per: '1인당 월 {v}원', pop: '추천',
-      sp_note: '병원·시설 이용권이 있으면 보호자 1명은 무료예요. 상위 플랜은 1인분(4,900원)을 뺀 차액만 내요.', sp_fam: '이용권 가족 월 {v}원', sp_in: '병원·시설 이용권에 포함', trial: '14일 무료 체험 · 연 구독은 2개월 무료',
+      p_one: '서포터', p_one_d: ['함께 보는 사람 1명 연결 (가족·친구·돌봄 담당자)', '자동 갱신되는 서포터 화면', '기록 멈춤 · 진료일 알림', '안부 보내기'],
+      p_fam: '패밀리', p_fam_d: ['서포터 3명까지 연결', '서포터 플랜의 모든 기능', '서포터끼리 서로 안부 보기'],
+      p_plus: '패밀리 플러스', p_plus_d: ['부모님 두 분 이상 함께 관리', '서포터 5명까지', '진료 전 한 장 함께 쓰기', '진료 동행 메모'],
+      mo: '/월', yr: '연 {v}원', per: '1인당 월 {v}원', pop: '추천',
+      sp_note: '병원·시설 이용권이 있으면 보호자 1명은 무료예요. 상위 플랜은 1인분(4,900원)을 뺀 차액만 내요.', sp_fam: '이용권 서포터 월 {v}원', sp_in: '병원·시설 이용권에 포함', trial: '월 또는 연 단위 결제 · 언제든 해지',
       notify: '출시 알림 받기', notified: '출시되면 알려드릴게요 (데모)',
       g_title: '{name} 님의 기록', g_sub: '{me} 님이 보는 보호자 화면', g_badge: '{name} 님이 허락한 항목만 보여요 · 읽기 전용',
       g_last: '마지막 기록', g_days: '최근 28일 기록', g_visit: '다음 진료', g_ago: '{n}일 전', g_today: '오늘', g_cnt: '{n}일',
@@ -50,8 +50,8 @@
       won: '원'
     },
     en: {
-      st_card: 'Pass · Family', st_card_sub: 'Sponsor code · family viewers · Family plan', st_open: 'Open',
-      plan_title: 'Pass · Family', my_pass: 'My pass',
+      st_card: 'Pass · Supporters', st_card_sub: 'Sponsor code · supporters · Supporter plans', st_open: 'Open',
+      plan_title: 'Pass · Supporters', my_pass: 'My pass',
       free_t: 'Using My Beanie for free', free_d: 'Logging, trends, the pre-visit one-pager and mirror cards are all free.',
       code_t: 'Have an invite code?', code_d: 'Enter the code from your kidney clinic, dialysis unit or residence to link the pass they provide.',
       code_ph: 'e.g. MB-7K2Q-HANB', code_btn: 'Link', code_bad: 'Please check the code format', code_soon: 'Code linking opens at launch (demo only for now)',
@@ -61,21 +61,21 @@
       fa_inc: ['All logging · know-yourself records', 'Monthly logging class in the wellness lounge', '1 family viewer included'],
       fa_priv: 'The residence only receives anonymous participation stats. Your records go only to family and clinics you allow.', fa_badge: 'Community', fa_org: '[Demo] Magok Senior Residence',
       sp_leave: 'Unlink',
-      fam_t: 'Family who can see', fam_d: 'Family see only the items you pick, read-only.',
-      fam_free: 'Included', fam_paid: 'Family plan', fam_on: 'Linked · {date}', fam_add: '＋ Invite family',
-      fam_more: 'A Family plan from the second viewer — you pay only the 4,900 KRW difference', fam_more_free: 'Linking family starts with the Solo plan (4,900 KRW/mo). One-off mirror card links stay free.',
+      fam_t: 'Supporters who can see', fam_d: 'Family, a friend or a care worker. They see only the items you pick, read-only.',
+      fam_free: 'Included', fam_paid: 'Family plan', fam_on: 'Linked · {date}', fam_add: '＋ Invite a supporter',
+      fam_more: 'A Family plan from the second supporter; you pay only the 4,900 KRW difference', fam_more_free: 'Linking a supporter starts with the Supporter plan (4,900 KRW/mo). One-off mirror card links stay free.',
       fam_invited: 'Invite link sent (demo)',
-      share_t: 'What family can see', share_d: 'Toggle any time. Items you switch off disappear from their screen.',
+      share_t: 'What supporters can see', share_d: 'Toggle any time. Items you switch off disappear from their screen.',
       sh: { days: 'Days logged', bp: 'Blood pressure', wt: 'Weight', labs: 'Lab values', sym: 'Body signals', food: 'Meal patterns', notes: 'Questions for the doctor' },
-      see_plans: 'See Family plans', see_guard: 'Preview caregiver view',
-      price_title: 'Family Plan', price_lead: 'The person logging is always free. This is a small subscription for family who help.',
+      see_plans: 'See Supporter plans', see_guard: 'Preview caregiver view',
+      price_title: 'Supporter Plans', price_lead: 'The person logging is always free. A subscription for the supporters beside them. They need not be family.',
       price_tag: 'Pre-launch · prices are assumptions',
       p_free: 'Free', p_basic: 'Basic', p_free_d: ['Share via one-off mirror card links', 'Keep up to 10 received cards'],
-      p_one: 'Solo', p_one_d: ['1 family viewer', 'Auto-updating family view', 'Paused-logging & visit reminders', 'Send a check-in'],
-      p_fam: 'Family', p_fam_d: ['Up to 3 family viewers', 'Everything in Solo', 'Family members see each other\'s check-ins'],
-      p_plus: 'Family Plus', p_plus_d: ['Care for two or more parents', 'Up to 5 family viewers', 'Co-write the one-pager', 'Visit companion notes'],
-      mo: '/mo', yr: '{v} KRW / yr (2 months free)', per: '{v} KRW per person', pop: 'Popular',
-      sp_note: 'With a clinic or residence pass, one viewer is free. Higher plans cost only the difference (minus 4,900 KRW).', sp_fam: 'Pass family {v} KRW/mo', sp_in: 'Included with your pass', trial: '14-day free trial · annual = 2 months free',
+      p_one: 'Supporter', p_one_d: ['1 supporter (family, friend or care worker)', 'Auto-updating family view', 'Paused-logging & visit reminders', 'Send a check-in'],
+      p_fam: 'Family', p_fam_d: ['Up to 3 supporters', 'Everything in Supporter', 'Supporters see each other\'s check-ins'],
+      p_plus: 'Family Plus', p_plus_d: ['Care for two or more parents', 'Up to 5 supporters', 'Co-write the one-pager', 'Visit companion notes'],
+      mo: '/mo', yr: '{v} KRW / yr', per: '{v} KRW per person', pop: 'Popular',
+      sp_note: 'With a clinic or residence pass, one viewer is free. Higher plans cost only the difference (minus 4,900 KRW).', sp_fam: 'Pass supporter {v} KRW/mo', sp_in: 'Included with your pass', trial: 'Monthly or annual billing · cancel any time',
       notify: 'Notify me at launch', notified: 'We will let you know (demo)',
       g_title: "{name}'s records", g_sub: 'Caregiver view for {me}', g_badge: 'Only items {name} allowed · read-only',
       g_last: 'Last log', g_days: 'Last 28 days', g_visit: 'Next visit', g_ago: '{n}d ago', g_today: 'Today', g_cnt: '{n} days',
@@ -120,7 +120,7 @@
 
   // settings entry card
   const card = document.createElement('div'); card.className = 'card form fam-entry';
-  card.innerHTML = `<div class="grp-t">${L.st_card} <span class="en tag">Pass · Family</span></div><p class="tiny" style="text-align:left;margin:4px 0 0">${L.st_card_sub}</p><button class="btn ghost" id="fam-open">${L.st_open}</button>`;
+  card.innerHTML = `<div class="grp-t">${L.st_card} <span class="en tag">Pass · Supporters</span></div><p class="tiny" style="text-align:left;margin:4px 0 0">${L.st_card_sub}</p><button class="btn ghost" id="fam-open">${L.st_open}</button>`;
   const anchor = $('#v-settings .card.form'); anchor && anchor.after(card);
   $('#fam-open').onclick = () => show('v-plan');
 
@@ -143,7 +143,7 @@
     const famRows = fam.map((m, i) => `<div class="item"><div class="fam-av">${esc(m.name).slice(0, 1)}</div><div style="flex:1"><div class="m"><b style="font-family:var(--ko);font-weight:800">${esc(m.name)}</b> <span style="color:var(--ink-3);font-size:12px">${esc(m.rel)}</span></div><div class="dt">${f(L.fam_on, { date: m.since })}</div></div><span class="fam-pill ${i < freeSlots ? 'free' : 'paid'}">${i < freeSlots ? L.fam_free : L.fam_paid}</span></div>`).join('');
     const needPlan = fam.length >= freeSlots;
     $('#v-plan').innerHTML = `
-      <header class="top"><button class="icon-btn" id="fam-back">←</button><h1>${L.plan_title}</h1><span class="en tag">Pass · Family</span></header>
+      <header class="top"><button class="icon-btn" id="fam-back">←</button><h1>${L.plan_title}</h1><span class="en tag">Pass · Supporters</span></header>
       <h2 class="h" style="margin-top:4px">${L.my_pass}</h2>${passHtml}
       <h2 class="h">${L.fam_t}</h2><p class="fam-lead">${L.fam_d}</p>
       <div class="list">${famRows}</div>
@@ -180,7 +180,7 @@
       ${yr ? `<div class="fpl-yr">${f(L.yr, { v: yr })}${per ? ' · ' + f(L.per, { v: per }) : ''}</div>` : ''}${sp && spv ? `<div class="fpl-sp">${spv === '0' ? L.sp_in : f(L.sp_fam, { v: spv })}</div>` : ''}
       <ul>${items.map(x => `<li>${x}</li>`).join('')}</ul></div>`;
     $('#v-price').innerHTML = `
-      <header class="top"><button class="icon-btn" id="pr-back">←</button><h1>${L.price_title}</h1><span class="en tag">Family Plan</span></header>
+      <header class="top"><button class="icon-btn" id="pr-back">←</button><h1>${L.price_title}</h1><span class="en tag">Supporter Plans</span></header>
       <p class="fam-lead" style="font-size:15px;color:var(--ink)">${L.price_lead}</p>
       <div class="fam-assume">${L.price_tag}</div> <div class="fam-trial">${L.trial}</div>
       ${plan(L.p_basic, null, null, L.p_free_d)}

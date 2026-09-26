@@ -30,12 +30,13 @@
 .enemy .mark{width:30px;height:30px;border-radius:50%;background:var(--coral-soft);color:var(--coral-deep);display:grid;place-items:center;font-family:var(--en);font-weight:600;font-size:12px}
 .enemy h4{font-size:18px;margin-bottom:4px}
 .enemy p{color:var(--ink-2);font-size:15px}
-.axis{width:100%;border-collapse:collapse;font-size:15px;min-width:560px}
-.axis th{font-family:var(--en);font-weight:500;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);text-align:left;padding:0 14px 10px 0;border-bottom:2px solid var(--ink)}
-.axis td{padding:14px 14px 14px 0;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-2)}
-.axis td:first-child{color:var(--ink);font-weight:800}
-.axis tr.ours td{color:var(--ink);background:var(--mint-soft)}
-.axis tr.ours td:first-child{padding-left:12px;border-left:4px solid var(--mint)}
+.axis{min-width:560px;font-size:14px}
+.axis th{font-family:var(--en);font-weight:600}
+.axis td:first-child{color:var(--ink);font-weight:800;white-space:nowrap}
+.axis td .en{font-family:var(--en);font-weight:500;color:var(--ink-3);font-size:12.5px;margin-left:6px}
+.axis tr.ours td{background:var(--mint-soft);color:var(--ink);font-weight:700}
+
+.axis tr.ours td .en{color:var(--mint-deep)}
 .layer{display:grid;grid-template-columns:60px 1fr;gap:22px;padding:24px 0}
 .layer+.layer{border-top:1px dashed var(--line)}
 .layer .seed{width:60px;height:60px;border-radius:50%;display:grid;place-items:center;font-family:var(--en);font-weight:600;font-size:11px;letter-spacing:.06em;color:var(--ink)}
@@ -66,7 +67,8 @@
 .q .who{font-weight:800;font-size:16px} .q .desc{font-size:14px;color:var(--ink-2);line-height:1.6}
 .q.ours{background:var(--coral);border-color:var(--coral)} .q.ours .lbl,.q.ours .desc,.q.ours .who{color:var(--ink)}
 .axis-l{display:flex;justify-content:space-between;font-family:var(--en);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin-bottom:8px;max-width:760px}
-.lang td:first-child{color:var(--ink-3);font-weight:400;text-decoration:line-through;text-decoration-color:var(--coral)}
+.lang{min-width:0}
+.lang td:first-child{color:var(--ink-3);font-weight:400;white-space:normal;text-decoration:line-through;text-decoration-color:var(--coral);text-decoration-thickness:1.5px;width:45%}
 .lang td:last-child{color:var(--ink);font-weight:800}
 .promise-row{display:grid;grid-template-columns:170px 1fr;gap:18px;padding:20px 0;border-top:1px solid var(--line);max-width:800px}
 .promise-row:last-child{border-bottom:1px solid var(--line)}
@@ -122,12 +124,12 @@
 <section>
   <div class="wrap">
     <div class="sec-head"><span class="tag">03 · The Third Axis</span><h2>세 번째 축, 이해</h2><p>웰니스는 건강한 사람을 더 건강하게 만들고, 의료는 질병이 있는 사람을 관리합니다. eGFR 54를 받았지만 증상이 없는 사람은 두 시장 어디에도 속하지 않습니다. My Beanie는 그 사이의 영역을 맡습니다.</p></div>
-    <div class="tw"><table class="axis">
+    <div class="tw" style="max-width:860px"><table class="axis">
       <thead><tr><th>축</th><th>누구의 것</th><th>약속하는 것</th><th>말하는 방식</th></tr></thead>
       <tbody>
-        <tr><td>건강 → 더 건강</td><td>웰니스 (웨어러블, 습관 앱)</td><td>개선 Improvement</td><td>목표 · 점수 · 스트릭</td></tr>
-        <tr><td>질병 → 관리</td><td>의료 (병원 앱, 처방 도구)</td><td>순응 Compliance</td><td>지침 · 수치 · 경고</td></tr>
-        <tr class="ours"><td>모름 → 이해</td><td>My Beanie</td><td>문해력 Literacy</td><td>알아차림 · 비교 · 설명</td></tr>
+        <tr><td>건강 → 더 건강</td><td>웰니스 (웨어러블, 습관 앱)</td><td>개선<span class="en">Improvement</span></td><td>목표 · 점수 · 스트릭</td></tr>
+        <tr><td>질병 → 관리</td><td>의료 (병원 앱, 처방 도구)</td><td>순응<span class="en">Compliance</span></td><td>지침 · 수치 · 경고</td></tr>
+        <tr class="ours"><td>모름 → 이해</td><td>My Beanie</td><td>문해력<span class="en">Literacy</span></td><td>알아차림 · 비교 · 설명</td></tr>
       </tbody>
     </table></div>
     <p class="note" style="margin-top:14px">브랜드가 다루는 시간은 진단 전후의 긴 구간입니다. 투석 이전의 10년이 My Beanie의 영역입니다.</p>
@@ -180,7 +182,7 @@
 <section>
   <div class="wrap">
     <div class="sec-head"><span class="tag">08 · How We Speak</span><h2>언어 원칙</h2><p>앱 화면, 소셜 콘텐츠, 브로슈어, 의료진 브리프에 동일하게 적용하는 어휘 규칙입니다. 왼쪽 표현은 오른쪽으로 바꿔 씁니다.</p></div>
-    <div class="tw"><table class="axis lang" style="min-width:420px;max-width:680px">
+    <div class="tw" style="max-width:760px"><table class="axis lang">
       <thead><tr><th>웰니스가 쓰는 말</th><th>My Beanie가 쓰는 말</th></tr></thead>
       <tbody>
         <tr><td>목표 · 달성 · 도전</td><td>알아차림 · 비교 · 설명</td></tr>
