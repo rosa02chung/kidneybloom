@@ -6,10 +6,10 @@
   const bean = '<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M20 8c-9 0-14 8-14 18 0 9 5 13 8 19 3 5 6 11 14 11 8 0 11-6 14-11 3-6 8-10 8-19C50 16 45 8 36 8c-4 0-6 2-8 2s-4-2-8-2z" fill="#7ECFB3"/><circle cx="23" cy="30" r="2.6" fill="#17383F"/><circle cx="37" cy="30" r="2.6" fill="#17383F"/><path d="M24 39q6 5 12 0" stroke="#17383F" stroke-width="2.4" stroke-linecap="round" fill="none"/><circle cx="18" cy="37" r="3" fill="#FF7B8E" opacity=".7"/><circle cx="42" cy="37" r="3" fill="#FF7B8E" opacity=".7"/></svg>';
   // information architecture: 5 top-level items (home = logo)
   const menu = [
-    { h: 'manifesto.html', ko: '매니페스토', en: 'Manifesto' },
+    { h: 'manifesto.html', ko: '브랜드', en: 'Brand' },
     { ko: 'My Beanie', en: 'My Beanie', sub: [['product.html', '제품 소개', 'Product'], ['family.html', '가족과 함께', 'Family'], ['dialysis.html', '투석 기록', 'Dialysis Log']] },
-    { h: 'problem.html', ko: '왜 콩팥인가', en: 'Why Kidneys' },
-    { ko: '회사', en: 'Company', sub: [['company.html', '회사 소개', 'About Root to Life'], ['strategy.html', '사업 구조', 'Business Structure']] },
+    { h: 'plans.html', ko: '이용권', en: 'Plans' },
+    { ko: '동행', en: 'Together', sub: [['company.html', 'Root to Life 소개', 'About Root to Life'], ['problem.html', '왜 콩팥인가', 'Why Kidneys'], ['strategy.html', '함께하는 구조', 'How We Work Together']] },
   ];
   const pages = [['index.html', '홈', 'Home']].concat(menu.flatMap(m => m.sub ? m.sub : [[m.h, m.ko, m.en]]));
   const here = location.pathname.split('/').pop() || 'index.html';
